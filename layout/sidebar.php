@@ -15,7 +15,7 @@
                     <span class="text">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item nav-item-has-children <?= ($_GET['page'] ?? '') == 'master_data' ? 'active' : ''; ?>">
+            <li class="nav-item nav-item-has-children <?= ($_GET['h1'] ?? '') == 'user' ? 'active' : ''; ?>">
                 <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#user" aria-controls="user" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -24,13 +24,13 @@
                     </span>
                     <span class="text">User</span>
                 </a>
-                <ul id="user" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'master_data' ? 'show' : ''; ?>">
-                    <li><a href="?page=master_data&sub_page=golongan_darah&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'golongan_darah' ? 'active' : ''; ?>">Admin</a></li>
-                    <li><a href="?page=master_data&sub_page=status_keluarga&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'status_keluarga' ? 'active' : ''; ?>">Kasir</a></li>
+                <ul id="user" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'user' ? 'show' : ''; ?>">
+                    <li><a href="?h1=user&h2=admin" class="<?= ($_GET['h2'] ?? '') == 'admin' ? 'active' : ''; ?>">Admin</a></li>
+                    <li><a href="?h1=user&h2=kasir" class="<?= ($_GET['h2'] ?? '') == 'kasir' ? 'active' : ''; ?>">Kasir</a></li>
                 </ul>
             </li>
-            <li class="nav-item <?= ($_GET['page'] ?? '') == 'pegawai' ? 'active' : ''; ?>">
-                <a href="?page=pegawai&action=tampil">
+            <li class="nav-item <?= ($_GET['h1'] ?? '') == 'kategori_menu' ? 'active' : ''; ?>">
+                <a href="?h1=kategori_menu">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M11,13.5V21.5H3V13.5H11M9,15.5H5V19.5H9V15.5M12,2L17.5,11H6.5L12,2M12,5.86L10.08,9H13.92L12,5.86M17.5,13C20,13 22,15 22,17.5C22,20 20,22 17.5,22C15,22 13,20 13,17.5C13,15 15,13 17.5,13M17.5,15A2.5,2.5 0 0,0 15,17.5A2.5,2.5 0 0,0 17.5,20A2.5,2.5 0 0,0 20,17.5A2.5,2.5 0 0,0 17.5,15Z" />
@@ -43,7 +43,7 @@
                 <br>
                 <h6>Utama</h6>
             </span>
-            <li class="nav-item nav-item-has-children">
+            <li class="nav-item nav-item-has-children <?= ($_GET['h1'] ?? '') == 'bahan_baku' ? 'active' : ''; ?>">
                 <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#bahan-baku" aria-controls="bahan-baku" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -53,11 +53,11 @@
                     <span class="text">Bahan Baku</span>
                 </a>
                 <ul id="bahan-baku" class="collapse dropdown-nav">
-                    <li><a href="#">Daftar Bahan Baku</a></li>
-                    <li><a href="#">Stok</a></li>
+                    <li><a href="?h1=bahan_baku&h2=daftar_bahan_baku" class="<?= ($_GET['h2'] ?? '') == 'daftar_bahan_baku' ? 'active' : ''; ?>">Daftar Bahan Baku</a></li>
+                    <li><a href="?h1=bahan_baku&h2=stok" class="<?= ($_GET['h2'] ?? '') == 'stok' ? 'active' : ''; ?>">Stok Bahan Baku</a></li>
                 </ul>
             </li>
-            <li class="nav-item nav-item-has-children">
+            <li class="nav-item nav-item-has-children <?= ($_GET['h1'] ?? '') == 'pemasok' ? 'active' : ''; ?>">
                 <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#pemasok" aria-controls="pemasok" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -67,11 +67,11 @@
                     <span class="text">Pemasok</span>
                 </a>
                 <ul id="pemasok" class="collapse dropdown-nav">
-                    <li><a href="#">Daftar Pemasok</a></li>
-                    <li><a href="#">Penyuplaian</a></li>
+                    <li><a href="?h1=pemasok&h2=daftar_pemasok" class="<?= ($_GET['h2'] ?? '') == 'daftar_pemasok' ? 'active' : ''; ?>">Daftar Pemasok</a></li>
+                    <li><a href="?h1=pemasok&h2=penyuplaian" class="<?= ($_GET['h2'] ?? '') == 'penyuplaian' ? 'active' : ''; ?>">Penyuplaian</a></li>
                 </ul>
             </li>
-            <li class="nav-item nav-item-has-children">
+            <li class="nav-item nav-item-has-children <?= ($_GET['h1'] ?? '') == 'menu' ? 'active' : ''; ?>">
                 <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -81,15 +81,15 @@
                     <span class="text">Menu</span>
                 </a>
                 <ul id="menu" class="collapse dropdown-nav">
-                    <li><a href="#">Daftar Menu</a></li>
-                    <li><a href="#">Penjualan</a></li>
+                    <li><a href="?h1=menu&h2=daftar_menu" class="<?= ($_GET['h2'] ?? '') == 'daftar_menu' ? 'active' : ''; ?>">Daftar Menu</a></li>
+                    <li><a href="?h1=menu&h2=penjualan" class="<?= ($_GET['h2'] ?? '') == 'penjualan' ? 'active' : ''; ?>">Penjualan</a></li>
                 </ul>
             </li>
             <span class="divider">
                 <br>
                 <h6>Laporan</h6>
             </span>
-            <li class="nav-item nav-item-has-children">
+            <li class="nav-item nav-item-has-children <?= ($_GET['h1'] ?? '') == 'laporan' ? 'active' : ''; ?>">
                 <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_5" aria-controls="ddmenu_5" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -99,11 +99,11 @@
                     <span class="text">Laporan</span>
                 </a>
                 <ul id="ddmenu_5" class="collapse dropdown-nav">
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
+                    <li><a href="?h1=laporan&h2=1" class="<?= ($_GET['h2'] ?? '') == '1' ? 'active' : ''; ?>">1</a></li>
+                    <li><a href="?h1=laporan&h2=2" class="<?= ($_GET['h2'] ?? '') == '2' ? 'active' : ''; ?>">2</a></li>
+                    <li><a href="?h1=laporan&h2=3" class="<?= ($_GET['h2'] ?? '') == '3' ? 'active' : ''; ?>">3</a></li>
+                    <li><a href="?h1=laporan&h2=4" class="<?= ($_GET['h2'] ?? '') == '4' ? 'active' : ''; ?>">4</a></li>
+                    <li><a href="?h1=laporan&h2=5" class="<?= ($_GET['h2'] ?? '') == '5' ? 'active' : ''; ?>">5</a></li>
                 </ul>
             </li>
         </ul>

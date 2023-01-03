@@ -35,7 +35,15 @@ session_start();
     <main class="main-wrapper">
         <?php include_once('layout/navbar.php'); ?>
         <?php
-        if (isset($_GET['page'])) {
+        if (isset($_GET['h1'])) {
+            if ($_GET['h1'] == 'kategori_menu')
+                include_once('halaman/kategori_menu/index.php');
+            elseif ($_GET['h1'] == 'tambah_kategori_menu')
+                include_once('halaman/kategori_menu/tambah.php');
+            elseif ($_GET['h1'] == 'ubah_kategori_menu')
+                include_once('halaman/kategori_menu/ubah.php');
+            elseif ($_GET['h1'] == 'hapus_kategori_menu')
+                include_once('halaman/kategori_menu/hapus.php');
         } else include_once('halaman/dashboard/dashboard.php');
         ?>
     </main>
