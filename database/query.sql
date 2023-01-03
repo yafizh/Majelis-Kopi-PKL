@@ -4,7 +4,7 @@ SELECT
     (
         IFNULL(SUM(penyuplaian.jumlah), 0) 
         - 
-        SUM(bbm.jumlah * penjualan.jumlah) 
+        IFNULL(SUM(bbm.jumlah * penjualan.jumlah), 0)
     ) AS jumlah
 FROM   
     bahan_baku bb 

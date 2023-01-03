@@ -4,25 +4,11 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3>Bahan Baku</h3>
+                        <h3>Stok Bahan Baku</h3>
                     </div>
-                </div>
-                <div class="col-auto">
-                    <a href="?h1=bahan_baku&h2=tambah_daftar_bahan_baku" class="btn btn-primary mb-30">Tambah</a>
                 </div>
             </div>
         </div>
-        <?php if (isset($_SESSION['success'])) : ?>
-            <div class="alert-box success-alert">
-                <div class="alert">
-                    <h4 class="alert-heading">Berhasil</h4>
-                    <p class="text-medium">
-                        <?= $_SESSION['success']; ?>
-                    </p>
-                </div>
-            </div>
-            <?php unset($_SESSION['success']); ?>
-        <?php endif; ?>
         <div class="tables-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -38,15 +24,45 @@
                                             <h6>Bahan Baku</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Satuan</h6>
-                                        </th>
-                                        <th class="fit">
-                                            <h6>Aksi</h6>
+                                            <h6>Stok</h6>
                                         </th>
                                     </tr>
                                 </thead>
                                 <?php
-                                $result = $conn->query("SELECT * FROM bahan_baku ORDER BY nama");
+                                $q = "
+                                    SELECT 
+                                        bb.*,
+                                        (
+                                            IFNULL(SUM(penyuplaian.jumlah), 0) 
+                                            - 
+                                            IFNULL(SUM(bbm.jumlah * penjualan.jumlah), 0) 
+                                        ) AS jumlah
+                                    FROM   
+                                        bahan_baku bb 
+                                    LEFT JOIN 
+                                        pemasok_bahan_baku pbb 
+                                    ON 
+                                        pbb.id_bahan_baku=bb.id 
+                                    LEFT JOIN 
+                                        penyuplaian 
+                                    ON 
+                                        penyuplaian.id_pemasok_bahan_baku=pbb.id 
+                                    LEFT JOIN 
+                                        bahan_baku_menu bbm 
+                                    ON 
+                                        bbm.id_bahan_baku=bb.id 
+                                    LEFT JOIN 
+                                        menu m 
+                                    ON 
+                                        m.id=bbm.id_menu 
+                                    LEFT JOIN 
+                                        penjualan 
+                                    ON 
+                                        penjualan.id_menu=m.id 
+                                    GROUP BY 
+                                        bb.id
+                                ";
+                                $result = $conn->query($q);
                                 $no = 1;
                                 ?>
                                 <tbody>
@@ -60,25 +76,13 @@
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['satuan']; ?></p>
-                                                </td>
-                                                <td class="d-flex gap-2">
-                                                    <div class="action">
-                                                        <a href="?h1=bahan_baku&h2=ubah_daftar_bahan_baku&id=<?= $row['id']; ?>" class="text-warning">
-                                                            <i class="lni lni-pencil"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="action">
-                                                        <a onclick="return confirm('Yakin?')" href="?h1=bahan_baku&h2=hapus_daftar_bahan_baku&id=<?= $row['id']; ?>" class="text-danger">
-                                                            <i class="lni lni-trash-can"></i>
-                                                        </a>
-                                                    </div>
+                                                    <p><?= $row['jumlah']; ?> <?= $row['satuan']; ?></p>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>
                                     <?php else : ?>
                                         <tr>
-                                            <td colspan="4">Data Kosong</td>
+                                            <td colspan="3">Data Kosong</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

@@ -54,6 +54,9 @@ session_start();
                     include_once('halaman/daftar_bahan_baku/ubah.php');
                 elseif ($_GET['h2'] == 'hapus_daftar_bahan_baku')
                     include_once('halaman/daftar_bahan_baku/hapus.php');
+
+                if ($_GET['h2'] == 'stok_bahan_baku')
+                    include_once('halaman/stok_bahan_baku/index.php');
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>

@@ -54,7 +54,7 @@
                 </a>
                 <ul id="bahan-baku" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'bahan_baku' ? 'show' : ''; ?>">
                     <li><a href="?h1=bahan_baku&h2=daftar_bahan_baku" class="<?= ($_GET['h2'] ?? '') == 'daftar_bahan_baku' ? 'active' : ''; ?>">Daftar Bahan Baku</a></li>
-                    <li><a href="?h1=bahan_baku&h2=stok" class="<?= ($_GET['h2'] ?? '') == 'stok' ? 'active' : ''; ?>">Stok Bahan Baku</a></li>
+                    <li><a href="?h1=bahan_baku&h2=stok_bahan_baku" class="<?= ($_GET['h2'] ?? '') == 'stok_bahan_baku' ? 'active' : ''; ?>">Stok Bahan Baku</a></li>
                 </ul>
             </li>
             <li class="nav-item nav-item-has-children <?= ($_GET['h1'] ?? '') == 'pemasok' ? 'active' : ''; ?>">
