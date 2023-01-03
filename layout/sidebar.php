@@ -52,7 +52,7 @@
                     </span>
                     <span class="text">Bahan Baku</span>
                 </a>
-                <ul id="bahan-baku" class="collapse dropdown-nav">
+                <ul id="bahan-baku" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'bahan_baku' ? 'show' : ''; ?>">
                     <li><a href="?h1=bahan_baku&h2=daftar_bahan_baku" class="<?= ($_GET['h2'] ?? '') == 'daftar_bahan_baku' ? 'active' : ''; ?>">Daftar Bahan Baku</a></li>
                     <li><a href="?h1=bahan_baku&h2=stok" class="<?= ($_GET['h2'] ?? '') == 'stok' ? 'active' : ''; ?>">Stok Bahan Baku</a></li>
                 </ul>
@@ -66,8 +66,8 @@
                     </span>
                     <span class="text">Pemasok</span>
                 </a>
-                <ul id="pemasok" class="collapse dropdown-nav">
-                    <li><a href="?h1=pemasok&h2=daftar_pemasok" class="<?= ($_GET['h2'] ?? '') == 'daftar_pemasok' ? 'active' : ''; ?>">Daftar Pemasok</a></li>
+                <ul id="pemasok" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'show' ? 'active' : ''; ?>">
+                    <li><a href="?h1=pemasok&h2=daftar_pemasok" class="<?= in_array(($_GET['h2'] ?? ''), ['daftar_pemasok', 'tambah_daftar_pemasok', 'ubah_daftar_pemasok', 'hapus_daftar_pemasok']) ? 'active' : ''; ?>">Daftar Pemasok</a></li>
                     <li><a href="?h1=pemasok&h2=penyuplaian" class="<?= ($_GET['h2'] ?? '') == 'penyuplaian' ? 'active' : ''; ?>">Penyuplaian</a></li>
                 </ul>
             </li>
@@ -80,8 +80,8 @@
                     </span>
                     <span class="text">Menu</span>
                 </a>
-                <ul id="menu" class="collapse dropdown-nav">
-                    <li><a href="?h1=menu&h2=daftar_menu" class="<?= ($_GET['h2'] ?? '') == 'daftar_menu' ? 'active' : ''; ?>">Daftar Menu</a></li>
+                <ul id="menu" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'menu' ? 'show' : ''; ?>">
+                    <li><a href="?h1=menu&h2=daftar_menu" class="<?= in_array(($_GET['h2'] ?? ''), ['daftar_menu', 'tambah_daftar_menu', 'ubah_daftar_menu', 'hapus_daftar_menu']) ? 'active' : ''; ?>">Daftar Menu</a></li>
                     <li><a href="?h1=menu&h2=penjualan" class="<?= ($_GET['h2'] ?? '') == 'penjualan' ? 'active' : ''; ?>">Penjualan</a></li>
                 </ul>
             </li>
@@ -98,7 +98,7 @@
                     </span>
                     <span class="text">Laporan</span>
                 </a>
-                <ul id="ddmenu_5" class="collapse dropdown-nav">
+                <ul id="ddmenu_5" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'laporan' ? 'show' : ''; ?>">
                     <li><a href="?h1=laporan&h2=1" class="<?= ($_GET['h2'] ?? '') == '1' ? 'active' : ''; ?>">1</a></li>
                     <li><a href="?h1=laporan&h2=2" class="<?= ($_GET['h2'] ?? '') == '2' ? 'active' : ''; ?>">2</a></li>
                     <li><a href="?h1=laporan&h2=3" class="<?= ($_GET['h2'] ?? '') == '3' ? 'active' : ''; ?>">3</a></li>
