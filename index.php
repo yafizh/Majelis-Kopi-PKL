@@ -68,6 +68,15 @@ session_start();
                     include_once('halaman/daftar_pemasok/ubah.php');
                 elseif ($_GET['h2'] == 'hapus_daftar_pemasok')
                     include_once('halaman/daftar_pemasok/hapus.php');
+
+                if ($_GET['h2'] == 'penyuplaian')
+                    include_once('halaman/penyuplaian/index.php');
+                elseif ($_GET['h2'] == 'tambah_penyuplaian')
+                    include_once('halaman/penyuplaian/tambah.php');
+                elseif ($_GET['h2'] == 'ubah_penyuplaian')
+                    include_once('halaman/penyuplaian/ubah.php');
+                elseif ($_GET['h2'] == 'hapus_penyuplaian')
+                    include_once('halaman/penyuplaian/hapus.php');
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>

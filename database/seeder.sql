@@ -85,6 +85,15 @@ INSERT INTO `db_majelis_kopi`.`bahan_baku_menu` (
 (5, 4, 5, 10),
 (6, 4, 6, 10);
 
+
+INSERT INTO `db_majelis_kopi`.`penyuplaian` (
+    `id`,
+    `id_pemasok_bahan_baku`,
+    `tanggal`, 
+    `jumlah`
+) VALUES 
+(1, 1, CURRENT_DATE(), 5);
+
 INSERT INTO `db_majelis_kopi`.`penjualan` (
     `id`,
     `id_menu`,
