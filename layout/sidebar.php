@@ -66,7 +66,7 @@
                     </span>
                     <span class="text">Pemasok</span>
                 </a>
-                <ul id="pemasok" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'show' ? 'active' : ''; ?>">
+                <ul id="pemasok" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'pemasok' ? 'show' : ''; ?>">
                     <li><a href="?h1=pemasok&h2=daftar_pemasok" class="<?= in_array(($_GET['h2'] ?? ''), ['daftar_pemasok', 'tambah_daftar_pemasok', 'ubah_daftar_pemasok', 'hapus_daftar_pemasok']) ? 'active' : ''; ?>">Daftar Pemasok</a></li>
                     <li><a href="?h1=pemasok&h2=penyuplaian" class="<?= ($_GET['h2'] ?? '') == 'penyuplaian' ? 'active' : ''; ?>">Penyuplaian</a></li>
                 </ul>

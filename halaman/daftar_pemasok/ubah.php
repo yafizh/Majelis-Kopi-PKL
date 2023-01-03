@@ -13,17 +13,24 @@ if (isset($_POST['submit'])) {
         $conn->begin_transaction();
 
         $conn->query("UPDATE pemasok SET nama='$nama' WHERE id=" . $_GET['id']);
-        $conn->query("DELETE FROM pemasok_bahan_baku WHERE id_pemasok=" . $_GET['id']);
+
+        foreach ($data['id_bahan_baku'] as $id) {
+            if (!in_array($id, $bahan_baku)) 
+                $conn->query("DELETE FROM pemasok_bahan_baku WHERE id_bahan_baku=$id");
+        }
+
         foreach ($bahan_baku as $id) {
-            $q = "
-            INSERT INTO pemasok_bahan_baku (
-                id_bahan_baku, 
-                id_pemasok
-            ) VALUES (
-                $id,
-                " . $_GET['id'] . "
-            )";
-            $conn->query($q);
+            if (!in_array($id, $data['id_bahan_baku'])) {
+                $q = "
+                INSERT INTO pemasok_bahan_baku (
+                    id_bahan_baku, 
+                    id_pemasok
+                ) VALUES (
+                    $id,
+                    " . $_GET['id'] . "
+                )";
+                $conn->query($q);
+            }
         }
 
         $conn->commit();
