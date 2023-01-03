@@ -4,11 +4,11 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3>Kategori Menu</h3>
+                        <h3>Pemasok</h3>
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="?h1=tambah_kategori_menu" class="btn btn-primary mb-30">Tambah</a>
+                    <a href="?h1=pemasok&h2=tambah_daftar_pemasok" class="btn btn-primary mb-30">Tambah</a>
                 </div>
             </div>
         </div>
@@ -35,7 +35,10 @@
                                             <h6>No</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Kategori</h6>
+                                            <h6>Pemasok</h6>
+                                        </th>
+                                        <th class="text-center">
+                                            <h6>Barang Yang Disuplai</h6>
                                         </th>
                                         <th class="fit">
                                             <h6>Aksi</h6>
@@ -43,7 +46,26 @@
                                     </tr>
                                 </thead>
                                 <?php
-                                $result = $conn->query("SELECT * FROM kategori_menu ORDER BY nama");
+                                $q = "
+                                    SELECT  
+                                        p.*, 
+                                        GROUP_CONCAT(bb.nama) AS bahan_baku 
+                                    FROM 
+                                        pemasok p 
+                                    LEFT JOIN 
+                                        pemasok_bahan_baku pbb 
+                                    ON 
+                                        pbb.id_pemasok=p.id 
+                                    LEFT JOIN 
+                                        bahan_baku bb 
+                                    ON 
+                                        bb.id=pbb.id_bahan_baku 
+                                    GROUP BY 
+                                        p.id 
+                                    ORDER BY 
+                                        p.nama 
+                                ";
+                                $result = $conn->query($q);
                                 $no = 1;
                                 ?>
                                 <tbody>
@@ -56,14 +78,17 @@
                                                 <td class="text-center">
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['bahan_baku']; ?></p>
+                                                </td>
                                                 <td class="d-flex gap-2">
                                                     <div class="action">
-                                                        <a href="?h1=ubah_kategori_menu&id=<?= $row['id']; ?>" class="text-warning">
+                                                        <a href="?h1=pemasok&h2=ubah_daftar_pemasok&id=<?= $row['id']; ?>" class="text-warning">
                                                             <i class="lni lni-pencil"></i>
                                                         </a>
                                                     </div>
                                                     <div class="action">
-                                                        <a onclick="return confirm('Yakin?')" href="?h1=hapus_kategori_menu&id=<?= $row['id']; ?>" class="text-danger">
+                                                        <a onclick="return confirm('Yakin?')" href="?h1=pemasok&h2=hapus_daftar_pemasok&id=<?= $row['id']; ?>" class="text-danger">
                                                             <i class="lni lni-trash-can"></i>
                                                         </a>
                                                     </div>
@@ -72,7 +97,7 @@
                                         <?php endwhile; ?>
                                     <?php else : ?>
                                         <tr>
-                                            <td class="text-center" colspan="3">Data Kosong</td>
+                                            <td class="text-center" colspan="4">Data Kosong</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

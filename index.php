@@ -58,6 +58,17 @@ session_start();
                 if ($_GET['h2'] == 'stok_bahan_baku')
                     include_once('halaman/stok_bahan_baku/index.php');
             }
+
+            if ($_GET['h1'] == 'pemasok') {
+                if ($_GET['h2'] == 'daftar_pemasok')
+                    include_once('halaman/daftar_pemasok/index.php');
+                elseif ($_GET['h2'] == 'tambah_daftar_pemasok')
+                    include_once('halaman/daftar_pemasok/tambah.php');
+                elseif ($_GET['h2'] == 'ubah_daftar_pemasok')
+                    include_once('halaman/daftar_pemasok/ubah.php');
+                elseif ($_GET['h2'] == 'hapus_daftar_pemasok')
+                    include_once('halaman/daftar_pemasok/hapus.php');
+            }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>
     </main>

@@ -60,7 +60,9 @@
                                     ON 
                                         penjualan.id_menu=m.id 
                                     GROUP BY 
-                                        bb.id
+                                        bb.id 
+                                    ORDER BY 
+                                        bb.nama 
                                 ";
                                 $result = $conn->query($q);
                                 $no = 1;
@@ -82,7 +84,7 @@
                                         <?php endwhile; ?>
                                     <?php else : ?>
                                         <tr>
-                                            <td colspan="3">Data Kosong</td>
+                                            <td class="text-center" colspan="3">Data Kosong</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

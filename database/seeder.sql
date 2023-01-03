@@ -52,6 +52,26 @@ INSERT INTO `db_majelis_kopi`.`bahan_baku` (
 (5, 'Kopi', 'Gram'),
 (6, 'Susu', 'Milliliter');
 
+INSERT INTO `db_majelis_kopi`.`pemasok` (
+    `id`,
+    `nama`
+) VALUES 
+(1, 'Umum'),
+(2, 'PT Air Mineral'),
+(3, 'Kedai A');
+
+INSERT INTO `db_majelis_kopi`.`pemasok_bahan_baku` (
+    `id`,
+    `id_pemasok`,
+    `id_bahan_baku`
+) VALUES 
+(1, 1, 1),
+(2, 1, 4),
+(3, 2, 2),
+(4, 2, 3),
+(5, 3, 5),
+(6, 3, 6);
+
 INSERT INTO `db_majelis_kopi`.`bahan_baku_menu` (
     `id`,
     `id_menu`,
