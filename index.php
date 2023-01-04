@@ -1,4 +1,5 @@
-<?php
+<?php 
+date_default_timezone_set('Asia/Kuala_Lumpur');
 require_once('database/connection.php');
 session_start();
 ?>
