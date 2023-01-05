@@ -64,6 +64,7 @@ CREATE TABLE `db_majelis_kopi`.`user`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `username` VARCHAR(255) UNIQUE,
     `password` VARCHAR(255),
+    `status` VARCHAR(255) UNIQUE,
     PRIMARY KEY(`id`)
 );
 

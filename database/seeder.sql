@@ -1,9 +1,11 @@
 INSERT INTO `db_majelis_kopi`.`user` (
     `id`,
     `username`,
-    `password`
+    `password`,
+    `status` 
 ) VALUES 
-(1, 'kasir', 'kasir');
+(1, 'admin', 'admin', 'ADMIN'),
+(2, 'kasir', 'kasir', 'KASIR');
 
 INSERT INTO `db_majelis_kopi`.`kasir` (
     `id`,
@@ -14,7 +16,7 @@ INSERT INTO `db_majelis_kopi`.`kasir` (
     `jenis_kelamin`,
     `foto`
 ) VALUES 
-(1, 1, 'Zaldi', 'Banjarbaru', '2001-01-01', 'Laki - Laki', '');
+(1, 2, 'Zaldi', 'Banjarbaru', '2001-01-01', 'Laki - Laki', '');
 
 INSERT INTO `db_majelis_kopi`.`kategori_menu` (
     `id`,
