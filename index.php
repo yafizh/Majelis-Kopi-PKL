@@ -57,6 +57,15 @@ if (!isset($_SESSION['user']))
                     include_once('halaman/admin/ubah.php');
                 elseif ($_GET['h2'] == 'hapus_admin')
                     include_once('halaman/admin/hapus.php');
+
+                if ($_GET['h2'] == 'kasir')
+                    include_once('halaman/kasir/index.php');
+                elseif ($_GET['h2'] == 'tambah_kasir')
+                    include_once('halaman/kasir/tambah.php');
+                elseif ($_GET['h2'] == 'ubah_kasir')
+                    include_once('halaman/kasir/ubah.php');
+                elseif ($_GET['h2'] == 'hapus_kasir')
+                    include_once('halaman/kasir/hapus.php');
             }
 
 

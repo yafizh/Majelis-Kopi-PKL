@@ -26,7 +26,7 @@
                 </a>
                 <ul id="user" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'user' ? 'show' : ''; ?>">
                     <li><a href="?h1=user&h2=admin" class="<?= in_array(($_GET['h2'] ?? ''), ['admin', 'tambah_admin', 'ubah_admin']) ? 'active' : ''; ?>">Admin</a></li>
-                    <li><a href="?h1=user&h2=kasir" class="<?= ($_GET['h2'] ?? '') == 'kasir' ? 'active' : ''; ?>">Kasir</a></li>
+                    <li><a href="?h1=user&h2=kasir" class="<?= in_array(($_GET['h2'] ?? ''), ['kasir', 'tambah_kasir', 'ubah_kasir']) ? 'active' : ''; ?>">Kasir</a></li>
                 </ul>
             </li>
             <li class="nav-item <?= ($_GET['h1'] ?? '') == 'kategori_menu' ? 'active' : ''; ?>">
