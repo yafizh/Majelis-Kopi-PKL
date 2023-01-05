@@ -43,5 +43,5 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
-
 </section>
+<?php require_once('layout/js.php'); ?>
