@@ -42,7 +42,7 @@
                                 <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
                             </li>
                             <li>
-                                <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                                <a href="halaman/logout/?"> <i class="lni lni-exit"></i> Keluar </a>
                             </li>
                         </ul>
                     </div>

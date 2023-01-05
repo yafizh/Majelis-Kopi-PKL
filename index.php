@@ -2,6 +2,7 @@
 date_default_timezone_set('Asia/Kuala_Lumpur');
 require_once('database/connection.php');
 session_start();
+// session_destroy();
 
 if (!isset($_SESSION['user']))
     echo "<script>location.href = 'halaman/login/?';</script>";

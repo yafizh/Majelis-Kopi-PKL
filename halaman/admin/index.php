@@ -35,7 +35,7 @@
                                             <h6>No</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Kategori</h6>
+                                            <h6>Username</h6>
                                         </th>
                                         <th class="fit">
                                             <h6>Aksi</h6>
