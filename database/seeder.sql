@@ -33,12 +33,14 @@ INSERT INTO `db_majelis_kopi`.`kategori_menu` (
 INSERT INTO `db_majelis_kopi`.`menu` (
     `id`,
     `id_kategori_menu`,
-    `nama`
+    `nama`,
+    `harga`,
+    `foto`
 ) VALUES 
-(1, 1, 'AQUA'),
-(2, 1, 'PROF'),
-(3, 4, 'Nasi Goreng'),
-(4, 3, 'Kopi Susus');
+(1, 1, 'AQUA', 7000, ''),
+(2, 1, 'PROF', 7000, ''),
+(3, 4, 'Nasi Goreng', 35000, ''),
+(4, 3, 'Kopi Susus', 20000, '');
 
 INSERT INTO `db_majelis_kopi`.`bahan_baku` (
     `id`,

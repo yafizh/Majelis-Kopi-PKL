@@ -12,6 +12,8 @@ CREATE TABLE `db_majelis_kopi`.`menu`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_kategori_menu` BIGINT UNSIGNED,
     `nama` VARCHAR(255) UNIQUE,
+    `harga` BIGINT UNSIGNED,
+    `foto` VARCHAR(255), 
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_kategori_menu`) REFERENCES kategori_menu (`id`) ON DELETE CASCADE
 );

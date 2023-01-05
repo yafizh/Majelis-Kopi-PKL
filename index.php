@@ -1,4 +1,4 @@
-<?php 
+<?php
 date_default_timezone_set('Asia/Kuala_Lumpur');
 require_once('database/connection.php');
 session_start();
@@ -25,6 +25,13 @@ session_start();
         .fit {
             width: 1%;
             white-space: nowrap;
+        }
+
+        .breadcrumb-item {
+            color: #5D657B;
+        }
+        .breadcrumb-item:hover {
+            color: #4A6CF7;
         }
     </style>
 </head>
@@ -69,6 +76,29 @@ session_start();
                     include_once('halaman/daftar_pemasok/ubah.php');
                 elseif ($_GET['h2'] == 'hapus_daftar_pemasok')
                     include_once('halaman/daftar_pemasok/hapus.php');
+
+                if ($_GET['h2'] == 'penyuplaian')
+                    include_once('halaman/penyuplaian/index.php');
+                elseif ($_GET['h2'] == 'tambah_penyuplaian')
+                    include_once('halaman/penyuplaian/tambah.php');
+                elseif ($_GET['h2'] == 'ubah_penyuplaian')
+                    include_once('halaman/penyuplaian/ubah.php');
+                elseif ($_GET['h2'] == 'hapus_penyuplaian')
+                    include_once('halaman/penyuplaian/hapus.php');
+            }
+
+            if ($_GET['h1'] == 'menu') {
+                if ($_GET['h2'] == 'daftar_menu') {
+                    if (($_GET['h3'] ?? '') == 'daftar_menu_per_kategori')
+                        include_once('halaman/daftar_menu/index_per_kategori.php');
+                    else
+                        include_once('halaman/daftar_menu/index.php');
+                } elseif ($_GET['h2'] == 'tambah_daftar_menu')
+                    include_once('halaman/daftar_menu/tambah.php');
+                elseif ($_GET['h2'] == 'ubah_daftar_menu')
+                    include_once('halaman/daftar_menu/ubah.php');
+                elseif ($_GET['h2'] == 'hapus_daftar_menu')
+                    include_once('halaman/daftar_menu/hapus.php');
 
                 if ($_GET['h2'] == 'penyuplaian')
                     include_once('halaman/penyuplaian/index.php');
