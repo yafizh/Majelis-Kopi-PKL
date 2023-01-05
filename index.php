@@ -48,6 +48,18 @@ if (!isset($_SESSION['user']))
         <?php include_once('layout/navbar.php'); ?>
         <?php
         if (isset($_GET['h1'])) {
+            if ($_GET['h1'] == 'user') {
+                if ($_GET['h2'] == 'admin')
+                    include_once('halaman/admin/index.php');
+                elseif ($_GET['h2'] == 'tambah_admin')
+                    include_once('halaman/admin/tambah.php');
+                elseif ($_GET['h2'] == 'ubah_admin')
+                    include_once('halaman/admin/ubah.php');
+                elseif ($_GET['h2'] == 'hapus_admin')
+                    include_once('halaman/admin/hapus.php');
+            }
+
+
             if ($_GET['h1'] == 'kategori_menu')
                 include_once('halaman/kategori_menu/index.php');
             elseif ($_GET['h1'] == 'tambah_kategori_menu')
