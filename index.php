@@ -30,6 +30,7 @@ session_start();
         .breadcrumb-item {
             color: #5D657B;
         }
+
         .breadcrumb-item:hover {
             color: #4A6CF7;
         }
@@ -99,6 +100,9 @@ session_start();
                     include_once('halaman/daftar_menu/ubah.php');
                 elseif ($_GET['h2'] == 'hapus_daftar_menu')
                     include_once('halaman/daftar_menu/hapus.php');
+
+                if ($_GET['h2'] == 'favorit_menu')
+                    include_once('halaman/favorit_menu/index.php');
 
                 if ($_GET['h2'] == 'penyuplaian')
                     include_once('halaman/penyuplaian/index.php');

@@ -82,6 +82,7 @@
                 </a>
                 <ul id="menu" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'menu' ? 'show' : ''; ?>">
                     <li><a href="?h1=menu&h2=daftar_menu" class="<?= in_array(($_GET['h2'] ?? ''), ['daftar_menu', 'tambah_daftar_menu', 'ubah_daftar_menu', 'hapus_daftar_menu']) ? 'active' : ''; ?>">Daftar Menu</a></li>
+                    <li><a href="?h1=menu&h2=favorit_menu" class="<?= ($_GET['h2'] ?? '') == 'favorit_menu' ? 'active' : ''; ?>">Favorit Menu</a></li>
                     <li><a href="?h1=menu&h2=penjualan" class="<?= ($_GET['h2'] ?? '') == 'penjualan' ? 'active' : ''; ?>">Penjualan</a></li>
                 </ul>
             </li>
