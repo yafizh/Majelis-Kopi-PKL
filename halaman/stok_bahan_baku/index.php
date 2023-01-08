@@ -35,7 +35,7 @@
                                         (
                                             IFNULL(SUM(penyuplaian.jumlah), 0) 
                                             - 
-                                            IFNULL(SUM(bbm.jumlah * penjualan.jumlah), 0) 
+                                            IFNULL(SUM(bbm.jumlah * detail_penjualan.jumlah), 0) 
                                         ) AS jumlah
                                     FROM   
                                         bahan_baku bb 
@@ -56,9 +56,9 @@
                                     ON 
                                         m.id=bbm.id_menu 
                                     LEFT JOIN 
-                                        penjualan 
+                                        detail_penjualan 
                                     ON 
-                                        penjualan.id_menu=m.id 
+                                        detail_penjualan.id_menu=m.id 
                                     GROUP BY 
                                         bb.id 
                                     ORDER BY 

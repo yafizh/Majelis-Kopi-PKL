@@ -82,12 +82,21 @@ CREATE TABLE `db_majelis_kopi`.`kasir`(
 
 CREATE TABLE `db_majelis_kopi`.`penjualan`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
-    `id_menu` BIGINT UNSIGNED,
     `id_kasir` BIGINT UNSIGNED,
-    `jumlah` VARCHAR(255),
+    `tunai` BIGINT UNSIGNED,
     `tanggal_waktu` VARCHAR(255),
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`id_menu`) REFERENCES menu (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`id_kasir`) REFERENCES kasir (`id`) ON DELETE CASCADE 
+);
+
+CREATE TABLE `db_majelis_kopi`.`detail_penjualan`(
+    `id` BIGINT UNSIGNED AUTO_INCREMENT,
+    `id_penjualan` BIGINT UNSIGNED,
+    `id_menu` BIGINT UNSIGNED,
+    `jumlah` VARCHAR(255),
+    `harga` BIGINT UNSIGNED,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_penjualan`) REFERENCES penjualan (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_menu`) REFERENCES menu (`id`) ON DELETE CASCADE 
 );
 

@@ -42,7 +42,7 @@ INSERT INTO `db_majelis_kopi`.`menu` (
 (1, 1, 'AQUA', 7000, ''),
 (2, 1, 'PROF', 7000, ''),
 (3, 4, 'Nasi Goreng', 35000, ''),
-(4, 3, 'Kopi Susus', 20000, '');
+(4, 3, 'Kopi Susu', 20000, '');
 
 INSERT INTO `db_majelis_kopi`.`bahan_baku` (
     `id`,
@@ -85,7 +85,7 @@ INSERT INTO `db_majelis_kopi`.`bahan_baku_menu` (
 (1, 1, 2, 1),
 (2, 2, 3, 1),
 (3, 3, 1, 1),
-(4, 3, 4, 1),
+(4, 3, 4, 2),
 (5, 4, 5, 10),
 (6, 4, 6, 10);
 
@@ -96,14 +96,27 @@ INSERT INTO `db_majelis_kopi`.`penyuplaian` (
     `tanggal`, 
     `jumlah`
 ) VALUES 
-(1, 1, CURRENT_DATE(), 5);
+(1, 1, CURRENT_DATE(), 5),
+(2, 2, CURRENT_DATE(), 5),
+(3, 3, CURRENT_DATE(), 5),
+(4, 4, CURRENT_DATE(), 5),
+(5, 5, CURRENT_DATE(), 5),
+(6, 6, CURRENT_DATE(), 5);
 
 INSERT INTO `db_majelis_kopi`.`penjualan` (
     `id`,
-    `id_menu`,
     `id_kasir`,
-    `jumlah`,
+    `tunai`,
     `tanggal_waktu`
 ) VALUES 
-(1, 1, 1, 2, NOW()),
-(2, 3, 1, 1, NOW());
+(1, 1, 100000, NOW());
+
+INSERT INTO `db_majelis_kopi`.`detail_penjualan` (
+    `id`,
+    `id_penjualan`,
+    `id_menu`,
+    `jumlah`,
+    `harga`
+) VALUES 
+(1, 1, 1, 2, 5000),
+(2, 1, 3, 1, 5000);
