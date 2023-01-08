@@ -42,104 +42,115 @@ if (!isset($_SESSION['user']))
 </head>
 
 <body>
-    <?php include_once('layout/sidebar.php'); ?>
-    <div class="overlay"></div>
 
-    <main class="main-wrapper">
+    <?php if ($_SESSION['user']['status'] == 'ADMIN') : ?>
+        <?php include_once('layout/sidebar.php'); ?>
+        <div class="overlay"></div>
+    <?php endif; ?>
+
+    <main class="main-wrapper <?= $_SESSION['user']['status'] == 'ADMIN' ? '' : 'm-0'; ?>">
         <?php include_once('layout/navbar.php'); ?>
-        <?php
-        if (isset($_GET['h1'])) {
-            if ($_GET['h1'] == 'user') {
-                if ($_GET['h2'] == 'admin')
-                    include_once('halaman/admin/index.php');
-                elseif ($_GET['h2'] == 'tambah_admin')
-                    include_once('halaman/admin/tambah.php');
-                elseif ($_GET['h2'] == 'ubah_admin')
-                    include_once('halaman/admin/ubah.php');
-                elseif ($_GET['h2'] == 'hapus_admin')
-                    include_once('halaman/admin/hapus.php');
 
-                if ($_GET['h2'] == 'kasir')
-                    include_once('halaman/kasir/index.php');
-                elseif ($_GET['h2'] == 'tambah_kasir')
-                    include_once('halaman/kasir/tambah.php');
-                elseif ($_GET['h2'] == 'ubah_kasir')
-                    include_once('halaman/kasir/ubah.php');
-                elseif ($_GET['h2'] == 'hapus_kasir')
-                    include_once('halaman/kasir/hapus.php');
-            }
+        <?php if ($_SESSION['user']['status'] == 'ADMIN') : ?>
+            <?php
+            if (isset($_GET['h1'])) {
+                if ($_GET['h1'] == 'user') {
+                    if ($_GET['h2'] == 'admin')
+                        include_once('halaman/user/admin/index.php');
+                    elseif ($_GET['h2'] == 'tambah_user/admin')
+                        include_once('halaman/user/admin/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_user/admin')
+                        include_once('halaman/user/admin/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_user/admin')
+                        include_once('halaman/user/admin/hapus.php');
 
+                    if ($_GET['h2'] == 'kasir')
+                        include_once('halaman/user/kasir/index.php');
+                    elseif ($_GET['h2'] == 'tambah_user/kasir')
+                        include_once('halaman/user/kasir/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_user/kasir')
+                        include_once('halaman/user/kasir/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_user/kasir')
+                        include_once('halaman/user/kasir/hapus.php');
+                }
 
-            if ($_GET['h1'] == 'kategori_menu')
-                include_once('halaman/kategori_menu/index.php');
-            elseif ($_GET['h1'] == 'tambah_kategori_menu')
-                include_once('halaman/kategori_menu/tambah.php');
-            elseif ($_GET['h1'] == 'ubah_kategori_menu')
-                include_once('halaman/kategori_menu/ubah.php');
-            elseif ($_GET['h1'] == 'hapus_kategori_menu')
-                include_once('halaman/kategori_menu/hapus.php');
+                if ($_GET['h1'] == 'kategori_menu')
+                    include_once('halaman/kategori_menu/index.php');
+                elseif ($_GET['h1'] == 'tambah_kategori_menu')
+                    include_once('halaman/kategori_menu/tambah.php');
+                elseif ($_GET['h1'] == 'ubah_kategori_menu')
+                    include_once('halaman/kategori_menu/ubah.php');
+                elseif ($_GET['h1'] == 'hapus_kategori_menu')
+                    include_once('halaman/kategori_menu/hapus.php');
 
-            if ($_GET['h1'] == 'bahan_baku') {
-                if ($_GET['h2'] == 'daftar_bahan_baku')
-                    include_once('halaman/daftar_bahan_baku/index.php');
-                elseif ($_GET['h2'] == 'tambah_daftar_bahan_baku')
-                    include_once('halaman/daftar_bahan_baku/tambah.php');
-                elseif ($_GET['h2'] == 'ubah_daftar_bahan_baku')
-                    include_once('halaman/daftar_bahan_baku/ubah.php');
-                elseif ($_GET['h2'] == 'hapus_daftar_bahan_baku')
-                    include_once('halaman/daftar_bahan_baku/hapus.php');
+                if ($_GET['h1'] == 'bahan_baku') {
+                    if ($_GET['h2'] == 'daftar_bahan_baku')
+                        include_once('halaman/daftar_bahan_baku/index.php');
+                    elseif ($_GET['h2'] == 'tambah_daftar_bahan_baku')
+                        include_once('halaman/daftar_bahan_baku/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_daftar_bahan_baku')
+                        include_once('halaman/daftar_bahan_baku/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_daftar_bahan_baku')
+                        include_once('halaman/daftar_bahan_baku/hapus.php');
 
-                if ($_GET['h2'] == 'stok_bahan_baku')
-                    include_once('halaman/stok_bahan_baku/index.php');
-            }
+                    if ($_GET['h2'] == 'stok_bahan_baku')
+                        include_once('halaman/stok_bahan_baku/index.php');
+                }
 
-            if ($_GET['h1'] == 'pemasok') {
-                if ($_GET['h2'] == 'daftar_pemasok')
-                    include_once('halaman/daftar_pemasok/index.php');
-                elseif ($_GET['h2'] == 'tambah_daftar_pemasok')
-                    include_once('halaman/daftar_pemasok/tambah.php');
-                elseif ($_GET['h2'] == 'ubah_daftar_pemasok')
-                    include_once('halaman/daftar_pemasok/ubah.php');
-                elseif ($_GET['h2'] == 'hapus_daftar_pemasok')
-                    include_once('halaman/daftar_pemasok/hapus.php');
+                if ($_GET['h1'] == 'pemasok') {
+                    if ($_GET['h2'] == 'daftar_pemasok')
+                        include_once('halaman/daftar_pemasok/index.php');
+                    elseif ($_GET['h2'] == 'tambah_daftar_pemasok')
+                        include_once('halaman/daftar_pemasok/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_daftar_pemasok')
+                        include_once('halaman/daftar_pemasok/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_daftar_pemasok')
+                        include_once('halaman/daftar_pemasok/hapus.php');
 
-                if ($_GET['h2'] == 'penyuplaian')
-                    include_once('halaman/penyuplaian/index.php');
-                elseif ($_GET['h2'] == 'tambah_penyuplaian')
-                    include_once('halaman/penyuplaian/tambah.php');
-                elseif ($_GET['h2'] == 'ubah_penyuplaian')
-                    include_once('halaman/penyuplaian/ubah.php');
-                elseif ($_GET['h2'] == 'hapus_penyuplaian')
-                    include_once('halaman/penyuplaian/hapus.php');
-            }
+                    if ($_GET['h2'] == 'penyuplaian')
+                        include_once('halaman/penyuplaian/index.php');
+                    elseif ($_GET['h2'] == 'tambah_penyuplaian')
+                        include_once('halaman/penyuplaian/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_penyuplaian')
+                        include_once('halaman/penyuplaian/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_penyuplaian')
+                        include_once('halaman/penyuplaian/hapus.php');
+                }
 
-            if ($_GET['h1'] == 'menu') {
-                if ($_GET['h2'] == 'daftar_menu') {
-                    if (($_GET['h3'] ?? '') == 'daftar_menu_per_kategori')
-                        include_once('halaman/daftar_menu/index_per_kategori.php');
-                    else
-                        include_once('halaman/daftar_menu/index.php');
-                } elseif ($_GET['h2'] == 'tambah_daftar_menu')
-                    include_once('halaman/daftar_menu/tambah.php');
-                elseif ($_GET['h2'] == 'ubah_daftar_menu')
-                    include_once('halaman/daftar_menu/ubah.php');
-                elseif ($_GET['h2'] == 'hapus_daftar_menu')
-                    include_once('halaman/daftar_menu/hapus.php');
+                if ($_GET['h1'] == 'menu') {
+                    if ($_GET['h2'] == 'daftar_menu') {
+                        if (($_GET['h3'] ?? '') == 'daftar_menu_per_kategori')
+                            include_once('halaman/daftar_menu/index_per_kategori.php');
+                        else
+                            include_once('halaman/daftar_menu/index.php');
+                    } elseif ($_GET['h2'] == 'tambah_daftar_menu')
+                        include_once('halaman/daftar_menu/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_daftar_menu')
+                        include_once('halaman/daftar_menu/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_daftar_menu')
+                        include_once('halaman/daftar_menu/hapus.php');
 
-                if ($_GET['h2'] == 'favorit_menu')
-                    include_once('halaman/favorit_menu/index.php');
+                    if ($_GET['h2'] == 'favorit_menu')
+                        include_once('halaman/favorit_menu/index.php');
 
-                if ($_GET['h2'] == 'penyuplaian')
-                    include_once('halaman/penyuplaian/index.php');
-                elseif ($_GET['h2'] == 'tambah_penyuplaian')
-                    include_once('halaman/penyuplaian/tambah.php');
-                elseif ($_GET['h2'] == 'ubah_penyuplaian')
-                    include_once('halaman/penyuplaian/ubah.php');
-                elseif ($_GET['h2'] == 'hapus_penyuplaian')
-                    include_once('halaman/penyuplaian/hapus.php');
-            }
-        } else include_once('halaman/dashboard/dashboard.php');
-        ?>
+                    if ($_GET['h2'] == 'penyuplaian')
+                        include_once('halaman/penyuplaian/index.php');
+                    elseif ($_GET['h2'] == 'tambah_penyuplaian')
+                        include_once('halaman/penyuplaian/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_penyuplaian')
+                        include_once('halaman/penyuplaian/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_penyuplaian')
+                        include_once('halaman/penyuplaian/hapus.php');
+                }
+            } else include_once('halaman/dashboard/dashboard.php');
+            ?>
+        <?php else : ?>
+            <?php
+            if (isset($_GET['h'])) {
+            } else include_once('halaman/kasir/index.php');
+            ?>
+        <?php endif; ?>
+
     </main>
 </body>
 
