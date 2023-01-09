@@ -49,9 +49,8 @@ if (!isset($_SESSION['user']))
     <?php endif; ?>
 
     <main class="main-wrapper <?= $_SESSION['user']['status'] == 'ADMIN' ? '' : 'm-0'; ?>">
-        <?php include_once('layout/navbar.php'); ?>
-
         <?php if ($_SESSION['user']['status'] == 'ADMIN') : ?>
+            <?php include_once('layout/navbar.php'); ?>
             <?php
             if (isset($_GET['h1'])) {
                 if ($_GET['h1'] == 'user') {
@@ -145,8 +144,13 @@ if (!isset($_SESSION['user']))
             } else include_once('halaman/dashboard/dashboard.php');
             ?>
         <?php else : ?>
+            <?php include_once('layout/navbar_kasir.php'); ?>
             <?php
             if (isset($_GET['h'])) {
+                if ($_GET['h'] == 'riwayat_penjualan')
+                    include_once('halaman/riwayat_penjualan/kasir/index.php');
+                elseif ($_GET['h'] == 'detail_riwayat_penjualan')
+                    include_once('halaman/riwayat_penjualan/kasir/detail.php');
             } else include_once('halaman/kasir/index.php');
             ?>
         <?php endif; ?>

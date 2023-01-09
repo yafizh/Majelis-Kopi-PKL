@@ -7,20 +7,8 @@ $data = json_decode(file_get_contents('php://input'), true);
 try {
     $conn->begin_transaction();
 
-    $q = "
-        INSERT INTO penjualan (
-            id_kasir, 
-            tunai,
-            tanggal_waktu 
-        ) VALUES (
-            " . $_SESSION['user']['id_kasir'] . ",
-            '" . $data['tunai'] . "',
-            '" . Date("Y-m-d H:i:s") . "'
-        )
-    ";
-    $conn->query($q);
-    $id_penjualan = $conn->insert_id;
-
+    $conn->query("UPDATE penjualan SET tunai='" . $data['tunai'] . "' WHERE id=" . $_GET['id']);
+    $conn->query("DELETE FROM detail_penjualan WHERE id_penjualan=" . $_GET['id']);
     foreach ($data['pesanan'] as $value) {
         $q = "
         INSERT INTO detail_penjualan (
@@ -29,7 +17,7 @@ try {
             jumlah,
             harga
         ) VALUES (
-            " . $id_penjualan . ",
+            " . $_GET['id'] . ",
             " . $value['id_menu'] . ",
             " . $value['jumlah'] . ",
             " . $value['harga'] . "

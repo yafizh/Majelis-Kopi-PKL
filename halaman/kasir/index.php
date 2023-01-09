@@ -46,8 +46,37 @@ $q = "
 $stok_bahan_baku = $conn->query($q)->fetch_all(MYSQLI_ASSOC);
 ?>
 <?php
-if (isset($_POST['submit'])) {
-    $tunai = $_POST['tunai'];
+$daftar_pesanan = [
+    "pesanan" => [],
+    "id" => [],
+    "tunai" => 0
+];
+if (isset($_GET['id'])) {
+    $q = "
+        SELECT 
+            m.id,
+            m.nama,
+            m.foto,
+            dp.harga,
+            dp.jumlah 
+        FROM 
+            detail_penjualan dp 
+        INNER JOIN 
+            menu m  
+        ON 
+            m.id=dp.id_menu 
+        WHERE 
+            dp.id_penjualan=" . $_GET['id'] . "
+    ";
+    $result = $conn->query($q);
+
+    while ($row = $result->fetch_assoc()) {
+        $row['bahan_baku_menu'] = $conn->query("SELECT * FROM bahan_baku_menu WHERE id_menu=" . $row['id'])->fetch_all(MYSQLI_ASSOC);
+        $daftar_pesanan['pesanan'][] = $row;
+        $daftar_pesanan['id'][] = $row['id'];
+    }
+    $penjualan = $conn->query("SELECT * FROM penjualan WHERE id=" . $_GET['id'])->fetch_assoc();
+    $daftar_pesanan['tunai'] = $penjualan['tunai'];
 }
 ?>
 <section class="table-components">
@@ -145,10 +174,12 @@ if (isset($_POST['submit'])) {
     const stok_bahan_baku = JSON.parse('<?= json_encode($stok_bahan_baku); ?>');
     const menu = JSON.parse('<?= json_encode($menu); ?>');
     const stokMenu = {};
-    const daftar_pesanan = {
-        'pesanan': [],
-        'id': []
-    };
+    // {
+    //     'pesanan': [],
+    //     'id': []
+    // };
+    const daftar_pesanan = JSON.parse('<?= json_encode($daftar_pesanan); ?>');
+
     const orderButton = document.querySelectorAll("#move-to-order-list");
 
     const updateStokMenu = () => {
@@ -216,8 +247,8 @@ if (isset($_POST['submit'])) {
         updateStokBahanBaku(daftar_pesanan.pesanan[index], 0);
         daftar_pesanan.pesanan[index].jumlah -= 1;
         if (daftar_pesanan.pesanan[index].jumlah == 0) {
-            delete daftar_pesanan.pesanan[index];
-            delete daftar_pesanan.id[index];
+            daftar_pesanan.pesanan.splice(index, 1)
+            daftar_pesanan.id.splice(index, 1)
         }
         updateDaftarPesanan();
         updateStokMenu();
@@ -226,7 +257,7 @@ if (isset($_POST['submit'])) {
     const plusMenu = (index) => {
         if (cekStok(daftar_pesanan.id[index])) {
             updateStokBahanBaku(daftar_pesanan.pesanan[index]);
-            daftar_pesanan.pesanan[index].jumlah += 1;
+            daftar_pesanan.pesanan[index].jumlah = parseInt(daftar_pesanan.pesanan[index].jumlah) + 1;
             updateDaftarPesanan();
             updateStokMenu();
         }
@@ -253,7 +284,7 @@ if (isset($_POST['submit'])) {
                         <td class="text-center fit">
                             <p>${index+1}</p>
                         </td>
-                        <td class="px-5">
+                        <td>
                             <h5>${value.nama}</h5>
                             <p>Rp. ${value.harga}</p>
                         </td>
@@ -283,19 +314,19 @@ if (isset($_POST['submit'])) {
             document.querySelector('#daftar-pesanan tbody').insertAdjacentHTML('beforeend', `
                 <tr>
                     <th>Total</th>
-                    <td colspan="2">
+                    <td colspan="2" class="ps-3">
                         <input type="text" name="total" class="form-control text-end" disabled value="${total}">
                     </td>
                 </tr>
                 <tr>
                     <th>Tunai</th>
-                    <td colspan="2">
-                        <input type="text" name="tunai" oninput="updateKembalianTunai()" class="form-control text-end" value="0">
+                    <td colspan="2" class="ps-3">
+                        <input type="text" name="tunai" oninput="updateKembalianTunai()" class="form-control text-end" value="${daftar_pesanan.tunai}">
                     </td>
                 </tr>
                 <tr>
                     <th>Kembalian</th>
-                    <td colspan="2">
+                    <td colspan="2" class="ps-3">
                         <input type="text" name="kembalian" class="form-control text-end" disabled value="0">
                     </td>
                 </tr>
@@ -305,6 +336,7 @@ if (isset($_POST['submit'])) {
                     </td>
                 </tr>
             `);
+            updateKembalianTunai();
         } else {
             document.querySelector('#daftar-pesanan tbody').innerHTML = `
                 <tr>
@@ -314,6 +346,7 @@ if (isset($_POST['submit'])) {
         }
 
     }
+    updateDaftarPesanan();
 
     const cekStok = (id_menu) => {
         if (stokMenu[id_menu].stok > 0) {
@@ -329,13 +362,14 @@ if (isset($_POST['submit'])) {
                 if (cekStok(id_menu)) {
                     updateStokBahanBaku(value);
                     if (daftar_pesanan.id.includes(value.id))
-                        daftar_pesanan.pesanan[daftar_pesanan.id.indexOf(value.id)].jumlah += 1;
+                        daftar_pesanan.pesanan[daftar_pesanan.id.indexOf(value.id)].jumlah = parseInt(daftar_pesanan.pesanan[daftar_pesanan.id.indexOf(value.id)].jumlah) + 1;
                     else {
                         daftar_pesanan.pesanan.push({
                             ...value,
                             jumlah: 1
                         });
                         daftar_pesanan.id.push(value.id);
+                        console.log(daftar_pesanan)
                     }
                     updateDaftarPesanan();
                 }
@@ -366,16 +400,35 @@ if (isset($_POST['submit'])) {
             });
         });
 
-        const response = await fetch("halaman/kasir/tambah.php", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(response => response.json());
-        if(response.isSuccess){
-            alert('Penjualan Berhasil');
-            location.reload();
+
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+
+        if (params.id) {
+            const response = await fetch("halaman/kasir/ubah.php?id=" + params.id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => response.json());
+            if (response.isSuccess) {
+                alert('Edit Penjualan Berhasil');
+                location.href = "index.php?h=detail_riwayat_penjualan&id=" + params.id;
+            }
+        } else {
+            const response = await fetch("halaman/kasir/tambah.php", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => response.json());
+            if (response.isSuccess) {
+                alert('Penjualan Berhasil');
+                location.reload();
+            }
         }
     });
 </script>
