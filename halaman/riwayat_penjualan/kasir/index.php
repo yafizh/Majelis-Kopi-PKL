@@ -72,7 +72,7 @@
                                                     <p><?= $no++; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['tanggal']; ?></p>
+                                                    <p><?= indoensiaDateWithDay($row['tanggal']); ?></p>
                                                 </td>
                                                 <td class="text-center">
                                                     <p><?= $row['total']; ?></p>
