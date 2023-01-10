@@ -16,37 +16,20 @@
                         <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="profile-info">
                                 <div class="info">
-                                    <h6>John Doe</h6>
-                                    <div class="image">
-                                        <img src="assets/images/profile/profile-image.png" alt="" />
-                                    </div>
+                                    <h6>ADMIN</h6>
                                 </div>
                             </div>
                             <i class="lni lni-chevron-down"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                             <li>
-                                <a href="#0">
-                                    <i class="lni lni-user"></i> View Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0">
-                                    <i class="lni lni-alarm"></i> Notifications
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                            </li>
-                            <li>
-                                <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
+                                <a href="#0"> <i class="lni lni-cog"></i> Ganti Password </a>
                             </li>
                             <li>
                                 <a href="halaman/logout/?"> <i class="lni lni-exit"></i> Keluar </a>
                             </li>
                         </ul>
                     </div>
-                    <!-- profile end -->
                 </div>
             </div>
         </div>
