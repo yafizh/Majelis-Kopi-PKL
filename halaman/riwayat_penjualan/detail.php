@@ -4,7 +4,15 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3><a href="?h=riwayat_penjualan" class="breadcrumb-item">Riwayat Penjualan</a> <span style="color: #5D657B;">/</span> Detail Riwayat Penjualan</h3>
+                        <h3>
+                            <?php if ($_SESSION['user']['status'] == 'ADMIN') : ?>
+                                <a href="?h1=menu&h2=penjualan" class="breadcrumb-item">Riwayat Penjualan</a>
+                            <?php else : ?>
+                                <a href="?h=riwayat_penjualan" class="breadcrumb-item">Riwayat Penjualan</a>
+                            <?php endif; ?>
+                            <span style="color: #5D657B;">/</span>
+                            Detail Riwayat Penjualan
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -99,10 +107,17 @@
                                 <?php
                                 $q = "
                                     SELECT 
+                                        k.nama nama_kasir,
                                         p.*,
-                                        SUM(dp.jumlah * dp.harga) total 
+                                        SUM(dp.jumlah * dp.harga) total,
+                                        DATE(p.tanggal_waktu) tanggal,
+                                        DATE_FORMAT(p.tanggal_waktu, '%H:%i') waktu 
                                     FROM 
                                         penjualan p
+                                    INNER JOIN 
+                                        kasir k 
+                                    ON 
+                                        k.id=p.id_kasir 
                                     INNER JOIN 
                                         detail_penjualan dp 
                                     ON 
@@ -115,28 +130,52 @@
                                 $penjualan = $conn->query($q)->fetch_assoc();
                                 ?>
                                 <tbody>
+                                    <?php if ($_SESSION['user']['status'] == 'ADMIN') : ?>
+                                        <tr>
+                                            <th>Kasir</th>
+                                            <td class="text-end">
+                                                <?= $penjualan['nama_kasir']; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <td class="text-end">
+                                            <?= indoensiaDateWithDay($penjualan['tanggal']); ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Waktu</th>
+                                        <td class="text-end">
+                                            <?= $penjualan['waktu']; ?>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <th>Total</th>
-                                        <td class="ps-3">
-                                            <input type="text" class="form-control text-end" disabled value="<?= number_format($penjualan['total'], 0, ",", "."); ?>">
+                                        <td class="text-end">
+                                            Rp <?= number_format($penjualan['total'], 0, ",", "."); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Tunai</th>
-                                        <td class="ps-3">
-                                            <input type="text" class="form-control text-end" disabled value="<?= number_format($penjualan['tunai'], 0, ",", "."); ?>">
+                                        <td class="text-end">
+                                            Rp <?= number_format($penjualan['tunai'], 0, ",", "."); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Kembalian</th>
-                                        <td class="ps-3">
-                                            <input type="text" name="kembalian" class="form-control text-end" disabled value="<?= number_format($penjualan['tunai'] - $penjualan['total'], 0, ",", "."); ?>">
+                                        <td class="text-end">
+                                            Rp <?= number_format($penjualan['tunai'] - $penjualan['total'], 0, ",", "."); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="d-flex gap-3">
-                                                <a href="?id=<?= $_GET['id']; ?>" class="btn btn-warning flex-grow-1">EDIT</a>
+                                                <?php if ($_SESSION['user']['status'] == 'ADMIN') : ?>
+                                                    <a href="?h1=menu&h2=edit_penjualan&id=<?= $_GET['id']; ?>" class="btn btn-warning flex-grow-1">EDIT</a>
+                                                <?php else : ?>
+                                                    <a href="?id=<?= $_GET['id']; ?>" class="btn btn-warning flex-grow-1">EDIT</a>
+                                                <?php endif; ?>
                                                 <a href="halaman/kasir/hapus.php?id=<?= $_GET['id']; ?>" onclick="return confirm('Yakin?')" class="btn btn-danger flex-grow-1">HAPUS</a>
                                             </div>
                                         </td>

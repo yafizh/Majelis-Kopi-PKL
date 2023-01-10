@@ -132,14 +132,12 @@ if (!isset($_SESSION['user']))
                     if ($_GET['h2'] == 'favorit_menu')
                         include_once('halaman/favorit_menu/index.php');
 
-                    if ($_GET['h2'] == 'penyuplaian')
-                        include_once('halaman/penyuplaian/index.php');
-                    elseif ($_GET['h2'] == 'tambah_penyuplaian')
-                        include_once('halaman/penyuplaian/tambah.php');
-                    elseif ($_GET['h2'] == 'ubah_penyuplaian')
-                        include_once('halaman/penyuplaian/ubah.php');
-                    elseif ($_GET['h2'] == 'hapus_penyuplaian')
-                        include_once('halaman/penyuplaian/hapus.php');
+                    if ($_GET['h2'] == 'penjualan')
+                        include_once('halaman/riwayat_penjualan/index.php');
+                    elseif ($_GET['h2'] == 'detail_penjualan')
+                        include_once('halaman/riwayat_penjualan/detail.php');
+                    elseif ($_GET['h2'] == 'edit_penjualan')
+                        include_once('halaman/kasir/index.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>
@@ -148,9 +146,9 @@ if (!isset($_SESSION['user']))
             <?php
             if (isset($_GET['h'])) {
                 if ($_GET['h'] == 'riwayat_penjualan')
-                    include_once('halaman/riwayat_penjualan/kasir/index.php');
+                    include_once('halaman/riwayat_penjualan/index.php');
                 elseif ($_GET['h'] == 'detail_riwayat_penjualan')
-                    include_once('halaman/riwayat_penjualan/kasir/detail.php');
+                    include_once('halaman/riwayat_penjualan/detail.php');
             } else include_once('halaman/kasir/index.php');
             ?>
         <?php endif; ?>

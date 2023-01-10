@@ -172,6 +172,10 @@ if (isset($_GET['id'])) {
 </section>
 <?php require_once('layout/js.php'); ?>
 <script>
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+
     const stok_bahan_baku = JSON.parse('<?= json_encode($stok_bahan_baku); ?>');
     const menu = JSON.parse('<?= json_encode($menu); ?>');
     const stokMenu = {};
@@ -271,13 +275,17 @@ if (isset($_GET['id'])) {
             this.addEventListener('input', function() {
                 daftar_pesanan.tunai = Number(((this.value).split('.')).join(''));
                 this.value = formatNumberWithDot.format(daftar_pesanan.tunai);
-                
+
                 if (Number(daftar_pesanan.tunai) - Number(daftar_pesanan.total) > 0)
                     kembalian.value = formatNumberWithDot.format(Number(daftar_pesanan.tunai) - Number(daftar_pesanan.total));
                 else
                     kembalian.value = 0;
             });
         });
+        if (Number(daftar_pesanan.tunai) - Number(daftar_pesanan.total) > 0)
+            kembalian.value = formatNumberWithDot.format(Number(daftar_pesanan.tunai) - Number(daftar_pesanan.total));
+        else
+            kembalian.value = 0;
     }
 
     const updateDaftarPesanan = () => {
@@ -338,7 +346,18 @@ if (isset($_GET['id'])) {
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <button type="submit" name="submit" class="btn btn-primary w-100">LAKUKAN PENJUALAN</button>
+                    ${
+                        params.id 
+                        ? 
+                        `
+                        <div class="d-flex gap-3">
+                            <a href="${document.referrer}" class="btn btn-secondary">KEMBALI</a>
+                            <button type="submit" name="submit" class="flex-grow-1 btn btn-primary">PERBAHARUI PENJUALAN</button>
+                        </div>
+                        `
+                        :
+                        `<button type="submit" name="submit" class="btn btn-primary w-100">LAKUKAN PENJUALAN</button>` 
+                    }
                     </td>
                 </tr>
             `);
@@ -406,11 +425,6 @@ if (isset($_GET['id'])) {
             });
         });
 
-
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
-
         if (params.id) {
             const response = await fetch("halaman/kasir/ubah.php?id=" + params.id, {
                 method: 'PUT',
@@ -421,7 +435,10 @@ if (isset($_GET['id'])) {
             }).then(response => response.json());
             if (response.isSuccess) {
                 alert('Edit Penjualan Berhasil');
-                location.href = "index.php?h=detail_riwayat_penjualan&id=" + params.id;
+                if (params.h1 && params.h2)
+                    location.href = "?h1=menu&h2=detail_penjualan&id=" + params.id;
+                else
+                    location.href = "index.php?h=detail_riwayat_penjualan&id=" + params.id;
             }
         } else {
             const response = await fetch("halaman/kasir/tambah.php", {
