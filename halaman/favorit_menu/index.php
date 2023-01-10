@@ -45,13 +45,13 @@
                                     $q = "
                                         SELECT 
                                             *,
-                                            (SELECT COUNT(*) FROM penjualan WHERE id_menu=menu.id) jumlah
+                                            (SELECT COUNT(*) FROM detail_penjualan WHERE id_menu=menu.id) jumlah
                                         FROM 
                                             menu 
                                         WHERE 
                                             id_kategori_menu=" . $row1['id'] . " 
                                         ORDER BY 
-                                            (SELECT COUNT(*) FROM penjualan WHERE id_menu=menu.id)";
+                                            (SELECT COUNT(*) FROM detail_penjualan WHERE id_menu=menu.id)";
                                     $result = $conn->query($q);
                                     $no = 1;
                                     ?>
