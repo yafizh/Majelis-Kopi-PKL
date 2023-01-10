@@ -75,7 +75,7 @@
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['harga']; ?></p>
+                                                    <p>Rp <?= number_format($row['harga'], 0, ",", "."); ?></p>
                                                 </td>
                                                 <td class="text-center fit">
                                                     <p><?= $row['jumlah']; ?></p>
@@ -118,19 +118,19 @@
                                     <tr>
                                         <th>Total</th>
                                         <td class="ps-3">
-                                            <input type="text" class="form-control text-end" disabled value="<?= $penjualan['total']; ?>">
+                                            <input type="text" class="form-control text-end" disabled value="<?= number_format($penjualan['total'], 0, ",", "."); ?>">
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Tunai</th>
                                         <td class="ps-3">
-                                            <input type="text" class="form-control text-end" disabled value="<?= $penjualan['tunai']; ?>">
+                                            <input type="text" class="form-control text-end" disabled value="<?= number_format($penjualan['tunai'], 0, ",", "."); ?>">
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Kembalian</th>
                                         <td class="ps-3">
-                                            <input type="text" name="kembalian" class="form-control text-end" disabled value="<?= $penjualan['tunai'] - $penjualan['total']; ?>">
+                                            <input type="text" name="kembalian" class="form-control text-end" disabled value="<?= number_format($penjualan['tunai'] - $penjualan['total'], 0, ",", "."); ?>">
                                         </td>
                                     </tr>
                                     <tr>

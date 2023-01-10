@@ -61,7 +61,7 @@
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['harga']; ?></p>
+                                                    <p>Rp <?= number_format($row['harga'], 0, ",", "."); ?></p>
                                                 </td>
                                                 <td class="d-flex gap-2">
                                                     <div class="action">

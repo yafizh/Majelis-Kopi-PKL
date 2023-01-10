@@ -7,3 +7,15 @@
 <script src="assets/js/world-merc.js"></script>
 <script src="assets/js/polyfill.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+    const formatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0,
+    });
+
+    const formatNumberWithDot = new Intl.NumberFormat('id-ID', {
+        currency: 'IDR',
+        maximumFractionDigits: 0,
+    });
+</script>

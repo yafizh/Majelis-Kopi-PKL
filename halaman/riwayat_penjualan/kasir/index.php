@@ -47,7 +47,7 @@
                                     SELECT 
                                         p.*,
                                         DATE(p.tanggal_waktu) tanggal,
-                                        SUM(dp.jumlah * dp.harga) total 
+                                        IFNULL(SUM(dp.jumlah * dp.harga), 0) total 
                                     FROM 
                                         penjualan p
                                     INNER JOIN 
@@ -75,7 +75,7 @@
                                                     <p><?= indoensiaDateWithDay($row['tanggal']); ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['total']; ?></p>
+                                                    <p>Rp <?= number_format($row['total'], 0, ",", "."); ?></p>
                                                 </td>
                                                 <td>
                                                     <div class="action">

@@ -49,7 +49,8 @@ $stok_bahan_baku = $conn->query($q)->fetch_all(MYSQLI_ASSOC);
 $daftar_pesanan = [
     "pesanan" => [],
     "id" => [],
-    "tunai" => 0
+    "tunai" => 0,
+    "total" => 0
 ];
 if (isset($_GET['id'])) {
     $q = "
@@ -122,8 +123,8 @@ if (isset($_GET['id'])) {
                                                             <td class="min-width">
                                                                 <p><?= $row['nama']; ?></p>
                                                             </td>
-                                                            <td class="min-width text-center">
-                                                                <p><?= $row['harga']; ?></p>
+                                                            <td class="min-width">
+                                                                <p>Rp <?= number_format($row['harga'], 0, ",", "."); ?></p>
                                                             </td>
                                                             <td>
                                                                 <div class="action">
@@ -174,10 +175,6 @@ if (isset($_GET['id'])) {
     const stok_bahan_baku = JSON.parse('<?= json_encode($stok_bahan_baku); ?>');
     const menu = JSON.parse('<?= json_encode($menu); ?>');
     const stokMenu = {};
-    // {
-    //     'pesanan': [],
-    //     'id': []
-    // };
     const daftar_pesanan = JSON.parse('<?= json_encode($daftar_pesanan); ?>');
 
     const orderButton = document.querySelectorAll("#move-to-order-list");
@@ -264,20 +261,29 @@ if (isset($_GET['id'])) {
     }
 
     const updateKembalianTunai = () => {
-        const total = document.querySelector('input[name=total]');
-        const tunai = document.querySelector('input[name=tunai]');
         const kembalian = document.querySelector('input[name=kembalian]');
+        document.querySelector('input[name=tunai]').addEventListener("keypress", function(evt) {
+            if (evt.which < 48 || evt.which > 57) {
+                evt.preventDefault();
+                return;
+            }
 
-        if (tunai.value - total.value > 0)
-            kembalian.value = tunai.value - total.value;
-        else
-            kembalian.value = 0;
+            this.addEventListener('input', function() {
+                daftar_pesanan.tunai = Number(((this.value).split('.')).join(''));
+                this.value = formatNumberWithDot.format(daftar_pesanan.tunai);
+                
+                if (Number(daftar_pesanan.tunai) - Number(daftar_pesanan.total) > 0)
+                    kembalian.value = formatNumberWithDot.format(Number(daftar_pesanan.tunai) - Number(daftar_pesanan.total));
+                else
+                    kembalian.value = 0;
+            });
+        });
     }
 
     const updateDaftarPesanan = () => {
         document.querySelector('#daftar-pesanan tbody').innerHTML = '';
         if (daftar_pesanan.id.length > 0) {
-            let total = 0;
+            daftar_pesanan['total'] = 0;
             daftar_pesanan.pesanan.forEach((value, index) => {
                 document.querySelector('#daftar-pesanan tbody').insertAdjacentHTML('beforeend', `
                     <tr>
@@ -286,7 +292,7 @@ if (isset($_GET['id'])) {
                         </td>
                         <td>
                             <h5>${value.nama}</h5>
-                            <p>Rp. ${value.harga}</p>
+                            <p>Rp ${formatNumberWithDot.format(value.harga)}</p>
                         </td>
                         <td class="fit">
                             <div class="d-flex gap-2">
@@ -309,19 +315,19 @@ if (isset($_GET['id'])) {
                         </td>
                     </tr>
                 `);
-                total += value.harga * value.jumlah;
+                daftar_pesanan['total'] += value.harga * value.jumlah;
             });
             document.querySelector('#daftar-pesanan tbody').insertAdjacentHTML('beforeend', `
                 <tr>
                     <th>Total</th>
                     <td colspan="2" class="ps-3">
-                        <input type="text" name="total" class="form-control text-end" disabled value="${total}">
+                        <input type="text" name="total" class="form-control text-end" disabled value="${formatNumberWithDot.format(daftar_pesanan.total)}">
                     </td>
                 </tr>
                 <tr>
                     <th>Tunai</th>
                     <td colspan="2" class="ps-3">
-                        <input type="text" name="tunai" oninput="updateKembalianTunai()" class="form-control text-end" value="${daftar_pesanan.tunai}">
+                        <input type="text" name="tunai" oninput="updateKembalianTunai()" class="form-control text-end" value="${formatNumberWithDot.format(daftar_pesanan.tunai)}">
                     </td>
                 </tr>
                 <tr>
@@ -389,7 +395,7 @@ if (isset($_GET['id'])) {
         e.preventDefault();
         const data = {
             pesanan: [],
-            tunai: document.querySelector('input[name=tunai]').value
+            tunai: daftar_pesanan.tunai
         };
 
         daftar_pesanan.pesanan.forEach((value) => {
