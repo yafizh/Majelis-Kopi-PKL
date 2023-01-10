@@ -149,6 +149,8 @@ if (!isset($_SESSION['user']))
                     include_once('halaman/riwayat_penjualan/index.php');
                 elseif ($_GET['h'] == 'detail_riwayat_penjualan')
                     include_once('halaman/riwayat_penjualan/detail.php');
+                elseif ($_GET['h'] == 'stok_bahan_baku')
+                    include_once('halaman/stok_bahan_baku/index.php');
             } else include_once('halaman/kasir/index.php');
             ?>
         <?php endif; ?>

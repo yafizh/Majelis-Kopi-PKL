@@ -124,9 +124,7 @@ if (isset($_GET['id'])) {
                                                     <?php while ($row = $result->fetch_assoc()) : ?>
                                                         <tr>
                                                             <td>
-                                                                <div class="employee-image">
-                                                                    <img src="assets/images/lead/lead-6.png" alt="" />
-                                                                </div>
+                                                                <img src="<?= $row['foto']; ?>" style="width: 6rem; object-fit: cover;">
                                                             </td>
                                                             <td class="min-width">
                                                                 <p><?= $row['nama']; ?></p>

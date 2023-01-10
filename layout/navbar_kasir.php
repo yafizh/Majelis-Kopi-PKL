@@ -18,7 +18,7 @@
                                 <div class="info">
                                     <h6><?= $_SESSION['user']['nama']; ?></h6>
                                     <div class="image">
-                                        <img src="assets/images/profile/profile-image.png" alt="" />
+                                        <img src="<?= $_SESSION['user']['foto']; ?>" alt="" />
                                     </div>
                                 </div>
                             </div>
