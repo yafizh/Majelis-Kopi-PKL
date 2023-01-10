@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../../assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../../assets/images/logo/logo.png" type="image/x-icon" />
     <title>Login</title>
 
     <!-- ========== All CSS files linkup ========= -->
@@ -59,19 +59,14 @@ if (isset($_POST['submit'])) {
     <main class="main-wrapper" style="margin: 0; padding: 0;">
         <div class="row g-0 auth-row" style="height: 100vh;">
             <div class="col-lg-6">
-                <div class="auth-cover-wrapper bg-primary-100">
-                    <div class="auth-cover">
-                        <div class="title text-center">
-                            <h1 class="text-primary mb-10">Welcome Back</h1>
-                            <p class="text-medium">
-                                Sign in to your Existing account to continue
-                            </p>
-                        </div>
-                        <div class="cover-image">
-                            <img src="../../assets/images/auth/signin-image.svg" alt="" />
-                        </div>
-                        <div class="shape-image">
-                            <img src="../../assets/images/auth/shape.svg" alt="" />
+                <div class="auth-cover-wrapper bg-primary-100" style="position: relative;">
+                    <img src="../../assets/images/auth/left.jpg" style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+                    <div style="position: absolute; z-index: 2; background-color: #000; width: 100%; height: 100%; opacity: .5;"></div>
+                    <div class="w-100 h-100 d-flex flex-column" style="position: absolute; z-index: 3; padding-top: 10rem;">
+                        <div class="text-center">
+                            <h1 class="text-white mb-30">HALAMAN LOGIN</h1>
+                            <h1 class="text-white mb-10">APLIKASI KASIR DAN PEMASOK BAHAN BAKU</h1>
+                            <h1 class="text-white mb-10">MAJELIS KOPI BANJARBARU</h1>
                         </div>
                     </div>
                 </div>
@@ -79,10 +74,9 @@ if (isset($_POST['submit'])) {
             <div class="col-lg-6">
                 <div class="signin-wrapper">
                     <div class="form-wrapper">
-                        <h6 class="mb-15">Sign In Form</h6>
+                        <h6 class="mb-15">Form Login</h6>
                         <p class="text-sm mb-25">
-                            Start creating the best possible user experience for you
-                            customers.
+                            Login sebagai admin atau kasir.
                         </p>
                         <form action="" method="POST">
                             <div class="row">
