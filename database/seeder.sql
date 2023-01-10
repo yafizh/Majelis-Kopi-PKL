@@ -39,10 +39,11 @@ INSERT INTO `db_majelis_kopi`.`menu` (
     `harga`,
     `foto`
 ) VALUES 
-(1, 1, 'AQUA', 7000, ''),
-(2, 1, 'PROF', 7000, ''),
-(3, 4, 'Nasi Goreng', 35000, ''),
-(4, 3, 'Kopi Susu', 20000, '');
+(1, 1, 'AQUA', 7000, 'assets/images/menu/aqua.jpg'),
+(2, 1, 'Le Minerale', 7000, 'assets/images/menu/le-minerale.png'),
+(3, 4, 'Nasi Goreng', 35000, 'assets/images/menu/nasi-goreng.jpg'),
+(4, 3, 'Cafe Latte', 25000, 'assets/images/menu/cafe-latte.jpg'),
+(5, 3, 'Cappuccino', 30000, 'assets/images/menu/cappuccino.jpg');
 
 INSERT INTO `db_majelis_kopi`.`bahan_baku` (
     `id`,
@@ -50,8 +51,8 @@ INSERT INTO `db_majelis_kopi`.`bahan_baku` (
     `satuan`
 ) VALUES 
 (1, 'Telur', 'Butir'),
-(2, 'AQUA', 'Botol'),
-(3, 'PROF', 'Botol'),
+(2, 'Air Mineral AQUA', 'Botol'),
+(3, 'Air Mineral Le Minerale', 'Botol'),
 (4, 'Sosis', 'Sosis'),
 (5, 'Kopi', 'Gram'),
 (6, 'Susu', 'Milliliter');
@@ -86,8 +87,10 @@ INSERT INTO `db_majelis_kopi`.`bahan_baku_menu` (
 (2, 2, 3, 1),
 (3, 3, 1, 1),
 (4, 3, 4, 2),
-(5, 4, 5, 10),
-(6, 4, 6, 10);
+(5, 4, 5, 18),
+(6, 4, 6, 120),
+(7, 5, 5, 20),
+(8, 5, 6, 150);
 
 
 INSERT INTO `db_majelis_kopi`.`penyuplaian` (

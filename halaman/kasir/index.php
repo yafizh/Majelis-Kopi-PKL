@@ -12,36 +12,44 @@ $q = "
     SELECT 
         bb.*,
         (
-            IFNULL(SUM(penyuplaian.jumlah), 0) 
-            - 
-            IFNULL(SUM(bbm.jumlah * detail_penjualan.jumlah), 0) 
-        ) AS jumlah
-    FROM   
+            (
+                SELECT 
+                    IFNULL(SUM(p.jumlah), 0) 
+                FROM 
+                    penyuplaian p 
+                INNER JOIN 
+                    pemasok_bahan_baku pbb 
+                ON 
+                    pbb.id=p.id_pemasok_bahan_baku 
+                WHERE 
+                    pbb.id_bahan_baku=bb.id
+            ) 
+            -
+            (
+                SELECT 
+                    IFNULL(SUM(bbm.jumlah * dp.jumlah), 0) 
+                FROM 
+                    detail_penjualan dp 
+                INNER JOIN 
+                    penjualan p 
+                ON 
+                    p.id=dp.id_penjualan 
+                INNER JOIN 
+                    menu m 
+                ON 
+                    m.id=dp.id_menu 
+                INNER JOIN 
+                    bahan_baku_menu bbm 
+                ON 
+                    bbm.id_menu=m.id 
+                WHERE 
+                    bbm.id_bahan_baku=bb.id
+                )
+        ) jumlah 
+    FROM 
         bahan_baku bb 
-    LEFT JOIN 
-        pemasok_bahan_baku pbb 
-    ON 
-        pbb.id_bahan_baku=bb.id 
-    LEFT JOIN 
-        penyuplaian 
-    ON 
-        penyuplaian.id_pemasok_bahan_baku=pbb.id 
-    LEFT JOIN 
-        bahan_baku_menu bbm 
-    ON 
-        bbm.id_bahan_baku=bb.id 
-    LEFT JOIN 
-        menu m 
-    ON 
-        m.id=bbm.id_menu 
-    LEFT JOIN 
-        detail_penjualan 
-    ON 
-        detail_penjualan.id_menu=m.id 
-    GROUP BY 
-        bb.id 
     ORDER BY 
-        bb.nama 
+        bb.nama
 ";
 $stok_bahan_baku = $conn->query($q)->fetch_all(MYSQLI_ASSOC);
 ?>
