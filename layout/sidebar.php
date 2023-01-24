@@ -5,7 +5,7 @@
     </div>
     <nav class="sidebar-nav">
         <ul>
-            <li class="nav-item">
+            <li class="nav-item <?= isset($_GET['h1']) ? '' : 'active'; ?>">
                 <a href="?">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">

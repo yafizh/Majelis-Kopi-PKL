@@ -2,85 +2,53 @@
     <div class="container-fluid">
         <div class="title-wrapper pt-30">
             <div class="row align-items-center">
-                <div class="col-md-6">
+                <div class="col">
                     <div class="title mb-30">
-                        <h2>eCommerce Dashboard</h2>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="breadcrumb-wrapper mb-30">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="#0">Dashboard</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    eCommerce
-                                </li>
-                            </ol>
-                        </nav>
+                        <h2>Dashboard</h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="icon-card mb-30">
                     <div class="icon purple">
-                        <i class="lni lni-cart-full"></i>
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M1 22C1 22.54 1.45 23 2 23H15C15.56 23 16 22.54 16 22V21H1V22M8.5 9C4.75 9 1 11 1 15H16C16 11 12.25 9 8.5 9M3.62 13C4.73 11.45 7.09 11 8.5 11S12.27 11.45 13.38 13H3.62M1 17H16V19H1V17M18 5V1H16V5H11L11.23 7H20.79L19.39 21H18V23H19.72C20.56 23 21.25 22.35 21.35 21.53L23 5H18Z" />
+                        </svg>
                     </div>
                     <div class="content">
-                        <h6 class="mb-10">New Orders</h6>
-                        <h3 class="text-bold mb-10">34567</h3>
-                        <p class="text-sm text-success">
-                            <i class="lni lni-arrow-up"></i> +2.00%
-                            <span class="text-gray">(30 days)</span>
-                        </p>
+                        <h6 class="mb-10">Menu</h6>
+                        <?php $menu = $conn->query("SELECT * FROM menu"); ?>
+                        <h3 class="text-bold mb-10"><?= $menu->num_rows; ?></h3>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="icon-card mb-30">
                     <div class="icon success">
-                        <i class="lni lni-dollar"></i>
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12,5A3.5,3.5 0 0,0 8.5,8.5A3.5,3.5 0 0,0 12,12A3.5,3.5 0 0,0 15.5,8.5A3.5,3.5 0 0,0 12,5M12,7A1.5,1.5 0 0,1 13.5,8.5A1.5,1.5 0 0,1 12,10A1.5,1.5 0 0,1 10.5,8.5A1.5,1.5 0 0,1 12,7M5.5,8A2.5,2.5 0 0,0 3,10.5C3,11.44 3.53,12.25 4.29,12.68C4.65,12.88 5.06,13 5.5,13C5.94,13 6.35,12.88 6.71,12.68C7.08,12.47 7.39,12.17 7.62,11.81C6.89,10.86 6.5,9.7 6.5,8.5C6.5,8.41 6.5,8.31 6.5,8.22C6.2,8.08 5.86,8 5.5,8M18.5,8C18.14,8 17.8,8.08 17.5,8.22C17.5,8.31 17.5,8.41 17.5,8.5C17.5,9.7 17.11,10.86 16.38,11.81C16.5,12 16.63,12.15 16.78,12.3C16.94,12.45 17.1,12.58 17.29,12.68C17.65,12.88 18.06,13 18.5,13C18.94,13 19.35,12.88 19.71,12.68C20.47,12.25 21,11.44 21,10.5A2.5,2.5 0 0,0 18.5,8M12,14C9.66,14 5,15.17 5,17.5V19H19V17.5C19,15.17 14.34,14 12,14M4.71,14.55C2.78,14.78 0,15.76 0,17.5V19H3V17.07C3,16.06 3.69,15.22 4.71,14.55M19.29,14.55C20.31,15.22 21,16.06 21,17.07V19H24V17.5C24,15.76 21.22,14.78 19.29,14.55M12,16C13.53,16 15.24,16.5 16.23,17H7.77C8.76,16.5 10.47,16 12,16Z" />
+                        </svg>
                     </div>
                     <div class="content">
-                        <h6 class="mb-10">Total Income</h6>
-                        <h3 class="text-bold mb-10">$74,567</h3>
-                        <p class="text-sm text-success">
-                            <i class="lni lni-arrow-up"></i> +5.45%
-                            <span class="text-gray">Increased</span>
-                        </p>
+                        <h6 class="mb-10">Kasir</h6>
+                        <?php $kasir = $conn->query("SELECT * FROM kasir"); ?>
+                        <h3 class="text-bold mb-10"><?= $kasir->num_rows; ?></h3>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="icon-card mb-30">
                     <div class="icon primary">
-                        <i class="lni lni-credit-cards"></i>
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M18 18.5C18.83 18.5 19.5 17.83 19.5 17C19.5 16.17 18.83 15.5 18 15.5C17.17 15.5 16.5 16.17 16.5 17C16.5 17.83 17.17 18.5 18 18.5M19.5 9.5H17V12H21.46L19.5 9.5M6 18.5C6.83 18.5 7.5 17.83 7.5 17C7.5 16.17 6.83 15.5 6 15.5C5.17 15.5 4.5 16.17 4.5 17C4.5 17.83 5.17 18.5 6 18.5M20 8L23 12V17H21C21 18.66 19.66 20 18 20C16.34 20 15 18.66 15 17H9C9 18.66 7.66 20 6 20C4.34 20 3 18.66 3 17H1V6C1 4.89 1.89 4 3 4H17V8H20M3 6V15H3.76C4.31 14.39 5.11 14 6 14C6.89 14 7.69 14.39 8.24 15H15V6H3Z" />
+                        </svg>
                     </div>
                     <div class="content">
-                        <h6 class="mb-10">Total Expense</h6>
-                        <h3 class="text-bold mb-10">$24,567</h3>
-                        <p class="text-sm text-danger">
-                            <i class="lni lni-arrow-down"></i> -2.00%
-                            <span class="text-gray">Expense</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="icon-card mb-30">
-                    <div class="icon orange">
-                        <i class="lni lni-user"></i>
-                    </div>
-                    <div class="content">
-                        <h6 class="mb-10">New User</h6>
-                        <h3 class="text-bold mb-10">34567</h3>
-                        <p class="text-sm text-danger">
-                            <i class="lni lni-arrow-down"></i> -25.00%
-                            <span class="text-gray"> Earning</span>
-                        </p>
+                        <h6 class="mb-10">Pemasok</h6>
+                        <?php $pemasok = $conn->query("SELECT * FROM pemasok"); ?>
+                        <h3 class="text-bold mb-10"><?= $pemasok->num_rows; ?></h3>
                     </div>
                 </div>
             </div>
@@ -90,19 +58,7 @@
                 <div class="card-style mb-30">
                     <div class="title d-flex flex-wrap justify-content-between">
                         <div class="left">
-                            <h6 class="text-medium mb-10">Yearly subscription</h6>
-                            <h3 class="text-bold">$245,479</h3>
-                        </div>
-                        <div class="right">
-                            <div class="select-style-1">
-                                <div class="select-position select-sm">
-                                    <select class="light-bg">
-                                        <option value="">Yearly</option>
-                                        <option value="">Monthly</option>
-                                        <option value="">Weekly</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <h6 class="text-medium mb-10">Grafik Pengunjung Satu Tahun Terakhir</h6>
                         </div>
                     </div>
                     <div class="chart">
@@ -112,79 +68,11 @@
             </div>
             <div class="col-lg-5">
                 <div class="card-style mb-30">
-                    <div class="
-                        title
-                        d-flex
-                        flex-wrap
-                        align-items-center
-                        justify-content-between
-                        ">
+                    <div class="title d-flex flex-wrap justify-content-between align-items-center">
                         <div class="left">
-                            <h6 class="text-medium mb-30">Sales/Revenue</h6>
-                        </div>
-                        <div class="right">
-                            <div class="select-style-1">
-                                <div class="select-position select-sm">
-                                    <select class="light-bg">
-                                        <option value="">Yearly</option>
-                                        <option value="">Monthly</option>
-                                        <option value="">Weekly</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <h6 class="text-medium mb-30">Produk Terlaris</h6>
                         </div>
                     </div>
-                    <div class="chart">
-                        <canvas id="Chart2" style="width: 100%; height: 400px"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="card-style mb-30">
-                    <div class="
-            title
-            d-flex
-            justify-content-between
-            align-items-center
-            ">
-                        <div class="left">
-                            <h6 class="text-medium mb-30">Sells by State</h6>
-                        </div>
-                    </div>
-                    <!-- End Title -->
-                    <div id="map" style="width: 100%; height: 400px"></div>
-                    <p>Last updated: 7 days ago</p>
-                </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-lg-7">
-                <div class="card-style mb-30">
-                    <div class="
-            title
-            d-flex
-            flex-wrap
-            justify-content-between
-            align-items-center
-            ">
-                        <div class="left">
-                            <h6 class="text-medium mb-30">Top Selling Products</h6>
-                        </div>
-                        <div class="right">
-                            <div class="select-style-1">
-                                <div class="select-position select-sm">
-                                    <select class="light-bg">
-                                        <option value="">Yearly</option>
-                                        <option value="">Monthly</option>
-                                        <option value="">Weekly</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- end select -->
-                        </div>
-                    </div>
-                    <!-- End Title -->
                     <div class="table-responsive">
                         <table class="table top-selling-table">
                             <thead>
@@ -379,453 +267,19 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- End Table -->
                     </div>
                 </div>
             </div>
-            <!-- End Col -->
         </div>
-        <!-- End Row -->
-        <div class="row">
-            <div class="col-lg-7">
-                <div class="card-style mb-30">
-                    <div class="
-            title
-            d-flex
-            flex-wrap
-            align-items-center
-            justify-content-between
-            ">
-                        <div class="left">
-                            <h6 class="text-medium mb-2">Sales Forecast</h6>
-                        </div>
-                        <div class="right">
-                            <div class="select-style-1 mb-2">
-                                <div class="select-position select-sm">
-                                    <select class="light-bg">
-                                        <option value="">Last Month</option>
-                                        <option value="">Last 3 Months</option>
-                                        <option value="">Last Year</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- end select -->
-                        </div>
-                    </div>
-                    <!-- End Title -->
-                    <div class="chart">
-                        <div id="legend3">
-                            <ul class="legend3 d-flex flex-wrap align-items-center mb-30">
-                                <li>
-                                    <div class="d-flex">
-                                        <span class="bg-color primary-bg"> </span>
-                                        <div class="text">
-                                            <p class="text-sm text-success">
-                                                <span class="text-dark">Revenue</span> +25.55%
-                                                <i class="lni lni-arrow-up"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex">
-                                        <span class="bg-color purple-bg"></span>
-                                        <div class="text">
-                                            <p class="text-sm text-success">
-                                                <span class="text-dark">Net Profit</span> +45.55%
-                                                <i class="lni lni-arrow-up"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex">
-                                        <span class="bg-color orange-bg"></span>
-                                        <div class="text">
-                                            <p class="text-sm text-danger">
-                                                <span class="text-dark">Order</span> -4.2%
-                                                <i class="lni lni-arrow-down"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <canvas id="Chart3" style="width: 100%; height: 450px"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-lg-5">
-                <div class="card-style mb-30">
-                    <div class="
-            title
-            d-flex
-            flex-wrap
-            align-items-center
-            justify-content-between
-            ">
-                        <div class="left">
-                            <h6 class="text-medium mb-2">Traffic</h6>
-                        </div>
-                        <div class="right">
-                            <div class="select-style-1 mb-2">
-                                <div class="select-position select-sm">
-                                    <select class="bg-ligh">
-                                        <option value="">Last 6 Months</option>
-                                        <option value="">Last 3 Months</option>
-                                        <option value="">Last Year</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- end select -->
-                        </div>
-                    </div>
-                    <!-- End Title -->
-                    <div class="chart">
-                        <div id="legend4">
-                            <ul class="legend3 d-flex flex-wrap align-items-center mb-30">
-                                <li>
-                                    <div class="d-flex">
-                                        <span class="bg-color primary-bg"> </span>
-                                        <div class="text">
-                                            <p class="text-sm text-success">
-                                                <span class="text-dark">Store Visits</span>
-                                                +25.55%
-                                                <i class="lni lni-arrow-up"></i>
-                                            </p>
-                                            <h2>3456</h2>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex">
-                                        <span class="bg-color danger-bg"></span>
-                                        <div class="text">
-                                            <p class="text-sm text-danger">
-                                                <span class="text-dark">Visitors</span> -2.05%
-                                                <i class="lni lni-arrow-down"></i>
-                                            </p>
-                                            <h2>3456</h2>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <canvas id="Chart4" style="width: 100%; height: 420px"></canvas>
-                    </div>
-                    <!-- End Chart -->
-                </div>
-            </div>
-            <!-- End Col -->
-        </div>
-        <!-- End Row -->
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="card-style calendar-card mb-30">
-                    <div id="calendar-mini"></div>
-                </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-lg-7">
-                <div class="card-style mb-30">
-                    <div class="
-            title
-            d-flex
-            flex-wrap
-            align-items-center
-            justify-content-between
-            ">
-                        <div class="left">
-                            <h6 class="text-medium mb-30">Sales History</h6>
-                        </div>
-                        <div class="right">
-                            <div class="select-style-1">
-                                <div class="select-position select-sm">
-                                    <select class="light-bg">
-                                        <option value="">Today</option>
-                                        <option value="">Yesterday</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- end select -->
-                        </div>
-                    </div>
-                    <!-- End Title -->
-                    <div class="table-responsive">
-                        <table class="table top-selling-table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <h6 class="text-sm text-medium">Products</h6>
-                                    </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">
-                                            Category <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
-                                    </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">
-                                            Revenue <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
-                                    </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">
-                                            Status <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="text-sm text-medium text-end">
-                                            Actions <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-1.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">Bedroom</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$345</p>
-                                    </td>
-                                    <td>
-                                        <span class="status-btn close-btn">Pending</span>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="edit">
-                                                <i class="lni lni-pencil"></i>
-                                            </button>
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-2.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">Arm Chair</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$345</p>
-                                    </td>
-                                    <td>
-                                        <span class="status-btn warning-btn">Refund</span>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="edit">
-                                                <i class="lni lni-pencil"></i>
-                                            </button>
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-3.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">Sofa</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$345</p>
-                                    </td>
-                                    <td>
-                                        <span class="status-btn success-btn">Completed</span>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="edit">
-                                                <i class="lni lni-pencil"></i>
-                                            </button>
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-4.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">Kitchen</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$345</p>
-                                    </td>
-                                    <td>
-                                        <span class="status-btn close-btn">Canceled</span>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="edit">
-                                                <i class="lni lni-pencil"></i>
-                                            </button>
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- End Table -->
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
-        </div>
-        <!-- End Row -->
     </div>
-    <!-- end container -->
 </section>
 <?php include_once('layout/js.php'); ?>
+
 <script>
-    var markers = [{
-            name: "Egypt",
-            coords: [26.8206, 30.8025]
-        },
-        {
-            name: "Russia",
-            coords: [61.524, 105.3188]
-        },
-        {
-            name: "Canada",
-            coords: [56.1304, -106.3468]
-        },
-        {
-            name: "Greenland",
-            coords: [71.7069, -42.6043]
-        },
-        {
-            name: "Brazil",
-            coords: [-14.235, -51.9253]
-        },
-    ];
-
-    var jvm = new jsVectorMap({
-        map: "world_merc",
-        selector: "#map",
-        zoomButtons: true,
-
-        regionStyle: {
-            initial: {
-                fill: "#d1d5db",
-            },
-        },
-
-        labels: {
-            markers: {
-                render: (marker) => marker.name,
-            },
-        },
-
-        markersSelectable: true,
-        selectedMarkers: markers.map((marker, index) => {
-            var name = marker.name;
-
-            if (name === "Russia" || name === "Brazil") {
-                return index;
-            }
-        }),
-        markers: markers,
-        markerStyle: {
-            initial: {
-                fill: "#4A6CF7"
-            },
-            selected: {
-                fill: "#ff5050"
-            },
-        },
-        markerLabelStyle: {
-            initial: {
-                fontWeight: 400,
-                fontSize: 14,
-            },
-        },
-    });
-    // ====== calendar activation
-    document.addEventListener("DOMContentLoaded", function() {
-        var calendarMiniEl = document.getElementById("calendar-mini");
-        var calendarMini = new FullCalendar.Calendar(calendarMiniEl, {
-            initialView: "dayGridMonth",
-            headerToolbar: {
-                end: "today prev,next",
-            },
-        });
-        calendarMini.render();
-    });
-
-    // =========== chart one start
     const ctx1 = document.getElementById("Chart1").getContext("2d");
     const chart1 = new Chart(ctx1, {
-        // The type of chart we want to create
-        type: "line", // also try bar or other graph types
+        type: "line",
 
-        // The data for our dataset
         data: {
             labels: [
                 "Jan",
@@ -841,7 +295,6 @@
                 "Nov",
                 "Dec",
             ],
-            // Information about the dataset
             datasets: [{
                 label: "",
                 backgroundColor: "transparent",
@@ -924,317 +377,4 @@
     });
 
     // =========== chart one end
-
-    // =========== chart two start
-    const ctx2 = document.getElementById("Chart2").getContext("2d");
-    const chart2 = new Chart(ctx2, {
-        // The type of chart we want to create
-        type: "bar", // also try bar or other graph types
-        // The data for our dataset
-        data: {
-            labels: [
-                "Jan",
-                "Fab",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ],
-            // Information about the dataset
-            datasets: [{
-                label: "",
-                backgroundColor: "#4A6CF7",
-                barThickness: 6,
-                maxBarThickness: 8,
-                data: [
-                    600, 700, 1000, 700, 650, 800, 690, 740, 720, 1120, 876, 900,
-                ],
-            }, ],
-        },
-        // Configuration options
-        options: {
-            borderColor: "#F3F6F8",
-            borderWidth: 15,
-            backgroundColor: "#F3F6F8",
-            tooltips: {
-                callbacks: {
-                    labelColor: function(tooltipItem, chart) {
-                        return {
-                            backgroundColor: "rgba(104, 110, 255, .0)",
-                        };
-                    },
-                },
-                backgroundColor: "#F3F6F8",
-                titleFontColor: "#8F92A1",
-                titleFontSize: 12,
-                bodyFontColor: "#171717",
-                bodyFontStyle: "bold",
-                bodyFontSize: 16,
-                multiKeyBackground: "transparent",
-                displayColors: false,
-                xPadding: 30,
-                yPadding: 10,
-                bodyAlign: "center",
-                titleAlign: "center",
-            },
-
-            title: {
-                display: false,
-            },
-            legend: {
-                display: false,
-            },
-
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawTicks: false,
-                        drawBorder: false,
-                    },
-                    ticks: {
-                        padding: 35,
-                        max: 1200,
-                        min: 0,
-                    },
-                }, ],
-                xAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false,
-                        color: "rgba(143, 146, 161, .1)",
-                        zeroLineColor: "rgba(143, 146, 161, .1)",
-                    },
-                    ticks: {
-                        padding: 20,
-                    },
-                }, ],
-            },
-        },
-    });
-    // =========== chart two end
-
-    // =========== chart three start
-    const ctx3 = document.getElementById("Chart3").getContext("2d");
-    const chart3 = new Chart(ctx3, {
-        // The type of chart we want to create
-        type: "line", // also try bar or other graph types
-
-        // The data for our dataset
-        data: {
-            labels: [
-                "Jan",
-                "Fab",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ],
-            // Information about the dataset
-            datasets: [{
-                    label: "Revenue",
-                    backgroundColor: "transparent",
-                    borderColor: "#4a6cf7",
-                    data: [80, 120, 110, 100, 130, 150, 115, 145, 140, 130, 160, 210],
-                    pointBackgroundColor: "transparent",
-                    pointHoverBackgroundColor: "#4a6cf7",
-                    pointBorderColor: "transparent",
-                    pointHoverBorderColor: "#fff",
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 5,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
-                },
-                {
-                    label: "Profit",
-                    backgroundColor: "transparent",
-                    borderColor: "#9b51e0",
-                    data: [
-                        120, 160, 150, 140, 165, 210, 135, 155, 170, 140, 130, 200,
-                    ],
-                    pointBackgroundColor: "transparent",
-                    pointHoverBackgroundColor: "#9b51e0",
-                    pointBorderColor: "transparent",
-                    pointHoverBorderColor: "#fff",
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 5,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
-                },
-                {
-                    label: "Order",
-                    backgroundColor: "transparent",
-                    borderColor: "#f2994a",
-                    data: [180, 110, 140, 135, 100, 90, 145, 115, 100, 110, 115, 150],
-                    pointBackgroundColor: "transparent",
-                    pointHoverBackgroundColor: "#f2994a",
-                    pointBorderColor: "transparent",
-                    pointHoverBorderColor: "#fff",
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 5,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
-                },
-            ],
-        },
-
-        // Configuration options
-        options: {
-            tooltips: {
-                intersect: false,
-                backgroundColor: "#fbfbfb",
-                titleFontColor: "#8F92A1",
-                titleFontSize: 16,
-                titleFontFamily: "Inter",
-                titleFontStyle: "400",
-                bodyFontFamily: "Inter",
-                bodyFontColor: "#171717",
-                bodyFontSize: 16,
-                multiKeyBackground: "transparent",
-                displayColors: false,
-                xPadding: 30,
-                yPadding: 15,
-                borderColor: "rgba(143, 146, 161, .1)",
-                borderWidth: 1,
-                title: false,
-            },
-
-            title: {
-                display: false,
-            },
-
-            layout: {
-                padding: {
-                    top: 0,
-                },
-            },
-
-            legend: false,
-
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawTicks: false,
-                        drawBorder: false,
-                    },
-                    ticks: {
-                        padding: 35,
-                        max: 300,
-                        min: 50,
-                    },
-                }, ],
-                xAxes: [{
-                    gridLines: {
-                        drawBorder: false,
-                        color: "rgba(143, 146, 161, .1)",
-                        zeroLineColor: "rgba(143, 146, 161, .1)",
-                    },
-                    ticks: {
-                        padding: 20,
-                    },
-                }, ],
-            },
-        },
-    });
-    // =========== chart three end
-
-    // ================== chart four start
-    const ctx4 = document.getElementById("Chart4").getContext("2d");
-    const chart4 = new Chart(ctx4, {
-        // The type of chart we want to create
-        type: "bar", // also try bar or other graph types
-        // The data for our dataset
-        data: {
-            labels: ["Jan", "Fab", "Mar", "Apr", "May", "Jun"],
-            // Information about the dataset
-            datasets: [{
-                    label: "",
-                    backgroundColor: "#4A6CF7",
-                    barThickness: "flex",
-                    maxBarThickness: 8,
-                    data: [600, 700, 1000, 700, 650, 800],
-                },
-                {
-                    label: "",
-                    backgroundColor: "#d50100",
-                    barThickness: "flex",
-                    maxBarThickness: 8,
-                    data: [690, 740, 720, 1120, 876, 900],
-                },
-            ],
-        },
-        // Configuration options
-        options: {
-            borderColor: "#F3F6F8",
-            borderWidth: 15,
-            backgroundColor: "#F3F6F8",
-            tooltips: {
-                callbacks: {
-                    labelColor: function(tooltipItem, chart) {
-                        return {
-                            backgroundColor: "rgba(104, 110, 255, .0)",
-                        };
-                    },
-                },
-                backgroundColor: "#F3F6F8",
-                titleFontColor: "#8F92A1",
-                titleFontSize: 12,
-                bodyFontColor: "#171717",
-                bodyFontStyle: "bold",
-                bodyFontSize: 16,
-                multiKeyBackground: "transparent",
-                displayColors: false,
-                xPadding: 30,
-                yPadding: 10,
-                bodyAlign: "center",
-                titleAlign: "center",
-            },
-
-            title: {
-                display: false,
-            },
-            legend: {
-                display: false,
-            },
-
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawTicks: false,
-                        drawBorder: false,
-                    },
-                    ticks: {
-                        padding: 35,
-                        max: 1200,
-                        min: 0,
-                    },
-                }, ],
-                xAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false,
-                        color: "rgba(143, 146, 161, .1)",
-                        zeroLineColor: "rgba(143, 146, 161, .1)",
-                    },
-                    ticks: {
-                        padding: 20,
-                    },
-                }, ],
-            },
-        },
-    });
 </script>
