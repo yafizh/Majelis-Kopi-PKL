@@ -139,6 +139,17 @@ if (!isset($_SESSION['user']))
                     elseif ($_GET['h2'] == 'edit_penjualan')
                         include_once('halaman/kasir/index.php');
                 }
+
+                if ($_GET['h1'] == 'laporan') {
+                    if ($_GET['h2'] == 'favorit_menu')
+                        include_once('halaman/laporan/favorit_menu.php');
+                    elseif ($_GET['h2'] == 'penjualan')
+                        include_once('halaman/laporan/penjualan.php');
+                    elseif ($_GET['h2'] == 'suplai_bahan_baku')
+                        include_once('halaman/laporan/suplai_bahan_baku.php');
+                    elseif ($_GET['h2'] == 'pemasok')
+                        include_once('halaman/laporan/pemasok.php');
+                }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>
         <?php else : ?>
