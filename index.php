@@ -147,8 +147,8 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/penjualan.php');
                     elseif ($_GET['h2'] == 'suplai_bahan_baku')
                         include_once('halaman/laporan/suplai_bahan_baku.php');
-                    elseif ($_GET['h2'] == 'pemasok')
-                        include_once('halaman/laporan/pemasok.php');
+                    elseif ($_GET['h2'] == 'menu')
+                        include_once('halaman/laporan/menu.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>

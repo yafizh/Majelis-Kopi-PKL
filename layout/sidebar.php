@@ -100,10 +100,10 @@
                     <span class="text">Laporan</span>
                 </a>
                 <ul id="ddmenu_5" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'laporan' ? 'show' : ''; ?>">
-                    <li><a href="?h1=laporan&h2=favorit_menu" class="<?= ($_GET['h2'] ?? '') == '1' ? 'active' : ''; ?>">Favorit Menu</a></li>
-                    <li><a href="?h1=laporan&h2=penjualan" class="<?= ($_GET['h2'] ?? '') == '2' ? 'active' : ''; ?>">Penjualan</a></li>
-                    <li><a href="?h1=laporan&h2=suplai_bahan_baku" class="<?= ($_GET['h2'] ?? '') == '3' ? 'active' : ''; ?>">Suplai Bahan Baku</a></li>
-                    <li><a href="?h1=laporan&h2=pemasok" class="<?= ($_GET['h2'] ?? '') == '4' ? 'active' : ''; ?>">Pemasok</a></li>
+                    <li><a href="?h1=laporan&h2=menu" class="<?= ($_GET['h2'] ?? '') == 'menu' ? 'active' : ''; ?>">Menu</a></li>
+                    <li><a href="?h1=laporan&h2=favorit_menu" class="<?= ($_GET['h2'] ?? '') == 'favorit_menu' ? 'active' : ''; ?>">Favorit Menu</a></li>
+                    <li><a href="?h1=laporan&h2=penjualan" class="<?= ($_GET['h2'] ?? '') == 'penjualan' ? 'active' : ''; ?>">Penjualan</a></li>
+                    <li><a href="?h1=laporan&h2=suplai_bahan_baku" class="<?= ($_GET['h2'] ?? '') == 'suplai_bahan_baku' ? 'active' : ''; ?>">Suplai Bahan Baku</a></li>
                     <li><a href="?h1=laporan&h2=5" class="<?= ($_GET['h2'] ?? '') == '5' ? 'active' : ''; ?>">5</a></li>
                 </ul>
             </li>
