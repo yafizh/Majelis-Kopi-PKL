@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3>Laporan Menu</h3>
+                        <h3>Laporan Pemasok</h3>
                     </div>
                 </div>
             </div>
@@ -15,14 +15,14 @@
                     <div class="card-style mb-30">
                         <form action="" method="POST">
                             <div class="col-12">
-                                <?php $result = $conn->query("SELECT * FROM kategori_menu"); ?>
+                                <?php $result = $conn->query("SELECT * FROM bahan_baku"); ?>
                                 <div class="select-style-1">
-                                    <label>Pemasok</label>
+                                    <label>Bahan Baku</label>
                                     <div class="select-position">
-                                        <select name="id_kategori_menu" required>
-                                            <option value="" disabled selected>Pilih Kategori Menu</option>
+                                        <select name="id_bahan_baku" required>
+                                            <option value="" disabled selected>Pilih Bahan Baku</option>
                                             <?php while ($row = $result->fetch_assoc()) : ?>
-                                                <option <?= ($_POST['id_kategori_menu'] ?? '') == $row['id'] ? 'selected' : ''; ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
+                                                <option <?= ($_POST['id_bahan_baku'] ?? '') == $row['id'] ? 'selected' : ''; ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
                                             <?php endwhile; ?>
                                         </select>
                                     </div>
@@ -30,9 +30,9 @@
                                 <div class="col-12 d-flex justify-content-between">
                                     <button name="submit" class="main-btn btn-sm primary-btn btn-hover">Filter</button>
                                     <?php
-                                    $link = "halaman/laporan/cetak/menu.php?";
-                                    if (isset($_POST['id_kategori_menu']))
-                                        $link .= "id_kategori_menu=" . $_POST['id_kategori_menu'];
+                                    $link = "halaman/laporan/cetak/pemasok.php?";
+                                    if (isset($_POST['id_bahan_baku']))
+                                        $link .= "id_bahan_baku=" . $_POST['id_bahan_baku'];
                                     ?>
                                     <a href="<?= $link; ?>" target="_blank" class="main-btn btn-sm success-btn btn-hover">Cetak</a>
                                 </div>
@@ -50,31 +50,34 @@
                                             <h6>No</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Kategori Menu</h6>
+                                            <h6>Pemasok</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Nama Menu</h6>
+                                            <h6>Barang Yang Disuplai</h6>
                                         </th>
                                     </tr>
                                 </thead>
                                 <?php
                                 $q = "
-                                    SELECT 
-                                        km.nama kategori_menu,
-                                        m.nama nama_menu 
+                                    SELECT  
+                                        p.*, 
+                                        GROUP_CONCAT(bb.nama) AS bahan_baku 
                                     FROM 
-                                        kategori_menu km 
-                                    INNER JOIN 
-                                        menu m 
+                                        pemasok p 
+                                    LEFT JOIN 
+                                        pemasok_bahan_baku pbb 
                                     ON 
-                                        km.id=m.id_kategori_menu 
+                                        pbb.id_pemasok=p.id 
+                                    LEFT JOIN 
+                                        bahan_baku bb 
+                                    ON 
+                                        bb.id=pbb.id_bahan_baku 
                                 ";
 
-                                if (isset($_POST['id_kategori_menu']))
-                                    $q .= " WHERE km.id = '" . $_POST['id_kategori_menu'] . "'";
+                                if (isset($_POST['id_bahan_baku']))
+                                    $q .= " WHERE bb.id = '" . $_POST['id_bahan_baku'] . "'";
 
-                                $q .= " ORDER BY km.nama DESC";
-
+                                $q .= "GROUP BY p.id ORDER BY p.nama";
                                 $result = $conn->query($q);
                                 $no = 1;
                                 ?>
@@ -86,10 +89,10 @@
                                                     <p><?= $no++; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['kategori_menu']; ?></p>
+                                                    <p><?= $row['nama']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['nama_menu']; ?></p>
+                                                    <p><?= $row['bahan_baku']; ?></p>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>

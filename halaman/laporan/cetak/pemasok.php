@@ -4,26 +4,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan Penjualan</title>
+    <title>Laporan Pemasok</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="shortcut icon" href="../../../assets/images/logo/logo.jpg" type="image/x-icon" />
 </head>
 
 <body>
     <?php include_once('header.php'); ?>
-    <h4 class="text-center my-3">Laporan Penjualan</h4>
-    <?php if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal'])) : ?>
+    <h4 class="text-center my-3">Laporan Pemasok</h4>
+    <?php if (isset($_GET['id_bahan_baku'])) : ?>
         <section class="p-3">
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-4">
                     <table class="table">
+                        <?php $bahan_baku = $conn->query("SELECT * FROM bahan_baku")->fetch_assoc(); ?>
                         <tr>
-                            <td class="align-middle td-fit">Dari Tanggal</td>
-                            <td class="pl-5"><?= indonesiaDate($_GET['dari_tanggal']); ?></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle td-fit">Sampai Tanggal</td>
-                            <td class="pl-5"><?= indonesiaDate($_GET['sampai_tanggal']); ?></td>
+                            <td class="align-middle td-fit">Nama Bahan Baku</td>
+                            <td class="pl-5"><?= $bahan_baku['nama']; ?></td>
                         </tr>
                     </table>
                 </div>
@@ -34,27 +31,38 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="text-center align-middle td-fit">No</th>
-                    <th class="text-center align-middle">Tanggal</th>
-                    <th class="text-center align-middle">Total Pembelian</th>
+                    <th class="text-center fit">
+                        <h6>No</h6>
+                    </th>
+                    <th class="text-center">
+                        <h6>Pemasok</h6>
+                    </th>
+                    <th class="text-center">
+                        <h6>Barang Yang Disuplai</h6>
+                    </th>
                 </tr>
             </thead>
             <?php
             $q = "
-                SELECT 
-                    p.*,
-                    DATE(p.tanggal_waktu) tanggal,
-                    (SELECT IFNULL(SUM(dp.jumlah * dp.harga), 0) FROM detail_penjualan dp WHERE dp.id_penjualan=p.id) total 
-                FROM 
-                    penjualan p 
-            ";
+              SELECT  
+                  p.*, 
+                  GROUP_CONCAT(bb.nama) AS bahan_baku 
+              FROM 
+                  pemasok p 
+              LEFT JOIN 
+                  pemasok_bahan_baku pbb 
+              ON 
+                  pbb.id_pemasok=p.id 
+              LEFT JOIN 
+                  bahan_baku bb 
+              ON 
+                  bb.id=pbb.id_bahan_baku 
+          ";
 
+            if (isset($_GET['id_bahan_baku']))
+                $q .= " WHERE bb.id = '" . $_GET['id_bahan_baku'] . "'";
 
-            if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))
-                $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_GET['sampai_tanggal'] . "'";
-
-            $q .= " ORDER BY p.tanggal_waktu DESC";
-
+            $q .= "GROUP BY p.id ORDER BY p.nama";
             $result = $conn->query($q);
             $no = 1;
             ?>
@@ -66,10 +74,10 @@
                                 <p class="m-0"><?= $no++; ?></p>
                             </td>
                             <td class="text-center">
-                                <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
+                                <p class="m-0"><?= $row['nama']; ?></p>
                             </td>
                             <td class="text-center">
-                                <p class="m-0">Rp <?= number_format($row['total'], 0, ",", "."); ?></p>
+                                <p class="m-0"><?= $row['bahan_baku']; ?></p>
                             </td>
                         </tr>
                     <?php endwhile; ?>

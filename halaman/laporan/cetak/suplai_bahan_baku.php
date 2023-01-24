@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laporan Suplai Bahan Baku</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../../../assets/images/logo/logo.jpg" type="image/x-icon" />
 </head>
 
 <body>
@@ -101,19 +102,19 @@
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
                             <td class="text-center fit">
-                                <p><?= $no++; ?></p>
+                                <p class="m-0"><?= $no++; ?></p>
                             </td>
                             <td class="text-center">
-                                <p><?= indonesiaDate($row['tanggal']); ?></p>
+                                <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
                             </td>
                             <td class="text-center">
-                                <p><?= $row['pemasok']; ?></p>
+                                <p class="m-0"><?= $row['pemasok']; ?></p>
                             </td>
                             <td class="text-center">
-                                <p><?= $row['bahan_baku']; ?></p>
+                                <p class="m-0"><?= $row['bahan_baku']; ?></p>
                             </td>
                             <td class="text-center">
-                                <p><?= $row['jumlah']; ?> <?= $row['satuan']; ?></p>
+                                <p class="m-0"><?= $row['jumlah']; ?> <?= $row['satuan']; ?></p>
                             </td>
                         </tr>
                     <?php endwhile; ?>

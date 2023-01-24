@@ -14,8 +14,8 @@ if (!isset($_SESSION['user']))
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/logo/logo.png" type="image/x-icon" />
-    <link rel="preload" as="image" href="assets/images/logo/logo.png">
+    <link rel="shortcut icon" href="assets/images/logo/logo.jpg" type="image/x-icon" />
+    <link rel="preload" as="image" href="assets/images/logo/logo.jpg">
     <title>Majelis Kopi</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -149,6 +149,8 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/suplai_bahan_baku.php');
                     elseif ($_GET['h2'] == 'menu')
                         include_once('halaman/laporan/menu.php');
+                    elseif ($_GET['h2'] == 'pemasok')
+                        include_once('halaman/laporan/pemasok.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>

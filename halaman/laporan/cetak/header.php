@@ -1,7 +1,7 @@
 <?php include_once('../../../database/connection.php'); ?>
 <?php date_default_timezone_set('Asia/Kuala_Lumpur'); ?>
 <header class="text-center p-4">
-    <img src="../../../assets/images/logo/logo.png" alt="Logo" width="100" style="position: absolute; left: 30px;">
+    <img src="../../../assets/images/logo/logo.jpg" alt="Logo" width="100" style="position: absolute; left: 30px;">
     <h4>MAJELIS KOPI BANJARBARU</h4>
     Jl. Panglima Batur, Loktabat Utara, Kec. Banjarbaru Utara,
     <br>
