@@ -17,24 +17,16 @@ SELECT
         -
         (
             SELECT 
-                IFNULL(SUM(bbm.jumlah * dp.jumlah), 0) 
+                IFNULL(SUM(bbd.jumlah * dp.jumlah), 0) 
             FROM 
                 detail_penjualan dp 
             INNER JOIN 
-                penjualan p 
+                bahan_baku_digunakan bbd 
             ON 
-                p.id=dp.id_penjualan 
-            INNER JOIN 
-                menu m 
-            ON 
-                m.id=dp.id_menu 
-            INNER JOIN 
-                bahan_baku_menu bbm 
-            ON 
-                bbm.id_menu=m.id 
+                dp.id=bbd.id_detail_penjualan 
             WHERE 
-                bbm.id_bahan_baku=bb.id
-            )
+                bbd.id_bahan_baku=bb.id
+        )
     ) jumlah 
 FROM 
     bahan_baku bb 

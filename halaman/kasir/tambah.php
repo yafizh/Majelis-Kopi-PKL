@@ -35,7 +35,38 @@ try {
             " . $value['harga'] . "
         )";
         $conn->query($q);
+        $id_detail_penjualan = $conn->insert_id;
+
+        $q = "
+            SELECT 
+                bb.*,
+                bbm.jumlah 
+            FROM 
+                bahan_baku_menu bbm 
+            INNER JOIN 
+                bahan_baku bb 
+            ON 
+                bb.id=bbm.id_bahan_baku 
+            WHERE 
+                bbm.id_menu=" . $value['id_menu'] . "
+        ";
+        $bahan_baku_menu = $conn->query($q);
+        while ($row = $bahan_baku_menu->fetch_assoc()) {
+            $q = "
+                INSERT INTO bahan_baku_digunakan(
+                    id_detail_penjualan,
+                    id_bahan_baku,
+                    jumlah 
+                ) VALUES (
+                    " . $id_detail_penjualan . ",
+                    " . $row['id'] . ",
+                    " . $row['jumlah'] . "
+                )
+            ";
+            $conn->query($q);
+        }
     }
+
 
     $conn->commit();
     echo json_encode([

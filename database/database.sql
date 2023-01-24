@@ -100,3 +100,12 @@ CREATE TABLE `db_majelis_kopi`.`detail_penjualan`(
     FOREIGN KEY (`id_menu`) REFERENCES menu (`id`) ON DELETE CASCADE 
 );
 
+CREATE TABLE `db_majelis_kopi`.`bahan_baku_digunakan`(
+    `id` BIGINT UNSIGNED AUTO_INCREMENT,
+    `id_detail_penjualan` BIGINT UNSIGNED,
+    `id_bahan_baku` BIGINT UNSIGNED,
+    `jumlah` VARCHAR(255),
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_detail_penjualan`) REFERENCES detail_penjualan (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_bahan_baku`) REFERENCES bahan_baku (`id`) ON DELETE CASCADE 
+);

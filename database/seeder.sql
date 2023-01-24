@@ -123,3 +123,13 @@ INSERT INTO `db_majelis_kopi`.`detail_penjualan` (
 ) VALUES 
 (1, 1, 1, 2, 5000),
 (2, 1, 3, 1, 5000);
+
+INSERT INTO `db_majelis_kopi`.`bahan_baku_digunakan` (
+    `id`,
+    `id_detail_penjualan`,
+    `id_bahan_baku`,
+    `jumlah`
+) VALUES 
+(1, 1, 2, 1),
+(2, 2, 1, 1),
+(3, 2, 4, 2);
