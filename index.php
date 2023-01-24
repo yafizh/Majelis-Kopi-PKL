@@ -56,20 +56,20 @@ if (!isset($_SESSION['user']))
                 if ($_GET['h1'] == 'user') {
                     if ($_GET['h2'] == 'admin')
                         include_once('halaman/user/admin/index.php');
-                    elseif ($_GET['h2'] == 'tambah_user/admin')
+                    elseif ($_GET['h2'] == 'tambah_admin')
                         include_once('halaman/user/admin/tambah.php');
-                    elseif ($_GET['h2'] == 'ubah_user/admin')
+                    elseif ($_GET['h2'] == 'ubah_admin')
                         include_once('halaman/user/admin/ubah.php');
-                    elseif ($_GET['h2'] == 'hapus_user/admin')
+                    elseif ($_GET['h2'] == 'hapus_admin')
                         include_once('halaman/user/admin/hapus.php');
 
                     if ($_GET['h2'] == 'kasir')
                         include_once('halaman/user/kasir/index.php');
-                    elseif ($_GET['h2'] == 'tambah_user/kasir')
+                    elseif ($_GET['h2'] == 'tambah_kasir')
                         include_once('halaman/user/kasir/tambah.php');
-                    elseif ($_GET['h2'] == 'ubah_user/kasir')
+                    elseif ($_GET['h2'] == 'ubah_kasir')
                         include_once('halaman/user/kasir/ubah.php');
-                    elseif ($_GET['h2'] == 'hapus_user/kasir')
+                    elseif ($_GET['h2'] == 'hapus_kasir')
                         include_once('halaman/user/kasir/hapus.php');
                 }
 
