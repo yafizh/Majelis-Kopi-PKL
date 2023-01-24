@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan Menu Favorit</title>
+    <title>Laporan Penjualan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
     <?php include_once('header.php'); ?>
-    <h4 class="text-center my-3">Laporan Menu Favorit</h4>
+    <h4 class="text-center my-3">Laporan Penjualan</h4>
     <?php if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal'])) : ?>
         <section class="p-3">
             <div class="row">
@@ -34,37 +34,25 @@
             <thead>
                 <tr>
                     <th class="text-center align-middle td-fit">No</th>
-                    <th class="text-center align-middle">Menu</th>
-                    <th class="text-center align-middle">Jumlah Penjualan</th>
+                    <th class="text-center align-middle">Tanggal</th>
+                    <th class="text-center align-middle">Total Pembelian</th>
                 </tr>
             </thead>
             <?php
-
-            $sub_q = "
+            $q = "
                 SELECT 
-                    COUNT(*) 
+                    p.*,
+                    DATE(p.tanggal_waktu) tanggal,
+                    (SELECT IFNULL(SUM(dp.jumlah * dp.harga), 0) FROM detail_penjualan dp WHERE dp.id_penjualan=p.id) total 
                 FROM 
-                    detail_penjualan dp 
-                INNER JOIN 
                     penjualan p 
-                ON 
-                    p.id=dp.id_penjualan 
-                WHERE 
-                    dp.id_menu=m.id 
             ";
+
 
             if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))
-                $sub_q .= " AND (DATE(tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(tanggal_waktu) >= '" . $_GET['sampai_tanggal'] . "')";
+                $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) >= '" . $_GET['sampai_tanggal'] . "'";
 
-            $q = "
-                SELECT  
-                    m.*,
-                    ($sub_q) jumlah_penjualan 
-                FROM 
-                    menu m 
-                ORDER BY 
-                    jumlah_penjualan DESC 
-            ";
+            $q .= " ORDER BY p.tanggal_waktu DESC";
 
             $result = $conn->query($q);
             $no = 1;
@@ -77,10 +65,10 @@
                                 <p class="m-0"><?= $no++; ?></p>
                             </td>
                             <td class="text-center">
-                                <p class="m-0"><?= $row['nama']; ?></p>
+                                <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
                             </td>
                             <td class="text-center">
-                                <p class="m-0"><?= $row['jumlah_penjualan']; ?></p>
+                                <p class="m-0">Rp <?= number_format($row['total'], 0, ",", "."); ?></p>
                             </td>
                         </tr>
                     <?php endwhile; ?>
