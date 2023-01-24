@@ -69,7 +69,7 @@
 
 
                                 if (isset($_POST['dari_tanggal']) && isset($_POST['sampai_tanggal']))
-                                    $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_POST['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) >= '" . $_POST['sampai_tanggal'] . "'";
+                                    $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_POST['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_POST['sampai_tanggal'] . "'";
 
                                 $q .= " ORDER BY p.tanggal_waktu DESC";
 

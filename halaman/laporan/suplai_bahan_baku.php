@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3>Laporan Menu Favorit</h3>
+                        <h3>Laporan Suplai Bahan Baku</h3>
                     </div>
                 </div>
             </div>
@@ -14,25 +14,40 @@
                 <div class="col-lg-3">
                     <div class="card-style mb-30">
                         <form action="" method="POST">
-                            <div class="row">
+                            <div class="col-12">
+                                <?php $result = $conn->query("SELECT * FROM pemasok"); ?>
+                                <div class="select-style-1">
+                                    <label>Pemasok</label>
+                                    <div class="select-position">
+                                        <select name="id_pemasok">
+                                            <option value="" disabled selected>Pilih Pemasok</option>
+                                            <?php while ($row = $result->fetch_assoc()) : ?>
+                                                <option <?= ($_POST['id_pemasok'] ?? '') == $row['id'] ? 'selected' : ''; ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Dari Tanggal</label>
-                                        <input type="date" class="bg-transparent" name="dari_tanggal" required value="<?= $_POST['dari_tanggal'] ?? ''; ?>" />
+                                        <input type="date" class="bg-transparent" name="dari_tanggal" value="<?= $_POST['dari_tanggal'] ?? ''; ?>" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Sampai Tanggal</label>
-                                        <input type="date" class="bg-transparent" name="sampai_tanggal" required value="<?= $_POST['sampai_tanggal'] ?? ''; ?>" />
+                                        <input type="date" class="bg-transparent" name="sampai_tanggal" value="<?= $_POST['sampai_tanggal'] ?? ''; ?>" />
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">
                                     <button name="submit" class="main-btn btn-sm primary-btn btn-hover">Filter</button>
                                     <?php
-                                    $link = "halaman/laporan/cetak/favorit_menu.php";
+                                    $link = "halaman/laporan/cetak/suplai_bahan_baku.php?";
+                                    if (isset($_POST['id_pemasok']))
+                                        $link .= "id_pemasok=" . $_POST['id_pemasok'];
+
                                     if (isset($_POST['sampai_tanggal']) && isset($_POST['dari_tanggal']))
-                                        $link .= "?dari_tanggal=" . $_POST['dari_tanggal'] . "&sampai_tanggal=" . $_POST['sampai_tanggal'];
+                                        $link .= "&dari_tanggal=" . $_POST['dari_tanggal'] . "&sampai_tanggal=" . $_POST['sampai_tanggal'];
                                     ?>
                                     <a href="<?= $link; ?>" target="_blank" class="main-btn btn-sm success-btn btn-hover">Cetak</a>
                                 </div>
@@ -50,40 +65,52 @@
                                             <h6>No</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Menu</h6>
+                                            <h6>Tanggal</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Jumlah Penjualan</h6>
+                                            <h6>Pemasok</h6>
+                                        </th>
+                                        <th class="text-center">
+                                            <h6>Barang Yang Disuplai</h6>
+                                        </th>
+                                        <th class="text-center">
+                                            <h6>Jumlah</h6>
                                         </th>
                                     </tr>
                                 </thead>
                                 <?php
-
-                                $sub_q = "
+                                $q = "
                                     SELECT 
-                                        COUNT(*) 
+                                        p.*,
+                                        bb.nama bahan_baku,
+                                        bb.satuan,
+                                        pemasok.id id_pemasok, 
+                                        pemasok.nama pemasok 
                                     FROM 
-                                        detail_penjualan dp 
+                                        penyuplaian p 
                                     INNER JOIN 
-                                        penjualan p 
+                                        pemasok_bahan_baku pbb 
                                     ON 
-                                        p.id=dp.id_penjualan 
+                                        pbb.id=p.id_pemasok_bahan_baku 
+                                    INNER JOIN 
+                                        pemasok 
+                                    ON 
+                                        pemasok.id=pbb.id_pemasok 
+                                    INNER JOIN 
+                                        bahan_baku bb 
+                                    ON 
+                                        bb.id=pbb.id_bahan_baku 
                                     WHERE 
-                                        dp.id_menu=m.id 
+                                        1=1
                                 ";
+
+                                if (isset($_POST['id_pemasok']))
+                                    $q .= " AND pemasok.id = '" . $_POST['id_pemasok'] . "'";
 
                                 if (isset($_POST['dari_tanggal']) && isset($_POST['sampai_tanggal']))
-                                    $sub_q .= " AND (DATE(tanggal_waktu) >= '" . $_POST['dari_tanggal'] . "' AND DATE(tanggal_waktu) <= '" . $_POST['sampai_tanggal'] . "')";
+                                    $q .= " AND (DATE(p.tanggal) >= '" . $_POST['dari_tanggal'] . "' AND DATE(p.tanggal) <= '" . $_POST['sampai_tanggal'] . "')";
 
-                                $q = "
-                                    SELECT  
-                                        m.*,
-                                        ($sub_q) jumlah_penjualan 
-                                    FROM 
-                                        menu m 
-                                    ORDER BY 
-                                        jumlah_penjualan DESC 
-                                ";
+                                $q .= " ORDER BY p.tanggal DESC";
 
                                 $result = $conn->query($q);
                                 $no = 1;
@@ -96,16 +123,22 @@
                                                     <p><?= $no++; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['nama']; ?></p>
+                                                    <p><?= indonesiaDate($row['tanggal']); ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['jumlah_penjualan']; ?></p>
+                                                    <p><?= $row['pemasok']; ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['bahan_baku']; ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['jumlah']; ?> <?= $row['satuan']; ?></p>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>
                                     <?php else : ?>
                                         <tr>
-                                            <td class="text-center" colspan="3">Data Kosong</td>
+                                            <td class="text-center" colspan="5">Data Kosong</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

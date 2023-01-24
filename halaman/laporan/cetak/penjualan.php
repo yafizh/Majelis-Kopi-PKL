@@ -50,7 +50,7 @@
 
 
             if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))
-                $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) >= '" . $_GET['sampai_tanggal'] . "'";
+                $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_GET['sampai_tanggal'] . "'";
 
             $q .= " ORDER BY p.tanggal_waktu DESC";
 

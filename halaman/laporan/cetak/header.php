@@ -11,7 +11,7 @@
     <div style="width: 100%; border-top: 3px solid black;"></div>
 </div>
 <style>
-    .td-fit {
+    .fit {
         width: 1%;
         white-space: nowrap;
     }

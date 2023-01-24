@@ -54,7 +54,7 @@
             ";
 
             if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))
-                $sub_q .= " AND (DATE(tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(tanggal_waktu) >= '" . $_GET['sampai_tanggal'] . "')";
+                $sub_q .= " AND (DATE(tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(tanggal_waktu) <= '" . $_GET['sampai_tanggal'] . "')";
 
             $q = "
                 SELECT  
