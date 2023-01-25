@@ -29,7 +29,7 @@
                     <li><a href="?h1=user&h2=kasir" class="<?= in_array(($_GET['h2'] ?? ''), ['kasir', 'tambah_kasir', 'ubah_kasir']) ? 'active' : ''; ?>">Kasir</a></li>
                 </ul>
             </li>
-            <li class="nav-item <?= ($_GET['h1'] ?? '') == 'kategori_menu' ? 'active' : ''; ?>">
+            <li class="nav-item <?= in_array(($_GET['h1'] ?? ''), ['kategori_menu', 'tambah_kategori_menu', 'ubah_kategori_menu']) == 'kategori_menu' ? 'active' : ''; ?>">
                 <a href="?h1=kategori_menu">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -85,6 +85,16 @@
                     <li><a href="?h1=menu&h2=favorit_menu" class="<?= ($_GET['h2'] ?? '') == 'favorit_menu' ? 'active' : ''; ?>">Favorit Menu</a></li>
                     <li><a href="?h1=menu&h2=penjualan" class="<?= in_array(($_GET['h2'] ?? ''), ['penjualan', 'detail_penjualan', 'edit_penjualan']) ? 'active' : ''; ?>">Penjualan</a></li>
                 </ul>
+            </li>
+            <li class="nav-item <?= in_array(($_GET['h1'] ?? ''), ['pelanggan', 'tambah_pelanggan', 'ubah_pelanggan']) == 'pelanggan' ? 'active' : ''; ?>">
+                <a href="?h1=pelanggan">
+                    <span class="icon">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M11,13.5V21.5H3V13.5H11M9,15.5H5V19.5H9V15.5M12,2L17.5,11H6.5L12,2M12,5.86L10.08,9H13.92L12,5.86M17.5,13C20,13 22,15 22,17.5C22,20 20,22 17.5,22C15,22 13,20 13,17.5C13,15 15,13 17.5,13M17.5,15A2.5,2.5 0 0,0 15,17.5A2.5,2.5 0 0,0 17.5,20A2.5,2.5 0 0,0 20,17.5A2.5,2.5 0 0,0 17.5,15Z" />
+                        </svg>
+                    </span>
+                    <span class="text">Pelanggan Tetap</span>
+                </a>
             </li>
             <span class="divider">
                 <br>

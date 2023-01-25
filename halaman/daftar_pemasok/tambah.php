@@ -60,7 +60,7 @@ if (isset($_POST['submit'])) {
                                     <div class="input-style-1 mb-0">
                                         <label>Bahan Baku Yang Disuplai</label>
                                     </div>
-                                    <div class="d-flex gap-3 mb-5">
+                                    <div class="d-flex gap-3 mb-5 flex-wrap">
                                         <?php while ($row = $result->fetch_assoc()) : ?>
                                             <div class="form-check checkbox-style mb-20">
                                                 <input class="form-check-input" name="bahan_baku[]" type="checkbox" value="<?= $row['id']; ?>" id="bahan-baku-<?= $row['id']; ?>" />

@@ -140,6 +140,15 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/kasir/index.php');
                 }
 
+                if ($_GET['h1'] == 'pelanggan')
+                    include_once('halaman/pelanggan/index.php');
+                elseif ($_GET['h1'] == 'tambah_pelanggan')
+                    include_once('halaman/pelanggan/tambah.php');
+                elseif ($_GET['h1'] == 'ubah_pelanggan')
+                    include_once('halaman/pelanggan/ubah.php');
+                elseif ($_GET['h1'] == 'hapus_pelanggan')
+                    include_once('halaman/pelanggan/hapus.php');
+
                 if ($_GET['h1'] == 'laporan') {
                     if ($_GET['h2'] == 'favorit_menu')
                         include_once('halaman/laporan/favorit_menu.php');
