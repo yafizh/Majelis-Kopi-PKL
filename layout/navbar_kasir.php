@@ -27,7 +27,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                             <li>
                                 <a href="/" style="background-color: <?= isset($_GET['h']) ? 'none' : '#4a6cf7' ?>; color: <?= isset($_GET['h']) ? '' : 'white' ?>;">
-                                    <i class="lni lni-user"></i> Menu Kasir
+                                    <i class="lni lni-revenue"></i> Menu Kasir
                                 </a>
                             </li>
                             <li>
@@ -37,12 +37,12 @@
                             </li>
                             <li>
                                 <a href="?h=riwayat_penjualan" style="background-color: <?= (($_GET['h'] ?? '') == 'riwayat_penjualan') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'riwayat_penjualan') ? 'white' : '' ?>;">
-                                    <i class="lni lni-user"></i> Riwayat Penjualan
+                                    <i class="lni lni-invest-monitor"></i> Riwayat Penjualan
                                 </a>
                             </li>
                             <li>
                                 <a href="?h=stok_bahan_baku" style="background-color: <?= (($_GET['h'] ?? '') == 'stok_bahan_baku') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'stok_bahan_baku') ? 'white' : '' ?>;">
-                                    <i class="lni lni-user"></i> Stok Bahan Baku
+                                    <i class="lni lni-control-panel"></i> Stok Bahan Baku
                                 </a>
                             </li>
                             <li>
