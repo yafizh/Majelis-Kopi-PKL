@@ -69,16 +69,21 @@ if (isset($_POST['submit'])) {
                                             <select name="id_bahan_baku" required>
                                                 <option value="" disabled selected>Pilih Bahan Baku</option>
                                                 <?php while ($row = $result->fetch_assoc()) : ?>
-                                                    <option value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
+                                                    <option data-satuan="<?= $row['satuan']; ?>" value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-10">
                                     <div class="input-style-1">
                                         <label>Jumlah</label>
                                         <input type="number" name="jumlah" class="bg-transparent" value="1" autocomplete="off" required min="1" />
+                                    </div>
+                                </div>
+                                <div class="col-2 d-flex align-items-center">
+                                    <div class="input-style-1 m-0">
+                                        <label id="label-satuan" class="m-0">Satuan</label>
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">
@@ -94,3 +99,8 @@ if (isset($_POST['submit'])) {
     </div>
 </section>
 <?php require_once('layout/js.php'); ?>
+<script>
+    document.querySelector('select[name=id_bahan_baku]').addEventListener('change', function(){
+        document.querySelector('#label-satuan').innerText = this[this.selectedIndex].getAttribute('data-satuan');
+    });
+</script>

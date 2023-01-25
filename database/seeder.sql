@@ -106,13 +106,23 @@ INSERT INTO `db_majelis_kopi`.`penyuplaian` (
 (5, 5, CURRENT_DATE(), 5),
 (6, 6, CURRENT_DATE(), 5);
 
+INSERT INTO `db_majelis_kopi`.`pelanggan` (
+    `id`,
+    `tanggal_terdaftar`,
+    `nama`,
+    `jenis_kelamin`
+) VALUES 
+(1, NOW(), 'Habibi', 'Laki - Laki');
+
 INSERT INTO `db_majelis_kopi`.`penjualan` (
     `id`,
     `id_kasir`,
+    `id_pelanggan`,
     `tunai`,
     `tanggal_waktu`
 ) VALUES 
-(1, 1, 100000, NOW());
+(1, 1, NULL, 100000, NOW()),
+(2, 1, NULL, 100000, NOW());
 
 INSERT INTO `db_majelis_kopi`.`detail_penjualan` (
     `id`,
@@ -122,7 +132,9 @@ INSERT INTO `db_majelis_kopi`.`detail_penjualan` (
     `harga`
 ) VALUES 
 (1, 1, 1, 2, 5000),
-(2, 1, 3, 1, 5000);
+(2, 2, 3, 1, 5000),
+(3, 2, 1, 2, 5000);
+
 
 INSERT INTO `db_majelis_kopi`.`bahan_baku_digunakan` (
     `id`,
@@ -133,3 +145,4 @@ INSERT INTO `db_majelis_kopi`.`bahan_baku_digunakan` (
 (1, 1, 2, 1),
 (2, 2, 1, 1),
 (3, 2, 4, 2);
+

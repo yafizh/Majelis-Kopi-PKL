@@ -3,6 +3,7 @@ $q = "
     SELECT 
         pemasok.nama pemasok,
         bb.nama bahan_baku,
+        bb.satuan,
         penyuplaian.jumlah 
     FROM 
         penyuplaian 
@@ -61,10 +62,15 @@ if (isset($_POST['submit'])) {
                                         <input type="text" disabled value="<?= $data['bahan_baku']; ?>" />
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-10">
                                     <div class="input-style-1">
                                         <label>Jumlah</label>
                                         <input type="number" name="jumlah" class="bg-transparent" value="<?= $data['jumlah']; ?>" autocomplete="off" required min="1" />
+                                    </div>
+                                </div>
+                                <div class="col-2 d-flex align-items-center">
+                                    <div class="input-style-1 m-0">
+                                        <label id="label-satuan" class="m-0"><?= $data['satuan']; ?></label>
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">
