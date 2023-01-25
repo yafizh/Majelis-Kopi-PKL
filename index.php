@@ -173,6 +173,15 @@ if (!isset($_SESSION['user']))
                     include_once('halaman/riwayat_penjualan/detail.php');
                 elseif ($_GET['h'] == 'stok_bahan_baku')
                     include_once('halaman/stok_bahan_baku/index.php');
+                // Pelanggan
+                elseif ($_GET['h'] == 'pelanggan')
+                    include_once('halaman/pelanggan/index.php');
+                elseif ($_GET['h'] == 'tambah_pelanggan')
+                    include_once('halaman/pelanggan/tambah.php');
+                elseif ($_GET['h'] == 'ubah_pelanggan')
+                    include_once('halaman/pelanggan/ubah.php');
+                elseif ($_GET['h'] == 'hapus_pelanggan')
+                    include_once('halaman/pelanggan/hapus.php');
             } else include_once('halaman/kasir/index.php');
             ?>
         <?php endif; ?>

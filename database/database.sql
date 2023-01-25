@@ -92,6 +92,7 @@ CREATE TABLE `db_majelis_kopi`.`penjualan`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_kasir` BIGINT UNSIGNED,
     `id_pelanggan` BIGINT UNSIGNED NULL,
+    `nama` VARCHAR(255),
     `tunai` BIGINT UNSIGNED,
     `tanggal_waktu` VARCHAR(255),
     PRIMARY KEY (`id`),

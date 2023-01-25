@@ -31,6 +31,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="?h=pelanggan" style="background-color: <?= (($_GET['h'] ?? '') == 'pelanggan') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'pelanggan') ? 'white' : '' ?>;">
+                                    <i class="lni lni-user"></i> Pelanggan Tetap
+                                </a>
+                            </li>
+                            <li>
                                 <a href="?h=riwayat_penjualan" style="background-color: <?= (($_GET['h'] ?? '') == 'riwayat_penjualan') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'riwayat_penjualan') ? 'white' : '' ?>;">
                                     <i class="lni lni-user"></i> Riwayat Penjualan
                                 </a>

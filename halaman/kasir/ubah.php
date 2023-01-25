@@ -7,7 +7,20 @@ $data = json_decode(file_get_contents('php://input'), true);
 try {
     $conn->begin_transaction();
 
-    $conn->query("UPDATE penjualan SET tunai='" . $data['tunai'] . "' WHERE id=" . $_GET['id']);
+    if ($data['pelanggan_tetap']) {
+        $pelanggan_tetap = $conn->query("SELECT * FROM pelanggan WHERE id=" . $data['id_pelanggan'])->fetch_assoc();
+        $data['nama_pelanggan'] = $pelanggan_tetap['nama'];
+    }
+
+    $q = "
+        UPDATE penjualan SET 
+            tunai='" . $data['tunai'] . "', 
+            id_pelanggan=" . ($data['pelanggan_tetap'] ? $data['id_pelanggan'] : 'NULL') . ",
+            nama='" . $data['nama_pelanggan'] . "'
+        WHERE 
+            id=" . $_GET['id'];
+    $conn->query($q);
+
     $conn->query("DELETE FROM detail_penjualan WHERE id_penjualan=" . $_GET['id']);
     foreach ($data['pesanan'] as $value) {
         $q = "
