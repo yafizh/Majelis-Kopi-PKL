@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <div class="icon-card mb-30">
                     <div class="icon purple">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <div class="icon-card mb-30">
                     <div class="icon success">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <div class="icon-card mb-30">
                     <div class="icon primary">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -49,6 +49,20 @@
                         <h6 class="mb-10">Pemasok</h6>
                         <?php $pemasok = $conn->query("SELECT * FROM pemasok"); ?>
                         <h3 class="text-bold mb-10"><?= $pemasok->num_rows; ?></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="icon-card mb-30">
+                    <div class="icon orange">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M15,4A4,4 0 0,1 19,8A4,4 0 0,1 15,12A4,4 0 0,1 11,8A4,4 0 0,1 15,4M15,5.9A2.1,2.1 0 0,0 12.9,8A2.1,2.1 0 0,0 15,10.1C16.16,10.1 17.1,9.16 17.1,8C17.1,6.84 16.16,5.9 15,5.9M15,13C17.67,13 23,14.33 23,17V20H7V17C7,14.33 12.33,13 15,13M15,14.9C12,14.9 8.9,16.36 8.9,17V18.1H21.1V17C21.1,16.36 17.97,14.9 15,14.9M5,13.28L2.5,14.77L3.18,11.96L1,10.08L3.87,9.83L5,7.19L6.11,9.83L9,10.08L6.8,11.96L7.45,14.77L5,13.28Z" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <h6 class="mb-10">Pelanggan Tetap</h6>
+                        <?php $pelanggan = $conn->query("SELECT * FROM pelanggan"); ?>
+                        <h3 class="text-bold mb-10"><?= $pelanggan->num_rows; ?></h3>
                     </div>
                 </div>
             </div>
@@ -70,201 +84,67 @@
                 <div class="card-style mb-30">
                     <div class="title d-flex flex-wrap justify-content-between align-items-center">
                         <div class="left">
-                            <h6 class="text-medium mb-30">Produk Terlaris</h6>
+                            <h6 class="text-medium mb-30">Favorit Menu</h6>
                         </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table top-selling-table">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th class="min-width"></th>
+                                    <th class="min-width">
+                                        <h6 class="text-sm text-medium text-center">Nama Menu</h6>
+                                    </th>
                                     <th>
-                                        <h6 class="text-sm text-medium">Products</h6>
+                                        <h6 class="text-sm text-medium text-center">Kategori Menu</h6>
                                     </th>
                                     <th class="min-width">
-                                        <h6 class="text-sm text-medium">Category</h6>
+                                        <h6 class="text-sm text-medium text-center">Jumlah Terjual</h6>
                                     </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">Price</h6>
-                                    </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">Sold</h6>
-                                    </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">Profit</h6>
-                                    </th>
-                                    <th></th>
                                 </tr>
                             </thead>
+                            <?php
+                            $q = "
+                                    SELECT 
+                                        m.*,
+                                        mn.nama kategori_menu,
+                                        (SELECT COUNT(*) FROM detail_penjualan WHERE id_menu=m.id) jumlah_terjual
+                                    FROM 
+                                        menu m 
+                                    INNER JOIN 
+                                        kategori_menu mn 
+                                    ON 
+                                        mn.id=m.id_kategori_menu 
+                                    ORDER BY 
+                                        jumlah_terjual DESC
+                                ";
+                            $favorit_menu = $conn->query($q);
+                            ?>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="check-input-primary">
-                                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-1.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">Arm Chair</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$345</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">43</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$45</p>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="check-input-primary">
-                                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-2.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">SOfa</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$145</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">13</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$15</p>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="check-input-primary">
-                                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-3.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">Dining Table</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$95</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">32</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$215</p>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="check-input-primary">
-                                            <input class="form-check-input" type="checkbox" id="checkbox-1" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="product">
-                                            <div class="image">
-                                                <img src="assets/images/products/product-mini-4.jpg" alt="" />
-                                            </div>
-                                            <p class="text-sm">Office Chair</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">Interior</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$105</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">23</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm">$345</p>
-                                    </td>
-                                    <td>
-                                        <div class="action justify-content-end">
-                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Remove</a>
-                                                </li>
-                                                <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">Edit</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <?php if ($favorit_menu->num_rows) : ?>
+                                    <?php while ($row = $favorit_menu->fetch_assoc()) : ?>
+                                        <tr>
+                                            <td>
+                                                <div class="image">
+                                                    <img style="width: 50px; height: 50px; object-fit: contain;" src="<?= $row['foto']; ?>" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p><?= $row['nama']; ?></p>
+                                            </td>
+                                            <td>
+                                                <p class="text-center"><?= $row['kategori_menu']; ?></p>
+                                            </td>
+                                            <td>
+                                                <p class="text-center"><?= $row['jumlah_terjual']; ?></p>
+                                            </td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else : ?>
+                                    <tr>
+                                        <td colspan="4" class="text-center">Belum Ada Penjualan</td>
+                                    </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
