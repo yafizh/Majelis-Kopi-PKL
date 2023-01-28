@@ -1,5 +1,6 @@
 <?php
 $kategori_menu = $conn->query("SELECT * FROM kategori_menu")->fetch_all(MYSQLI_ASSOC);
+$pelanggan_tetap = $conn->query("SELECT * FROM pelanggan")->fetch_all(MYSQLI_ASSOC);
 $menu = [];
 foreach ($kategori_menu as $index => $value) {
     $menu = array_merge($menu, $conn->query("SELECT * FROM menu WHERE id_kategori_menu=" . $value['id'] . " ORDER BY nama")->fetch_all(MYSQLI_ASSOC));
@@ -50,7 +51,10 @@ $daftar_pesanan = [
     "pesanan" => [],
     "id" => [],
     "tunai" => 0,
-    "total" => 0
+    "total" => 0,
+    "id_pelanggan" => NULL,
+    "pelanggan_tetap" => false,
+    "nama_pelanggan" => ""
 ];
 if (isset($_GET['id'])) {
     $q = "
@@ -59,7 +63,7 @@ if (isset($_GET['id'])) {
             m.nama,
             m.foto,
             dp.harga,
-            dp.jumlah 
+            dp.jumlah
         FROM 
             detail_penjualan dp 
         INNER JOIN 
@@ -78,6 +82,9 @@ if (isset($_GET['id'])) {
     }
     $penjualan = $conn->query("SELECT * FROM penjualan WHERE id=" . $_GET['id'])->fetch_assoc();
     $daftar_pesanan['tunai'] = $penjualan['tunai'];
+    $daftar_pesanan['id_pelanggan'] = $penjualan['id_pelanggan'];
+    $daftar_pesanan['nama_pelanggan'] = $penjualan['nama'];
+    $daftar_pesanan['pelanggan_tetap'] = is_null($penjualan['id_pelanggan']) ? false : true;
 }
 ?>
 <section class="table-components">
@@ -177,8 +184,9 @@ if (isset($_GET['id'])) {
     const stok_bahan_baku = JSON.parse('<?= json_encode($stok_bahan_baku); ?>');
     const menu = JSON.parse('<?= json_encode($menu); ?>');
     const stokMenu = {};
+    const pelanggan_tetap = JSON.parse('<?= json_encode($pelanggan_tetap); ?>');
     const daftar_pesanan = JSON.parse('<?= json_encode($daftar_pesanan); ?>');
-
+    console.log(daftar_pesanan)
     const orderButton = document.querySelectorAll("#move-to-order-list");
 
     const updateStokMenu = () => {
@@ -286,6 +294,23 @@ if (isset($_GET['id'])) {
             kembalian.value = 0;
     }
 
+    const radioPelanggan = (myRadio) => {
+        if (myRadio.value == 'Pelanggan Tetap')
+            daftar_pesanan.pelanggan_tetap = true;
+
+        if (myRadio.value == 'Pelanggan Baru')
+            daftar_pesanan.pelanggan_tetap = false;
+
+        updateDaftarPesanan();
+        console.log(daftar_pesanan)
+    }
+
+    const isiNamaPelanggan = (input) => daftar_pesanan.nama_pelanggan = input.value;
+
+    const pilihNamaPelanggan = (option) => daftar_pesanan.id_pelanggan = option.value;
+
+
+
     const updateDaftarPesanan = () => {
         document.querySelector('#daftar-pesanan tbody').innerHTML = '';
         if (daftar_pesanan.id.length > 0) {
@@ -323,7 +348,8 @@ if (isset($_GET['id'])) {
                 `);
                 daftar_pesanan['total'] += value.harga * value.jumlah;
             });
-            document.querySelector('#daftar-pesanan tbody').insertAdjacentHTML('beforeend', `
+
+            let a = `
                 <tr>
                     <th>Total</th>
                     <td colspan="2" class="ps-3">
@@ -338,11 +364,55 @@ if (isset($_GET['id'])) {
                 </tr>
                 <tr>
                     <th>Kembalian</th>
-                    <td colspan="2" class="ps-3">
+                    <td colspan="2" class="ps-3"> 
                         <input type="text" name="kembalian" class="form-control text-end" disabled value="0">
                     </td>
                 </tr>
                 <tr>
+                    <td colspan="3"> 
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center gap-3">
+                                <div class="form-check radio-style">
+                                    <input class="form-check-input" name="jenis_kelamin" onclick="radioPelanggan(this)" type="radio" value="Pelanggan Baru" ${daftar_pesanan.pelanggan_tetap ? '' : 'checked'} id="pelangga-baru" />
+                                    <label class="form-check-label" for="pelangga-baru"> Pelanggan Baru</label>
+                                </div>    
+                                <div class="form-check radio-style">
+                                    <input class="form-check-input" name="jenis_kelamin" onclick="radioPelanggan(this)" type="radio" value="Pelanggan Tetap" ${daftar_pesanan.pelanggan_tetap ? 'checked' : ''} id="pelanggan-tetap" />
+                                    <label class="form-check-label" for="pelanggan-tetap"> Pelanggan Tetap</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>`
+            if (daftar_pesanan.pelanggan_tetap) {
+                a += `
+                    <tr>
+                        <th>Nama Pelanggan</th>
+                        <td colspan="2" class="ps-3"> 
+                            <select class="form-control text-end" onchange="pilihNamaPelanggan(this)" name="id_pelanggan" required>
+                                <option selected disabled value="">Pilih Pelanggan Tetap</option>
+                    `;
+
+                pelanggan_tetap.forEach((value) => {
+                    if (value.id == daftar_pesanan.id_pelanggan)
+                        a += `<option selected value="${value.id}">${value.nama}</option>`;
+                    else
+                        a += `<option value="${value.id}">${value.nama}</option>`;
+                });
+
+                a += `</select>
+                        </td>
+                    </tr>`;
+            } else {
+                a += `
+                    <tr>
+                        <th>Nama Pelanggan</th>
+                        <td colspan="2" class="ps-3"> 
+                            <input type="text" name="nama" oninput="isiNamaPelanggan(this)" class="form-control text-end" value="${daftar_pesanan.nama_pelanggan}" required>
+                        </td>
+                    </tr>`;
+            }
+            a += `<tr>
                     <td colspan="3">
                     ${
                         params.id 
@@ -358,7 +428,8 @@ if (isset($_GET['id'])) {
                     }
                     </td>
                 </tr>
-            `);
+            `;
+            document.querySelector('#daftar-pesanan tbody').insertAdjacentHTML('beforeend', a);
             updateKembalianTunai();
         } else {
             document.querySelector('#daftar-pesanan tbody').innerHTML = `
@@ -412,7 +483,10 @@ if (isset($_GET['id'])) {
         e.preventDefault();
         const data = {
             pesanan: [],
-            tunai: daftar_pesanan.tunai
+            tunai: daftar_pesanan.tunai,
+            pelanggan_tetap: daftar_pesanan.pelanggan_tetap,
+            id_pelanggan: daftar_pesanan.id_pelanggan,
+            nama_pelanggan: daftar_pesanan.nama_pelanggan,
         };
 
         daftar_pesanan.pesanan.forEach((value) => {

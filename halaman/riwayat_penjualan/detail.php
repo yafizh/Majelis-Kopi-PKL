@@ -169,6 +169,18 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th>Nama Pelanggan</th>
+                                        <td class="text-end">
+                                            <?= $penjualan['nama']; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status Pelanggan</th>
+                                        <td class="text-end">
+                                            <?= $penjualan['id_pelanggan'] ? 'Pelanggan Tetap' : 'Pelanggan Baru'; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="2">
                                             <div class="d-flex gap-3">
                                                 <?php if ($_SESSION['user']['status'] == 'ADMIN') : ?>

@@ -7,15 +7,24 @@ $data = json_decode(file_get_contents('php://input'), true);
 try {
     $conn->begin_transaction();
 
+    if ($data['pelanggan_tetap']) {
+        $pelanggan_tetap = $conn->query("SELECT * FROM pelanggan WHERE id=" . $data['id_pelanggan'])->fetch_assoc();
+        $data['nama_pelanggan'] = $pelanggan_tetap['nama'];
+    }
+
     $q = "
         INSERT INTO penjualan (
             id_kasir, 
+            id_pelanggan, 
             tunai,
-            tanggal_waktu 
+            tanggal_waktu,
+            nama
         ) VALUES (
             " . $_SESSION['user']['id_kasir'] . ",
+            " . ($data['pelanggan_tetap'] ? $data['id_pelanggan'] : 'NULL') . ",
             '" . $data['tunai'] . "',
-            '" . Date("Y-m-d H:i:s") . "'
+            '" . Date("Y-m-d H:i:s") . "',
+            '" . $data['nama_pelanggan'] . "'
         )
     ";
     $conn->query($q);

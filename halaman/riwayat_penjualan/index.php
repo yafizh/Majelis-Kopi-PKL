@@ -35,6 +35,12 @@
                                             <h6>Tanggal</h6>
                                         </th>
                                         <th class="text-center">
+                                            <h6>Nama Pelanggan</h6>
+                                        </th>
+                                        <th class="text-center">
+                                            <h6>Status Pelanggan</h6>
+                                        </th>
+                                        <th class="text-center">
                                             <h6>Total Pembelian</h6>
                                         </th>
                                         <th class="fit">
@@ -77,6 +83,12 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <p><?= indoensiaDateWithDay($row['tanggal']); ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['nama']; ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['id_pelanggan'] ? 'Pelanggan Tetap' : 'Pelanggan Baru'; ?></p>
                                                 </td>
                                                 <td class="text-center">
                                                     <p>Rp <?= number_format($row['total'], 0, ",", "."); ?></p>
