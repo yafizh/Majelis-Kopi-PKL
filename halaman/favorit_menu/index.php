@@ -51,7 +51,7 @@
                                         WHERE 
                                             id_kategori_menu=" . $row1['id'] . " 
                                         ORDER BY 
-                                            (SELECT COUNT(*) FROM detail_penjualan WHERE id_menu=menu.id)";
+                                            (SELECT COUNT(*) FROM detail_penjualan WHERE id_menu=menu.id) DESC";
                                     $result = $conn->query($q);
                                     $no = 1;
                                     ?>

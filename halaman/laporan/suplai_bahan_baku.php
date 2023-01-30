@@ -46,7 +46,7 @@
                                     if (isset($_POST['id_pemasok']))
                                         $link .= "id_pemasok=" . $_POST['id_pemasok'];
 
-                                    if (isset($_POST['sampai_tanggal']) && isset($_POST['dari_tanggal']))
+                                    if (!empty($_POST['sampai_tanggal'] ?? '') && !empty($_POST['dari_tanggal'] ?? ''))
                                         $link .= "&dari_tanggal=" . $_POST['dari_tanggal'] . "&sampai_tanggal=" . $_POST['sampai_tanggal'];
                                     ?>
                                     <a href="<?= $link; ?>" target="_blank" class="main-btn btn-sm success-btn btn-hover">Cetak</a>
@@ -107,7 +107,7 @@
                                 if (isset($_POST['id_pemasok']))
                                     $q .= " AND pemasok.id = '" . $_POST['id_pemasok'] . "'";
 
-                                if (isset($_POST['dari_tanggal']) && isset($_POST['sampai_tanggal']))
+                                if (!empty($_POST['dari_tanggal'] ?? '') && !empty($_POST['sampai_tanggal'] ?? ''))
                                     $q .= " AND (DATE(p.tanggal) >= '" . $_POST['dari_tanggal'] . "' AND DATE(p.tanggal) <= '" . $_POST['sampai_tanggal'] . "')";
 
                                 $q .= " ORDER BY p.tanggal DESC";

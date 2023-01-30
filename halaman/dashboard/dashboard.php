@@ -116,7 +116,8 @@
                                     ON 
                                         mn.id=m.id_kategori_menu 
                                     ORDER BY 
-                                        jumlah_terjual DESC
+                                        jumlah_terjual DESC 
+                                    LIMIT 4
                                 ";
                             $favorit_menu = $conn->query($q);
                             ?>
