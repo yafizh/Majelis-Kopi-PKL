@@ -12,19 +12,27 @@
 <body>
     <?php include_once('header.php'); ?>
     <h4 class="text-center my-3">Laporan Penjualan</h4>
-    <?php if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal'])) : ?>
+    <?php if (isset($_GET['status_pelanggan']) || (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))) : ?>
         <section class="p-3">
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-4">
                     <table class="table">
-                        <tr>
-                            <td class="align-middle td-fit">Dari Tanggal</td>
-                            <td class="pl-5"><?= indonesiaDate($_GET['dari_tanggal']); ?></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle td-fit">Sampai Tanggal</td>
-                            <td class="pl-5"><?= indonesiaDate($_GET['sampai_tanggal']); ?></td>
-                        </tr>
+                        <?php if (isset($_GET['status_pelanggan'])) : ?>
+                            <tr>
+                                <td class="align-middle td-fit">Status Pelaggan</td>
+                                <td class="pl-5"><?= $_GET['status_pelanggan']; ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal'])) : ?>
+                            <tr>
+                                <td class="align-middle td-fit">Dari Tanggal</td>
+                                <td class="pl-5"><?= indonesiaDate($_GET['dari_tanggal']); ?></td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle td-fit">Sampai Tanggal</td>
+                                <td class="pl-5"><?= indonesiaDate($_GET['sampai_tanggal']); ?></td>
+                            </tr>
+                        <?php endif; ?>
                     </table>
                 </div>
             </div>
@@ -49,11 +57,18 @@
                     (SELECT IFNULL(SUM(dp.jumlah * dp.harga), 0) FROM detail_penjualan dp WHERE dp.id_penjualan=p.id) total 
                 FROM 
                     penjualan p 
+                WHERE 
+                    1=1 
             ";
 
-
+            if (isset($_POST['status_pelanggan'])) {
+                if ($_POST['status_pelanggan'] == 'Pelanggan Tetap')
+                    $q .= " AND id_pelanggan IS NOT NULL";
+                elseif ($_POST['status_pelanggan'] == 'Pelanggan Baru')
+                    $q .= " AND id_pelanggan IS NULL";
+            }
             if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))
-                $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_GET['sampai_tanggal'] . "'";
+                $q .= " AND DATE(p.tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_GET['sampai_tanggal'] . "'";
 
             $q .= " ORDER BY p.tanggal_waktu DESC";
 

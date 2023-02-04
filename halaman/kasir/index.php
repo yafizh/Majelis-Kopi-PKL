@@ -302,7 +302,6 @@ if (isset($_GET['id'])) {
             daftar_pesanan.pelanggan_tetap = false;
 
         updateDaftarPesanan();
-        console.log(daftar_pesanan)
     }
 
     const isiNamaPelanggan = (input) => daftar_pesanan.nama_pelanggan = input.value;

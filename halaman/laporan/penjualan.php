@@ -16,23 +16,38 @@
                         <form action="" method="POST">
                             <div class="row">
                                 <div class="col-12">
+                                    <div class="select-style-1">
+                                        <label>Status Pelanggan</label>
+                                        <div class="select-position">
+                                            <select required name="status_pelanggan">
+                                                <option value="" selected disabled>Pilih Status Pelanggan</option>
+                                                <option <?= ($_POST['status_pelanggan'] ?? '') == 'Pelanggan Baru' ? 'selected' : ''; ?> value="Pelanggan Baru">Pelanggan Baru</option>
+                                                <option <?= ($_POST['status_pelanggan'] ?? '') == 'Pelanggan Tetap' ? 'selected' : ''; ?> value="Pelanggan Tetap">Pelanggan Tetap</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Dari Tanggal</label>
-                                        <input type="date" class="bg-transparent" name="dari_tanggal" required value="<?= $_POST['dari_tanggal'] ?? ''; ?>" />
+                                        <input type="date" class="bg-transparent" name="dari_tanggal" value="<?= $_POST['dari_tanggal'] ?? ''; ?>" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Sampai Tanggal</label>
-                                        <input type="date" class="bg-transparent" name="sampai_tanggal" required value="<?= $_POST['sampai_tanggal'] ?? ''; ?>" />
+                                        <input type="date" class="bg-transparent" name="sampai_tanggal" value="<?= $_POST['sampai_tanggal'] ?? ''; ?>" />
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">
                                     <button name="submit" class="main-btn btn-sm primary-btn btn-hover">Filter</button>
                                     <?php
-                                    $link = "halaman/laporan/cetak/penjualan.php";
-                                    if (isset($_POST['sampai_tanggal']) && isset($_POST['dari_tanggal']))
-                                        $link .= "?dari_tanggal=" . $_POST['dari_tanggal'] . "&sampai_tanggal=" . $_POST['sampai_tanggal'];
+                                    $link = "halaman/laporan/cetak/penjualan.php?";
+                                    if (!empty($_POST['status_pelanggan'] ?? ''))
+                                        $link .= "status_pelanggan=" . $_POST['status_pelanggan'];
+                                    if (!empty($_POST['sampai_tanggal'] ?? '') && !empty($_POST['dari_tanggal'] ?? ''))
+                                        $link .= "&dari_tanggal=" . $_POST['dari_tanggal'] . "&sampai_tanggal=" . $_POST['sampai_tanggal'];
                                     ?>
                                     <a href="<?= $link; ?>" target="_blank" class="main-btn btn-sm success-btn btn-hover">Cetak</a>
                                 </div>
@@ -71,11 +86,19 @@
                                         (SELECT IFNULL(SUM(dp.jumlah * dp.harga), 0) FROM detail_penjualan dp WHERE dp.id_penjualan=p.id) total 
                                     FROM 
                                         penjualan p 
+                                    WHERE 
+                                        1=1 
                                 ";
 
+                                if (!empty($_POST['status_pelanggan'] ?? '')) {
+                                    if ($_POST['status_pelanggan'] == 'Pelanggan Tetap')
+                                        $q .= " AND id_pelanggan IS NOT NULL";
+                                    elseif ($_POST['status_pelanggan'] == 'Pelanggan Baru')
+                                        $q .= " AND id_pelanggan IS NULL";
+                                }
 
-                                if (isset($_POST['dari_tanggal']) && isset($_POST['sampai_tanggal']))
-                                    $q .= " WHERE DATE(p.tanggal_waktu) >= '" . $_POST['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_POST['sampai_tanggal'] . "'";
+                                if (!empty($_POST['dari_tanggal'] ?? '') && !empty($_POST['sampai_tanggal'] ?? ''))
+                                    $q .= " AND DATE(p.tanggal_waktu) >= '" . $_POST['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_POST['sampai_tanggal'] . "'";
 
                                 $q .= " ORDER BY p.tanggal_waktu DESC";
 
