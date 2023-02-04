@@ -110,9 +110,10 @@ INSERT INTO `db_majelis_kopi`.`pelanggan` (
     `id`,
     `tanggal_terdaftar`,
     `nama`,
-    `jenis_kelamin`
+    `jenis_kelamin`,
+    `nomor_telepon` 
 ) VALUES 
-(1, NOW(), 'Habibi', 'Laki - Laki');
+(1, NOW(), 'Habibi', 'Laki - Laki', '087811442255');
 
 INSERT INTO `db_majelis_kopi`.`penjualan` (
     `id`,

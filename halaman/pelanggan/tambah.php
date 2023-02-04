@@ -3,8 +3,9 @@ if (isset($_POST['submit'])) {
     $tanggal_terdaftar = Date("Y-m-d");
     $nama = $conn->real_escape_string($_POST['nama']);
     $jenis_kelamin = $conn->real_escape_string($_POST['jenis_kelamin']);
+    $nomor_telepon = $conn->real_escape_string($_POST['nomor_telepon']);
 
-    if ($conn->query("INSERT INTO pelanggan (nama, jenis_kelamin, tanggal_terdaftar) VALUES ('$nama', '$jenis_kelamin', '$tanggal_terdaftar')")) {
+    if ($conn->query("INSERT INTO pelanggan (nama, jenis_kelamin, nomor_telepon, tanggal_terdaftar) VALUES ('$nama', '$jenis_kelamin', '$nomor_telepon', '$tanggal_terdaftar')")) {
         $_SESSION['success'] = "Tambah Pelanggan Tetap Berhasil!";
         echo "<script>location.href = '?h1=pelanggan';</script>";
     } else die($conn->error);
@@ -53,6 +54,12 @@ if (isset($_POST['submit'])) {
                                             <input class="form-check-input" name="jenis_kelamin" type="radio" value="Perempuan" id="female" />
                                             <label class="form-check-label" for="female"> Perempuan</label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Nomor Telepon</label>
+                                        <input type="text" class="bg-transparent" name="nomor_telepon" autocomplete="off" required />
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">

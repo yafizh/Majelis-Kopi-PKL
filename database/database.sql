@@ -83,6 +83,7 @@ CREATE TABLE `db_majelis_kopi`.`kasir`(
 CREATE TABLE `db_majelis_kopi`.`pelanggan`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `nama` VARCHAR(255),
+    `nomor_telepon` VARCHAR(255),
     `jenis_kelamin` VARCHAR(255),
     `tanggal_terdaftar` DATE,
     PRIMARY KEY (`id`) 

@@ -43,6 +43,9 @@
                                         <th class="text-center">
                                             <h6>Jenis Kelamin</h6>
                                         </th>
+                                        <th class="text-center">
+                                            <h6>Nomor Telepon</h6>
+                                        </th>
                                         <th class="fit">
                                             <h6>Aksi</h6>
                                         </th>
@@ -67,6 +70,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <p><?= $row['jenis_kelamin']; ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['nomor_telepon']; ?></p>
                                                 </td>
                                                 <td class="d-flex gap-2">
                                                     <div class="action">

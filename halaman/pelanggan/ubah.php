@@ -3,8 +3,9 @@ $data = $conn->query("SELECT * FROM pelanggan WHERE id=" . $_GET['id'])->fetch_a
 if (isset($_POST['submit'])) {
     $nama = $conn->real_escape_string($_POST['nama']);
     $jenis_kelamin = $conn->real_escape_string($_POST['jenis_kelamin']);
+    $nomor_telepon = $conn->real_escape_string($_POST['nomor_telepon']);
 
-    if ($conn->query("UPDATE pelanggan SET nama='$nama', jenis_kelamin='$jenis_kelamin' WHERE id=" . $_GET['id'])) {
+    if ($conn->query("UPDATE pelanggan SET nama='$nama', jenis_kelamin='$jenis_kelamin', nomor_telepon='$nomor_telepon' WHERE id=" . $_GET['id'])) {
         $_SESSION['success'] = "Pelanggan Tetap Berhasil Diperbaharui!";
         echo "<script>location.href = '?h1=pelanggan';</script>";
     } else die($conn->error);
@@ -53,6 +54,12 @@ if (isset($_POST['submit'])) {
                                             <input class="form-check-input" name="jenis_kelamin" type="radio" <?= $data['jenis_kelamin'] == 'Perempuan' ? 'checked' : ''; ?> value="Perempuan" id="female" />
                                             <label class="form-check-label" for="female"> Perempuan</label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Nomor Telepon</label>
+                                        <input type="text" class="bg-transparent" name="nomor_telepon" autocomplete="off" value="<?= $data['nomor_telepon']; ?>" required />
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">

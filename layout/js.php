@@ -7,6 +7,7 @@
 <script src="assets/js/world-merc.js"></script>
 <script src="assets/js/polyfill.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/datatable.js"></script>
 <script>
     const formatter = new Intl.NumberFormat('id-ID', {
         style: 'currency',
@@ -17,5 +18,10 @@
     const formatNumberWithDot = new Intl.NumberFormat('id-ID', {
         currency: 'IDR',
         maximumFractionDigits: 0,
+    });
+</script>
+<script>
+    const dataTable = new simpleDatatables.DataTable("#table", {
+        searchable: true,
     });
 </script>
