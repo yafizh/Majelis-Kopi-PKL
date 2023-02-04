@@ -142,6 +142,8 @@ if (!isset($_SESSION['user']))
 
                 if ($_GET['h1'] == 'pelanggan')
                     include_once('halaman/pelanggan/index.php');
+                elseif ($_GET['h1'] == 'lihat_pelanggan')
+                    include_once('halaman/pelanggan/lihat.php');
                 elseif ($_GET['h1'] == 'tambah_pelanggan')
                     include_once('halaman/pelanggan/tambah.php');
                 elseif ($_GET['h1'] == 'ubah_pelanggan')
@@ -176,6 +178,8 @@ if (!isset($_SESSION['user']))
                 // Pelanggan
                 elseif ($_GET['h'] == 'pelanggan')
                     include_once('halaman/pelanggan/index.php');
+                elseif ($_GET['h'] == 'lihat_pelanggan')
+                    include_once('halaman/pelanggan/lihat.php');
                 elseif ($_GET['h'] == 'tambah_pelanggan')
                     include_once('halaman/pelanggan/tambah.php');
                 elseif ($_GET['h'] == 'ubah_pelanggan')

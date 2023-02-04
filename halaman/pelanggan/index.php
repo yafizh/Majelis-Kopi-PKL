@@ -75,6 +75,19 @@
                                                     <p><?= $row['nomor_telepon']; ?></p>
                                                 </td>
                                                 <td class="d-flex gap-2">
+                                                    <?php if ($_SESSION['user']['status'] == 'KASIR') : ?>
+                                                        <div class="action">
+                                                            <a href="?h=lihat_pelanggan&id=<?= $row['id']; ?>" class="text-info">
+                                                                <i class="lni lni-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <div class="action">
+                                                            <a href="?h1=lihat_pelanggan&id=<?= $row['id']; ?>" class="text-info">
+                                                                <i class="lni lni-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="action">
                                                         <a href="?h1=ubah_pelanggan&id=<?= $row['id']; ?>" class="text-warning">
                                                             <i class="lni lni-pencil"></i>
