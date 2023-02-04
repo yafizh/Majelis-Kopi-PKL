@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
                     <div class="w-100 h-100 d-flex flex-column" style="position: absolute; z-index: 3; padding-top: 10rem;">
                         <div class="text-center">
                             <h1 class="text-white mb-30">HALAMAN LOGIN</h1>
-                            <h1 class="text-white mb-10">APLIKASI KASIR DAN PEMASOK BAHAN BAKU</h1>
+                            <h1 class="text-white mb-10">APLIKASI PENJUALAN</h1>
                             <h1 class="text-white mb-10">MAJELIS KOPI BANJARBARU</h1>
                         </div>
                     </div>

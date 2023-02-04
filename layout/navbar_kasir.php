@@ -26,7 +26,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                             <li>
-                                <a href="/" style="background-color: <?= isset($_GET['h']) ? 'none' : '#4a6cf7' ?>; color: <?= isset($_GET['h']) ? '' : 'white' ?>;">
+                                <a href="?" style="background-color: <?= isset($_GET['h']) ? 'none' : '#4a6cf7' ?>; color: <?= isset($_GET['h']) ? '' : 'white' ?>;">
                                     <i class="lni lni-revenue"></i> Menu Kasir
                                 </a>
                             </li>
