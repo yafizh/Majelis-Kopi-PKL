@@ -163,12 +163,18 @@ if (!isset($_SESSION['user']))
                     elseif ($_GET['h2'] == 'pemasok')
                         include_once('halaman/laporan/pemasok.php');
                 }
+
+                if ($_GET['h1'] == 'ganti_password')
+                    include_once('halaman/ganti_password/index.php');
             } else include_once('halaman/dashboard/dashboard.php');
             ?>
         <?php else : ?>
             <?php include_once('layout/navbar_kasir.php'); ?>
             <?php
             if (isset($_GET['h'])) {
+                if ($_GET['h'] == 'ganti_password')
+                    include_once('halaman/ganti_password/index.php');
+
                 if ($_GET['h'] == 'riwayat_penjualan')
                     include_once('halaman/riwayat_penjualan/index.php');
                 elseif ($_GET['h'] == 'detail_riwayat_penjualan')

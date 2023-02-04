@@ -23,7 +23,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                             <li>
-                                <a href="#0"> <i class="lni lni-cog"></i> Ganti Password </a>
+                                <a href="?h1=ganti_password"> <i class="lni lni-cog"></i> Ganti Password </a>
                             </li>
                             <li>
                                 <a href="halaman/logout/?"> <i class="lni lni-exit"></i> Keluar </a>

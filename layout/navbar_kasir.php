@@ -46,7 +46,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#0" style="background-color: <?= (($_GET['h'] ?? '') == 'ganti_password') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'ganti_password') ? 'white' : '' ?>;">
+                                <a href="?h=ganti_password" style="background-color: <?= (($_GET['h'] ?? '') == 'ganti_password') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'ganti_password') ? 'white' : '' ?>;">
                                     <i class="lni lni-cog"></i> Ganti Password
                                 </a>
                             </li>
