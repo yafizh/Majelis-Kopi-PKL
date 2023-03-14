@@ -80,10 +80,33 @@ CREATE TABLE `db_majelis_kopi`.`kasir`(
     FOREIGN KEY (`id_user`) REFERENCES user (`id`) ON DELETE CASCADE 
 );
 
+CREATE TABLE `db_majelis_kopi`.`presensi_kasir`(
+    `id` BIGINT UNSIGNED AUTO_INCREMENT,
+    `id_kasir` BIGINT UNSIGNED,
+    `bulan` BIGINT UNSIGNED,
+    `tahun` BIGINT UNSIGNED,
+    `hadir` BIGINT UNSIGNED,
+    `sakit` BIGINT UNSIGNED,
+    `izin` BIGINT UNSIGNED,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_kasir`) REFERENCES kasir (`id`) ON DELETE CASCADE 
+);
+
+CREATE TABLE `db_majelis_kopi`.`penggajian_kasir`(
+    `id` BIGINT UNSIGNED AUTO_INCREMENT,
+    `id_kasir` BIGINT UNSIGNED,
+    `tanggal` DATE,
+    `nominal_gaji` BIGINT UNSIGNED,
+    `bukti_penggajian` VARCHAR(255),
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_kasir`) REFERENCES kasir (`id`) ON DELETE CASCADE 
+);
+
 CREATE TABLE `db_majelis_kopi`.`pelanggan`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `nama` VARCHAR(255),
     `nomor_telepon` VARCHAR(255),
+    `email` VARCHAR(255),
     `jenis_kelamin` VARCHAR(255),
     `tanggal_terdaftar` DATE,
     PRIMARY KEY (`id`) 
