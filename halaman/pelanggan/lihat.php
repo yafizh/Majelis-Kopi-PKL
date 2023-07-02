@@ -8,7 +8,11 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="?h1=pelanggan" class="btn btn-secondary mb-30">Kembali</a>
+                    <?php if ($_SESSION['user']['status'] == 'KASIR') : ?>
+                        <a href="?h=pelanggan" class="btn btn-secondary mb-30">Kembali</a>
+                    <?php else : ?>
+                        <a href="?h1=pelanggan" class="btn btn-secondary mb-30">Kembali</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

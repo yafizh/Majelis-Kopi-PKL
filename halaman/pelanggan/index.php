@@ -8,7 +8,11 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="?h1=tambah_pelanggan" class="btn btn-primary mb-30">Tambah</a>
+                    <?php if ($_SESSION['user']['status'] == 'KASIR') : ?>
+                        <a href="?h=tambah_pelanggan" class="btn btn-primary mb-30">Tambah</a>
+                    <?php else : ?>
+                        <a href="?h1=tambah_pelanggan" class="btn btn-primary mb-30">Tambah</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -81,23 +85,33 @@
                                                                 <i class="lni lni-eye"></i>
                                                             </a>
                                                         </div>
+                                                        <div class="action">
+                                                            <a href="?h=ubah_pelanggan&id=<?= $row['id']; ?>" class="text-warning">
+                                                                <i class="lni lni-pencil"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="action">
+                                                            <a onclick="return confirm('Yakin?')" href="?h=hapus_pelanggan&id=<?= $row['id']; ?>" class="text-danger">
+                                                                <i class="lni lni-trash-can"></i>
+                                                            </a>
+                                                        </div>
                                                     <?php else : ?>
                                                         <div class="action">
                                                             <a href="?h1=lihat_pelanggan&id=<?= $row['id']; ?>" class="text-info">
                                                                 <i class="lni lni-eye"></i>
                                                             </a>
                                                         </div>
+                                                        <div class="action">
+                                                            <a href="?h1=ubah_pelanggan&id=<?= $row['id']; ?>" class="text-warning">
+                                                                <i class="lni lni-pencil"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="action">
+                                                            <a onclick="return confirm('Yakin?')" href="?h1=hapus_pelanggan&id=<?= $row['id']; ?>" class="text-danger">
+                                                                <i class="lni lni-trash-can"></i>
+                                                            </a>
+                                                        </div>
                                                     <?php endif; ?>
-                                                    <div class="action">
-                                                        <a href="?h1=ubah_pelanggan&id=<?= $row['id']; ?>" class="text-warning">
-                                                            <i class="lni lni-pencil"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="action">
-                                                        <a onclick="return confirm('Yakin?')" href="?h1=hapus_pelanggan&id=<?= $row['id']; ?>" class="text-danger">
-                                                            <i class="lni lni-trash-can"></i>
-                                                        </a>
-                                                    </div>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>

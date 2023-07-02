@@ -7,7 +7,10 @@ if (isset($_POST['submit'])) {
 
     if ($conn->query("INSERT INTO pelanggan (nama, jenis_kelamin, nomor_telepon, tanggal_terdaftar) VALUES ('$nama', '$jenis_kelamin', '$nomor_telepon', '$tanggal_terdaftar')")) {
         $_SESSION['success'] = "Tambah Pelanggan Tetap Berhasil!";
-        echo "<script>location.href = '?h1=pelanggan';</script>";
+        if ($_SESSION['user']['status'] == 'KASIR')
+            echo "<script>location.href = '?h=pelanggan';</script>";
+        else
+            echo "<script>location.href = '?h1=pelanggan';</script>";
     } else die($conn->error);
 }
 ?>
@@ -63,7 +66,11 @@ if (isset($_POST['submit'])) {
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">
-                                    <a href="?h1=pelanggan" class="main-btn btn-sm light-btn btn-hover">Kembali</a>
+                                    <?php if ($_SESSION['user']['status'] == 'KASIR') : ?>
+                                        <a href="?h=pelanggan" class="main-btn btn-sm light-btn btn-hover">Kembali</a>
+                                    <?php else : ?>
+                                        <a href="?h1=pelanggan" class="main-btn btn-sm light-btn btn-hover">Kembali</a>
+                                    <?php endif; ?>
                                     <button name="submit" class="main-btn btn-sm primary-btn btn-hover">Tambah</button>
                                 </div>
                             </div>
