@@ -5,11 +5,8 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3><a href="?h1=karyawan&h2=presensi" class="breadcrumb-item">Presensi</a> <span style="color: #5D657B;">/</span> <?= $kasir['nama']; ?></h3>
+                        <h3><a href="?h1=karyawan&h2=penggajian" class="breadcrumb-item">Penggajian</a> <span style="color: #5D657B;">/</span> <?= $kasir['nama']; ?></h3>
                     </div>
-                </div>
-                <div class="col-auto">
-                    <a href="?h1=karyawan&h2=tambah_presensi&id_kasir=<?= $kasir['id']; ?>" class="btn btn-primary mb-30">Tambah</a>
                 </div>
             </div>
         </div>
@@ -39,24 +36,18 @@
                                             <h6>Bulan</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Hadir</h6>
+                                            <h6>Gaji Pokok</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Izin</h6>
+                                            <h6>Potongan Gaji</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Sakit</h6>
-                                        </th>
-                                        <th class="text-center">
-                                            <h6>Tidak Hadir</h6>
-                                        </th>
-                                        <th class="text-center fit">
-                                            <h6>Aksi</h6>
+                                            <h6>Total Gaji</h6>
                                         </th>
                                     </tr>
                                 </thead>
                                 <?php
-                                $result = $conn->query("SELECT * FROM presensi_kasir WHERE id_kasir=" . $_GET['id_kasir'] . " ORDER BY tahun DESC, bulan DESC");
+                                $result = $conn->query("SELECT * FROM penggajian_kasir WHERE id_kasir=" . $_GET['id_kasir'] . " ORDER BY tahun DESC, bulan DESC");
                                 $no = 1;
                                 ?>
                                 <tbody>
@@ -69,28 +60,13 @@
                                                 <p><?= MONTH_IN_INDONESIA[intval($row['bulan'])] . " " . $row['tahun']; ?></p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?= $row['hadir']; ?></p>
+                                                <p>Rp <?= number_format($row['nominal_gaji'], 0, ",", "."); ?></p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?= $row['sakit']; ?></p>
+                                                <p>Rp <?= number_format($row['potongan_gaji'], 0, ",", "."); ?></p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?= $row['izin']; ?></p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p><?= $row['tidak_hadir']; ?></p>
-                                            </td>
-                                            <td class="d-flex gap-2">
-                                                <div class="action">
-                                                    <a href="?h1=karyawan&h2=ubah_presensi&id_kasir=<?= $_GET['id_kasir']; ?>&id=<?= $row['id']; ?>" class="text-warning">
-                                                        <i class="lni lni-pencil"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="action">
-                                                    <a onclick="return confirm('Yakin?')" href="?h1=karyawan&h2=hapus_presensi&id_kasir=<?= $_GET['id_kasir']; ?>&id=<?= $row['id']; ?>" class="text-danger">
-                                                        <i class="lni lni-trash-can"></i>
-                                                    </a>
-                                                </div>
+                                                <p>Rp <?= number_format($row['nominal_gaji'] - $row['potongan_gaji'], 0, ",", "."); ?></p>
                                             </td>
                                         </tr>
                                     <?php endwhile; ?>

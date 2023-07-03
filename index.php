@@ -153,15 +153,17 @@ if (!isset($_SESSION['user']))
                     elseif ($_GET['h2'] == 'hapus_presensi')
                         include_once('halaman/presensi/hapus.php');
 
-                    if ($_GET['h2'] == 'favorit_menu')
-                        include_once('halaman/favorit_menu/index.php');
-
-                    if ($_GET['h2'] == 'penjualan')
-                        include_once('halaman/riwayat_penjualan/index.php');
-                    elseif ($_GET['h2'] == 'detail_penjualan')
-                        include_once('halaman/riwayat_penjualan/detail.php');
-                    elseif ($_GET['h2'] == 'edit_penjualan')
-                        include_once('halaman/kasir/index.php');
+                    if ($_GET['h2'] == 'penggajian') {
+                        if (($_GET['h3'] ?? '') == 'karyawan_per_penggajian')
+                            include_once('halaman/penggajian/index_per_penggajian.php');
+                        else
+                            include_once('halaman/penggajian/index.php');
+                    } elseif ($_GET['h2'] == 'tambah_penggajian')
+                        include_once('halaman/penggajian/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_penggajian')
+                        include_once('halaman/penggajian/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_penggajian')
+                        include_once('halaman/penggajian/hapus.php');
                 }
 
                 if ($_GET['h1'] == 'pelanggan')
