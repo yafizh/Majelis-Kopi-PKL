@@ -4,7 +4,8 @@ $q = "
         pemasok.nama pemasok,
         bb.nama bahan_baku,
         bb.satuan,
-        penyuplaian.jumlah 
+        penyuplaian.jumlah, 
+        penyuplaian.harga 
     FROM 
         penyuplaian 
     INNER JOIN 
@@ -25,8 +26,9 @@ $q = "
 $data = $conn->query($q)->fetch_assoc();
 if (isset($_POST['submit'])) {
     $jumlah = $conn->real_escape_string($_POST['jumlah']);
+    $harga = $conn->real_escape_string($_POST['harga']);
 
-    if ($conn->query("UPDATE penyuplaian SET jumlah=$jumlah WHERE id=" . $_GET['id'])) {
+    if ($conn->query("UPDATE penyuplaian SET jumlah=$jumlah, harga=$harga WHERE id=" . $_GET['id'])) {
         $_SESSION['success'] = "Penyuplaian Berhasil Diperbaharui!";
         echo "<script>location.href = '?h1=pemasok&h2=penyuplaian';</script>";
     } else die($conn->error);
@@ -66,6 +68,12 @@ if (isset($_POST['submit'])) {
                                     <div class="input-style-1">
                                         <label>Jumlah</label>
                                         <input type="number" name="jumlah" class="bg-transparent" value="<?= $data['jumlah']; ?>" autocomplete="off" required min="1" />
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-style-1">
+                                        <label>Harga</label>
+                                        <input type="number" name="harga" class="bg-transparent" value="<?= $data['harga']; ?>" autocomplete="off" required min="1" />
                                     </div>
                                 </div>
                                 <div class="col-2 d-flex align-items-center">

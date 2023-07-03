@@ -3,6 +3,7 @@ $pemasok = $conn->query("SELECT * FROM pemasok WHERE id=".$_GET['id'])->fetch_as
 if (isset($_POST['submit'])) {
     $id_bahan_baku = $conn->real_escape_string($_POST['id_bahan_baku']);
     $jumlah = $conn->real_escape_string($_POST['jumlah']);
+    $harga = $conn->real_escape_string($_POST['harga']);
 
     $id_pemasok_bahan_baku = $conn->query("SELECT * FROM pemasok_bahan_baku WHERE id_pemasok=" . $_GET['id'] . " AND id_bahan_baku=" . $id_bahan_baku)->fetch_assoc();
 
@@ -10,11 +11,13 @@ if (isset($_POST['submit'])) {
         INSERT INTO penyuplaian (
             id_pemasok_bahan_baku, 
             tanggal, 
-            jumlah
+            jumlah,
+            harga
         ) VALUES (
             " . $id_pemasok_bahan_baku['id'] . ",
             '" . Date("Y-m-d") . "',
-            $jumlah 
+            $jumlah,
+            $harga
         )
     ";
     if ($conn->query($q)) {
@@ -79,6 +82,12 @@ if (isset($_POST['submit'])) {
                                     <div class="input-style-1">
                                         <label>Jumlah</label>
                                         <input type="number" name="jumlah" class="bg-transparent" value="1" autocomplete="off" required min="1" />
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-style-1">
+                                        <label>Harga</label>
+                                        <input type="number" name="harga" class="bg-transparent" autocomplete="off" required min="1" />
                                     </div>
                                 </div>
                                 <div class="col-2 d-flex align-items-center">

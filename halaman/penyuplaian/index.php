@@ -70,7 +70,7 @@
                                     ON 
                                         bb.id=pbb.id_bahan_baku 
                                     ORDER BY 
-                                        penyuplaian.tanggal DESC 
+                                        penyuplaian.id DESC 
                                 ";
                                 $result = $conn->query($q);
                                 $no = 1;

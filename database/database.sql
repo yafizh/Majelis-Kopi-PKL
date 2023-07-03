@@ -55,6 +55,7 @@ CREATE TABLE `db_majelis_kopi`.`penyuplaian`(
     `id_pemasok_bahan_baku` BIGINT UNSIGNED,
     `tanggal` DATE,
     `jumlah` BIGINT UNSIGNED,
+    `harga` BIGINT UNSIGNED,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_pemasok_bahan_baku`) REFERENCES pemasok_bahan_baku (`id`) ON DELETE CASCADE 
 );
