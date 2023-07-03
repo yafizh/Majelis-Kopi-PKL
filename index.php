@@ -162,6 +162,8 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/menu.php');
                     elseif ($_GET['h2'] == 'pemasok')
                         include_once('halaman/laporan/pemasok.php');
+                    elseif ($_GET['h2'] == 'keuangan')
+                        include_once('halaman/laporan/keuangan.php');
                 }
 
                 if ($_GET['h1'] == 'ganti_password')
