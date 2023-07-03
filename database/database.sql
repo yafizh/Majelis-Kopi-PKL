@@ -76,6 +76,7 @@ CREATE TABLE `db_majelis_kopi`.`kasir`(
     `tempat_lahir` VARCHAR(255),
     `tanggal_lahir` DATE,
     `jenis_kelamin` VARCHAR(255),
+    `nominal_gaji` BIGINT UNSIGNED,
     `foto` VARCHAR(255),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_user`) REFERENCES user (`id`) ON DELETE CASCADE 
@@ -84,11 +85,12 @@ CREATE TABLE `db_majelis_kopi`.`kasir`(
 CREATE TABLE `db_majelis_kopi`.`presensi_kasir`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_kasir` BIGINT UNSIGNED,
-    `bulan` BIGINT UNSIGNED,
-    `tahun` BIGINT UNSIGNED,
-    `hadir` BIGINT UNSIGNED,
-    `sakit` BIGINT UNSIGNED,
-    `izin` BIGINT UNSIGNED,
+    `bulan` TINYINT UNSIGNED,
+    `tahun` INT UNSIGNED,
+    `hadir` TINYINT UNSIGNED,
+    `sakit` TINYINT UNSIGNED,
+    `izin` TINYINT UNSIGNED,
+    `tidak_hadir` TINYINT UNSIGNED,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_kasir`) REFERENCES kasir (`id`) ON DELETE CASCADE 
 );
@@ -96,9 +98,10 @@ CREATE TABLE `db_majelis_kopi`.`presensi_kasir`(
 CREATE TABLE `db_majelis_kopi`.`penggajian_kasir`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_kasir` BIGINT UNSIGNED,
-    `tanggal` DATE,
+    `bulan` TINYINT UNSIGNED,
+    `tahun` INT UNSIGNED,
     `nominal_gaji` BIGINT UNSIGNED,
-    `bukti_penggajian` VARCHAR(255),
+    `potongan_gaji` BIGINT UNSIGNED,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_kasir`) REFERENCES kasir (`id`) ON DELETE CASCADE 
 );

@@ -14,9 +14,10 @@ INSERT INTO `db_majelis_kopi`.`kasir` (
     `tempat_lahir`,
     `tanggal_lahir`,
     `jenis_kelamin`,
+    `nominal_gaji`,
     `foto`
 ) VALUES 
-(1, 2, 'Zaldi', 'Banjarbaru', '2001-01-01', 'Laki - Laki', '');
+(1, 2, 'Zaldi', 'Banjarbaru', '2001-01-01', 'Laki - Laki', 1500000, '');
 
 INSERT INTO `db_majelis_kopi`.`kategori_menu` (
     `id`,

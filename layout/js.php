@@ -23,6 +23,6 @@
 <script>
     const dataTable = new simpleDatatables.DataTable("#table", {
         searchable: true,
-        "ordering": false
+        sortable: false,
     });
 </script>

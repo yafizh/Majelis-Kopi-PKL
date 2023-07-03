@@ -140,6 +140,30 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/kasir/index.php');
                 }
 
+                if ($_GET['h1'] == 'karyawan') {
+                    if ($_GET['h2'] == 'presensi') {
+                        if (($_GET['h3'] ?? '') == 'karyawan_per_presensi')
+                            include_once('halaman/presensi/index_per_presensi.php');
+                        else
+                            include_once('halaman/presensi/index.php');
+                    } elseif ($_GET['h2'] == 'tambah_presensi')
+                        include_once('halaman/presensi/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_presensi')
+                        include_once('halaman/presensi/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_presensi')
+                        include_once('halaman/presensi/hapus.php');
+
+                    if ($_GET['h2'] == 'favorit_menu')
+                        include_once('halaman/favorit_menu/index.php');
+
+                    if ($_GET['h2'] == 'penjualan')
+                        include_once('halaman/riwayat_penjualan/index.php');
+                    elseif ($_GET['h2'] == 'detail_penjualan')
+                        include_once('halaman/riwayat_penjualan/detail.php');
+                    elseif ($_GET['h2'] == 'edit_penjualan')
+                        include_once('halaman/kasir/index.php');
+                }
+
                 if ($_GET['h1'] == 'pelanggan')
                     include_once('halaman/pelanggan/index.php');
                 elseif ($_GET['h1'] == 'lihat_pelanggan')
