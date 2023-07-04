@@ -43,6 +43,9 @@
                                         <th class="text-center">
                                             <h6>Jumlah</h6>
                                         </th>
+                                        <th class="text-center">
+                                            <h6>Harga</h6>
+                                        </th>
                                         <th class="text-center fit">
                                             <h6>Aksi</h6>
                                         </th>
@@ -93,6 +96,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <p><?= $row['jumlah']; ?> <?= $row['satuan']; ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= number_format($row['harga'], 0, ",", "."); ?></p>
                                                 </td>
                                                 <td class="d-flex gap-2">
                                                     <div class="action">

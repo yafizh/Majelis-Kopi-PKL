@@ -70,15 +70,15 @@ if (isset($_POST['submit'])) {
                                         <input type="number" name="jumlah" class="bg-transparent" value="<?= $data['jumlah']; ?>" autocomplete="off" required min="1" />
                                     </div>
                                 </div>
-                                <div class="col-10">
-                                    <div class="input-style-1">
-                                        <label>Harga</label>
-                                        <input type="number" name="harga" class="bg-transparent" value="<?= $data['harga']; ?>" autocomplete="off" required min="1" />
-                                    </div>
-                                </div>
                                 <div class="col-2 d-flex align-items-center">
                                     <div class="input-style-1 m-0">
                                         <label id="label-satuan" class="m-0"><?= $data['satuan']; ?></label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Harga</label>
+                                        <input type="number" name="harga" class="bg-transparent" value="<?= $data['harga']; ?>" autocomplete="off" required min="1" />
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">

@@ -57,7 +57,7 @@
                                                 <p><?= $no++; ?></p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?= MONTH_IN_INDONESIA[intval($row['bulan'])] . " " . $row['tahun']; ?></p>
+                                                <p><?= MONTH_IN_INDONESIA[intval($row['bulan'])-1] . " " . $row['tahun']; ?></p>
                                             </td>
                                             <td class="text-center">
                                                 <p>Rp <?= number_format($row['nominal_gaji'], 0, ",", "."); ?></p>

@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
     $tempat_lahir = $conn->real_escape_string($_POST['tempat_lahir']);
     $tanggal_lahir = $conn->real_escape_string($_POST['tanggal_lahir']);
     $jenis_kelamin = $conn->real_escape_string($_POST['jenis_kelamin']);
+    $nominal_gaji = $conn->real_escape_string($_POST['nominal_gaji']);
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
 
@@ -48,6 +49,7 @@ if (isset($_POST['submit'])) {
                 tempat_lahir='$tempat_lahir',
                 tanggal_lahir='$tanggal_lahir',
                 jenis_kelamin='$jenis_kelamin',
+                nominal_gaji='$nominal_gaji',
                 foto='$foto' 
             WHERE 
                 id=" . $_GET['id'];
@@ -111,6 +113,12 @@ if (isset($_POST['submit'])) {
                                             <input class="form-check-input" name="jenis_kelamin" type="radio" <?= $data['jenis_kelamin'] == 'Perempuan' ? 'checked' : ''; ?> value="Perempuan" id="female" />
                                             <label class="form-check-label" for="female"> Perempuan</label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Gaji</label>
+                                        <input type="number" class="bg-transparent" name="nominal_gaji" autocomplete="off" required value="<?= $data['nominal_gaji']; ?>" />
                                     </div>
                                 </div>
                                 <div class="col-12">

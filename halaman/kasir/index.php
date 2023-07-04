@@ -445,7 +445,7 @@ if (isset($_GET['id'])) {
         if (stokMenu[id_menu].stok > 0) {
             return true;
         } else {
-            alert('Abis')
+            alert('Barang Penjualan Habis!')
             return false;
         }
     }

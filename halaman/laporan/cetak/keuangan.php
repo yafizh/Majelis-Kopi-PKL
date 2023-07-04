@@ -86,7 +86,7 @@
                                 <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
                             </td>
                             <td class="text-center">
-                                <p class="m-0"><?= $row['pendapatan']; ?></p>
+                                <p class="m-0">Rp <?= number_format($row['pendapatan'], 0, ",", "."); ?></p>
                             </td>
                         </tr>
                         <?php $pendapatan += $row['pendapatan']; ?>
