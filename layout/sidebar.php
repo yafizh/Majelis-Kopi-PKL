@@ -124,6 +124,7 @@
                     <span class="text">Laporan</span>
                 </a>
                 <ul id="ddmenu_5" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'laporan' ? 'show' : ''; ?>">
+                    <li><a href="?h1=laporan&h2=kasir" class="<?= ($_GET['h2'] ?? '') == 'kasir' ? 'active' : ''; ?>">Kasir</a></li>
                     <li><a href="?h1=laporan&h2=menu" class="<?= ($_GET['h2'] ?? '') == 'menu' ? 'active' : ''; ?>">Menu</a></li>
                     <li><a href="?h1=laporan&h2=favorit_menu" class="<?= ($_GET['h2'] ?? '') == 'favorit_menu' ? 'active' : ''; ?>">Favorit Menu</a></li>
                     <li><a href="?h1=laporan&h2=penjualan" class="<?= ($_GET['h2'] ?? '') == 'penjualan' ? 'active' : ''; ?>">Penjualan</a></li>
