@@ -90,6 +90,19 @@
                                 ";
                                 $result2 = $conn->query($q);
                                 $laba_kotor = $result2->fetch_assoc()['laba_kotor'];
+
+                                $q = "
+                                    SELECT 
+                                        SUM(nominal_gaji-potongan_gaji) laba_kotor
+                                    FROM 
+                                        penggajian_kasir 
+                                    WHERE 
+                                        bulan = '{$bulan}' 
+                                        AND 
+                                        tahun = '{$tahun}' 
+                                ";
+                                $result3 = $conn->query($q);
+                                $laba_kotor += $result3->fetch_assoc()['laba_kotor'];
                                 ?>
                                 <tbody>
                                     <?php if ($result->num_rows) : ?>
@@ -117,7 +130,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <p><strong>Pengeluaran</strong></p>
+                                                <p><strong>Bahan Baku dan Gaji Kasir</strong></p>
                                             </td>
                                             <td class="text-center">
                                                 <p><strong>Rp <?= number_format($laba_kotor, 0, ",", "."); ?></strong></p>
