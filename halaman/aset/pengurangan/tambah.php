@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
         $conn->begin_transaction();
 
         $q = "
-            INSERT INTO aset_bertambah (
+            INSERT INTO aset_berkurang (
                 id_user,
                 id_aset,
                 jumlah,
@@ -23,11 +23,11 @@ if (isset($_POST['submit'])) {
             )";
         $conn->query($q);
 
-        $conn->query("UPDATE aset SET jumlah = " . ($aset['jumlah'] + $jumlah) . " WHERE id=" . $aset['id']);
+        $conn->query("UPDATE aset SET jumlah = " . ($aset['jumlah'] - $jumlah) . " WHERE id=" . $aset['id']);
 
         $conn->commit();
-        $_SESSION['success'] = "Penambahan Aset Berhasil!";
-        echo "<script>location.href = '?h1=aset&h2=penambahan_aset';</script>";
+        $_SESSION['success'] = "Pengurangan Aset Berhasil!";
+        echo "<script>location.href = '?h1=aset&h2=pengurangan_aset';</script>";
     } catch (\Throwable $e) {
         $conn->rollback();
         throw $e;
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
             <div class="row align-items-center">
                 <div class="col-md-12 text-center">
                     <div class="title mb-30">
-                        <h3>Penambahan Aset</h3>
+                        <h3>Pengurangan Aset</h3>
                     </div>
                 </div>
             </div>

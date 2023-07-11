@@ -95,6 +95,15 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/aset/penambahan/ubah.php');
                     elseif ($_GET['h2'] == 'hapus_penambahan_aset')
                         include_once('halaman/aset/penambahan/hapus.php');
+
+                    if ($_GET['h2'] == 'pengurangan_aset')
+                        include_once('halaman/aset/pengurangan/index.php');
+                    elseif ($_GET['h2'] == 'tambah_pengurangan_aset')
+                        include_once('halaman/aset/pengurangan/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_pengurangan_aset')
+                        include_once('halaman/aset/pengurangan/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_pengurangan_aset')
+                        include_once('halaman/aset/pengurangan/hapus.php');
                 }
 
                 if ($_GET['h1'] == 'kategori_menu')

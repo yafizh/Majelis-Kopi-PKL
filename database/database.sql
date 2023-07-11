@@ -152,7 +152,7 @@ CREATE TABLE `db_majelis_kopi`.`bahan_baku_digunakan`(
 CREATE TABLE `db_majelis_kopi`.`aset` (
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `nama` VARCHAR(255),
-    `jumlah` SMALLINT UNSIGNED,
+    `jumlah` INT,
     `keterangan` TEXT,
     `foto` VARCHAR(255),
     PRIMARY KEY (`id`)
@@ -162,7 +162,7 @@ CREATE TABLE `db_majelis_kopi`.`aset_bertambah`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_aset` BIGINT UNSIGNED,
     `id_user` BIGINT UNSIGNED,
-    `jumlah` SMALLINT UNSIGNED,
+    `jumlah` INT,
     `keterangan` TEXT,
     `tanggal` DATE,
     PRIMARY KEY (`id`),
@@ -174,7 +174,7 @@ CREATE TABLE `db_majelis_kopi`.`aset_berkurang`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_aset` BIGINT UNSIGNED,
     `id_user` BIGINT UNSIGNED,
-    `jumlah` SMALLINT UNSIGNED,
+    `jumlah` INT,
     `keterangan` TEXT,
     `tanggal` DATE,
     PRIMARY KEY (`id`),

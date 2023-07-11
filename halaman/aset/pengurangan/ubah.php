@@ -1,5 +1,17 @@
 <?php
-$aset = $conn->query("SELECT * FROM aset WHERE id=" . $_GET['id_aset'])->fetch_assoc();
+$data = $conn->query("
+    SELECT 
+        ab.*,
+        a.nama nama_aset  
+    FROM 
+        aset_berkurang ab 
+    INNER JOIN 
+        aset a 
+    ON 
+        a.id=ab.id_aset  
+    WHERE 
+        ab.id=" . $_GET['id'])
+    ->fetch_assoc();
 if (isset($_POST['submit'])) {
     $jumlah = $conn->real_escape_string($_POST['jumlah']);
     $keterangan = $conn->real_escape_string($_POST['keterangan']);
@@ -8,26 +20,19 @@ if (isset($_POST['submit'])) {
         $conn->begin_transaction();
 
         $q = "
-            INSERT INTO aset_bertambah (
-                id_user,
-                id_aset,
-                jumlah,
-                tanggal,
-                keterangan
-            ) VALUES (
-                '" . $_SESSION['user']['id_user'] . "',
-                '" . $aset['id'] . "',
-                '$jumlah',
-                '" . Date("Y-m-d") . "',
-                '$keterangan'
-            )";
+            UPDATE aset_berkurang SET 
+                jumlah='$jumlah',
+                keterangan='$keterangan'
+            WHERE 
+                id=" . $data['id'] . "
+            ";
         $conn->query($q);
 
-        $conn->query("UPDATE aset SET jumlah = " . ($aset['jumlah'] + $jumlah) . " WHERE id=" . $aset['id']);
+        $conn->query("UPDATE aset SET jumlah = jumlah + " . $data['jumlah'] . " - " . $jumlah . " WHERE id=" . $data['id_aset']);
 
         $conn->commit();
-        $_SESSION['success'] = "Penambahan Aset Berhasil!";
-        echo "<script>location.href = '?h1=aset&h2=penambahan_aset';</script>";
+        $_SESSION['success'] = "Pengurangan Aset Berhasil Diperbaharui!";
+        echo "<script>location.href = '?h1=aset&h2=pengurangan_aset';</script>";
     } catch (\Throwable $e) {
         $conn->rollback();
         throw $e;
@@ -40,7 +45,7 @@ if (isset($_POST['submit'])) {
             <div class="row align-items-center">
                 <div class="col-md-12 text-center">
                     <div class="title mb-30">
-                        <h3>Penambahan Aset</h3>
+                        <h3>Perbaharui Pengurangan Aset</h3>
                     </div>
                 </div>
             </div>
@@ -55,26 +60,26 @@ if (isset($_POST['submit'])) {
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Nama Aset</label>
-                                        <input type="text" disabled value="<?= $aset['nama']; ?>" autocomplete="off" required />
+                                        <input type="text" disabled value="<?= $data['nama_aset']; ?>" autocomplete="off" required />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Jumlah</label>
-                                        <input type="number" class="bg-transparent" name="jumlah" min="1" autocomplete="off" required />
+                                        <input type="number" class="bg-transparent" name="jumlah" min="1" value="<?= $data['jumlah'] ?>" autocomplete="off" required />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Keterangan</label>
-                                        <textarea name="keterangan" class="bg-transparent" required></textarea>
+                                        <textarea name="keterangan" class="bg-transparent" required><?= $data['keterangan'] ?></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-style mb-30">
                             <div class="col-12 d-flex justify-content-between">
-                                <a href="?h1=aset&h2=data_aset" class="main-btn btn-sm light-btn btn-hover">Kembali</a>
+                                <a href="?h1=aset&h2=pengurangan_aset" class="main-btn btn-sm light-btn btn-hover">Kembali</a>
                                 <button name="submit" class="main-btn btn-sm primary-btn btn-hover">Tambah</button>
                             </div>
                         </div>
