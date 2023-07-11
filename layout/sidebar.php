@@ -146,6 +146,8 @@
                     <li><a href="?h1=laporan&h2=pemasok" class="<?= ($_GET['h2'] ?? '') == 'pemasok' ? 'active' : ''; ?>">Pemasok</a></li>
                     <li><a href="?h1=laporan&h2=suplai_bahan_baku" class="<?= ($_GET['h2'] ?? '') == 'suplai_bahan_baku' ? 'active' : ''; ?>">Suplai Bahan Baku</a></li>
                     <li><a href="?h1=laporan&h2=keuangan" class="<?= ($_GET['h2'] ?? '') == 'keuangan' ? 'active' : ''; ?>">Keuangan</a></li>
+                    <li><a href="?h1=laporan&h2=penambahan_aset" class="<?= ($_GET['h2'] ?? '') == 'penambahan_aset' ? 'active' : ''; ?>">Penambahan Aset</a></li>
+                    <li><a href="?h1=laporan&h2=pengurangan_aset" class="<?= ($_GET['h2'] ?? '') == 'pengurangan_aset' ? 'active' : ''; ?>">Pengurangan Aset</a></li>
                 </ul>
             </li>
         </ul>

@@ -4,25 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan Penjualan</title>
+    <title>Laporan Penambahan Aset</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="shortcut icon" href="../../../assets/images/logo/logo.jpg" type="image/x-icon" />
 </head>
 
 <body>
     <?php include_once('header.php'); ?>
-    <h4 class="text-center my-3">Laporan Penjualan</h4>
-    <?php if (isset($_GET['status_pelanggan']) || (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))) : ?>
+    <h4 class="text-center my-3">Laporan Penambahan Aset</h4>
+    <?php if ((isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))) : ?>
         <section class="p-3">
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-4">
                     <table class="table">
-                        <?php if (isset($_GET['status_pelanggan'])) : ?>
-                            <tr>
-                                <td class="align-middle td-fit">Status Pelaggan</td>
-                                <td class="pl-5"><?= $_GET['status_pelanggan']; ?></td>
-                            </tr>
-                        <?php endif; ?>
                         <?php if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal'])) : ?>
                             <tr>
                                 <td class="align-middle td-fit">Dari Tanggal</td>
@@ -44,37 +38,31 @@
                 <tr>
                     <th class="text-center align-middle td-fit">No</th>
                     <th class="text-center align-middle">Tanggal</th>
-                    <th class="text-center align-middle">Nama Pelanggan</th>
-                    <th class="text-center align-middle">Status Pelanggan</th>
-                    <th class="text-center align-middle">Total Pembelian</th>
+                    <th class="text-center align-middle">Nama Aset</th>
+                    <th class="text-center align-middle">Jumlah</th>
+                    <th class="text-center align-middle">Keterangan</th>
                 </tr>
             </thead>
             <?php
             $q = "
                 SELECT 
-                    p.*,
-                    DATE(p.tanggal_waktu) tanggal,
-                    (SELECT IFNULL(SUM(dp.jumlah * dp.harga), 0) FROM detail_penjualan dp WHERE dp.id_penjualan=p.id) total 
+                    ab.*,
+                    a.nama nama_aset
                 FROM 
-                    penjualan p 
+                    aset_bertambah ab 
+                INNER JOIN 
+                    aset a 
                 WHERE 
                     1=1 
             ";
 
-            if (isset($_POST['status_pelanggan'])) {
-                if ($_POST['status_pelanggan'] == 'Pelanggan Tetap')
-                    $q .= " AND id_pelanggan IS NOT NULL";
-                elseif ($_POST['status_pelanggan'] == 'Pelanggan Baru')
-                    $q .= " AND id_pelanggan IS NULL";
-            }
             if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal']))
-                $q .= " AND DATE(p.tanggal_waktu) >= '" . $_GET['dari_tanggal'] . "' AND DATE(p.tanggal_waktu) <= '" . $_GET['sampai_tanggal'] . "'";
+                $q .= " AND DATE(ab.tanggal) >= '" . $_GET['dari_tanggal'] . "' AND DATE(ab.tanggal) <= '" . $_GET['sampai_tanggal'] . "'";
 
-            $q .= " ORDER BY p.tanggal_waktu DESC";
+            $q .= " ORDER BY ab.tanggal DESC";
 
             $result = $conn->query($q);
             $no = 1;
-            $total = 0;
             ?>
             <tbody>
                 <?php if ($result->num_rows) : ?>
@@ -87,21 +75,15 @@
                                 <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
                             </td>
                             <td class="text-center">
-                                <p><?= $row['nama']; ?></p>
+                                <p class="m-0"><?= $row['nama_aset']; ?></p>
                             </td>
                             <td class="text-center">
-                                <p><?= $row['id_pelanggan'] ? 'Pelanggan Tetap' : 'Pelanggan Baru'; ?></p>
+                                <p class="m-0"><?= $row['jumlah']; ?></p>
                             </td>
                             <td class="text-center">
-                                <p class="m-0">Rp <?= number_format($row['total'], 0, ",", "."); ?></p>
+                                <p class="m-0"><?= $row['keterangan']; ?></p>
                             </td>
-                        </tr>
-                        <?php $total += $row['total']; ?>
                     <?php endwhile; ?>
-                    <tr>
-                        <td colspan="4" class="text-end"><strong>Total</strong></td>
-                        <td class="text-center"><strong>Rp <?= number_format($total, 0, ",", "."); ?></strong></td>
-                    </tr>
                 <?php else : ?>
                     <tr>
                         <td class="text-center" colspan="5">Data Kosong</td>

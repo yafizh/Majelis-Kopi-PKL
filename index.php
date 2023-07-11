@@ -225,6 +225,10 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/keuangan.php');
                     elseif ($_GET['h2'] == 'kasir')
                         include_once('halaman/laporan/kasir.php');
+                    elseif ($_GET['h2'] == 'penambahan_aset')
+                        include_once('halaman/laporan/penambahan_aset.php');
+                    elseif ($_GET['h2'] == 'pengurangan_aset')
+                        include_once('halaman/laporan/pengurangan_aset.php');
                 }
 
                 if ($_GET['h1'] == 'ganti_password')
