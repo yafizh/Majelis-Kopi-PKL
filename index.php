@@ -75,6 +75,19 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/user/kasir/hapus.php');
                 }
 
+                if ($_GET['h1'] == 'aset') {
+                    if ($_GET['h2'] == 'data_aset')
+                        include_once('halaman/aset/data/index.php');
+                    elseif ($_GET['h2'] == 'tambah_aset')
+                        include_once('halaman/aset/data/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_aset')
+                        include_once('halaman/aset/data/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_aset')
+                        include_once('halaman/aset/data/hapus.php');
+                    elseif ($_GET['h2'] == 'detail_aset')
+                        include_once('halaman/aset/data/detail.php');
+                }
+
                 if ($_GET['h1'] == 'kategori_menu')
                     include_once('halaman/kategori_menu/index.php');
                 elseif ($_GET['h1'] == 'tambah_kategori_menu')
