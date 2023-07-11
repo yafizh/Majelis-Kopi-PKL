@@ -86,6 +86,15 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/aset/data/hapus.php');
                     elseif ($_GET['h2'] == 'detail_aset')
                         include_once('halaman/aset/data/detail.php');
+
+                    if ($_GET['h2'] == 'penambahan_aset')
+                        include_once('halaman/aset/penambahan/index.php');
+                    elseif ($_GET['h2'] == 'tambah_penambahan_aset')
+                        include_once('halaman/aset/penambahan/tambah.php');
+                    elseif ($_GET['h2'] == 'ubah_penambahan_aset')
+                        include_once('halaman/aset/penambahan/ubah.php');
+                    elseif ($_GET['h2'] == 'hapus_penambahan_aset')
+                        include_once('halaman/aset/penambahan/hapus.php');
                 }
 
                 if ($_GET['h1'] == 'kategori_menu')

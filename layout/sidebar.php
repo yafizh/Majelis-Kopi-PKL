@@ -41,7 +41,7 @@
                 <ul id="aset" class="collapse dropdown-nav <?= ($_GET['h1'] ?? '') == 'aset' ? 'show' : ''; ?>">
                     <li><a href="?h1=aset&h2=data_aset" class="<?= in_array(($_GET['h2'] ?? ''), ['data_aset', 'tambah_aset', 'ubah_aset', 'detail_aset']) ? 'active' : ''; ?>">Daftar Aset</a></li>
                     <li><a href="?h1=aset&h2=penambahan_aset" class="<?= in_array(($_GET['h2'] ?? ''), ['penambahan_aset', 'tambah_penambahan_aset', 'ubah_penambahan_aset']) ? 'active' : ''; ?>">Riwayat Penambahan Aset</a></li>
-                    <li><a href="?h1=aset&h2=penambahan_aset" class="<?= in_array(($_GET['h2'] ?? ''), ['penambahan_aset', 'tambah_penambahan_aset', 'ubah_penambahan_aset']) ? 'active' : ''; ?>">Riwayat Pengurangan Aset</a></li>
+                    <li><a href="?h1=aset&h2=pengurangan_aset" class="<?= in_array(($_GET['h2'] ?? ''), ['pengurangan_aset', 'tambah_pengurangan_aset', 'ubah_pengurangan_aset']) ? 'active' : ''; ?>">Riwayat Pengurangan Aset</a></li>
                 </ul>
             </li>
             <li class="nav-item <?= in_array(($_GET['h1'] ?? ''), ['kategori_menu', 'tambah_kategori_menu', 'ubah_kategori_menu']) == 'kategori_menu' ? 'active' : ''; ?>">
