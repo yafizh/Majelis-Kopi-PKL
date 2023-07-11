@@ -117,13 +117,28 @@ if (isset($_POST['submit'])) {
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Potongan Gaji</label>
-                                        <input type="number" class="bg-transparent" value="<?= $data2['potongan_gaji']; ?>" name="potongan_gaji" min="0" autocomplete="off" required />
+                                        <input type="number" class="text-center" readonly value="<?= $data2['potongan_gaji']; ?>" name="potongan_gaji" min="0" autocomplete="off" required />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <script>
+                    const potonganGaji = document.querySelector('input[name=potongan_gaji]');
+                    const izin = document.querySelector('input[name=izin]');
+                    const tidak_hadir = document.querySelector('input[name=tidak_hadir]');
+                    izin.addEventListener('input', () => {
+                        if (!isNaN(izin.value)) {
+                            potonganGaji.value = (parseInt(tidak_hadir.value) * 50000) + (parseInt(izin.value) * 50000);
+                        }
+                    });
+                    tidak_hadir.addEventListener('input', () => {
+                        if (!isNaN(tidak_hadir.value)) {
+                            potonganGaji.value = (parseInt(tidak_hadir.value) * 50000) + (parseInt(izin.value) * 50000);
+                        }
+                    });
+                </script>
                 <div class="row">
                     <div class="card-style mb-30">
                         <div class="col-12 d-flex justify-content-between">
