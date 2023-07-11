@@ -67,6 +67,8 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/user/kasir/index.php');
                     elseif ($_GET['h2'] == 'tambah_kasir')
                         include_once('halaman/user/kasir/tambah.php');
+                    elseif ($_GET['h2'] == 'detail_kasir')
+                        include_once('halaman/user/kasir/detail.php');
                     elseif ($_GET['h2'] == 'ubah_kasir')
                         include_once('halaman/user/kasir/ubah.php');
                     elseif ($_GET['h2'] == 'hapus_kasir')

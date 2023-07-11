@@ -189,7 +189,7 @@
                                                     <a href="?id=<?= $_GET['id']; ?>" class="btn btn-warning flex-grow-1">EDIT</a>
                                                 <?php endif; ?>
                                                 <a href="halaman/kasir/hapus.php?id=<?= $_GET['id']; ?>" onclick="return confirm('Yakin?')" class="btn btn-danger flex-grow-1">HAPUS</a>
-                                                <a href="halaman/laporan/cetak/struk.php?id=<?= $_GET['id']; ?>" target="_blank" class="btn btn-success flex-grow-1">STRUK</a>
+                                                <a href="halaman/laporan/cetak/struk.php?id=<?= $_GET['id']; ?>" target="_blank" class="btn btn-success flex-grow-1">CETAK</a>
                                             </div>
                                         </td>
                                     </tr>
