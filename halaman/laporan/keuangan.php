@@ -89,7 +89,7 @@
                                         YEAR(tanggal) = '{$tahun}' 
                                 ";
                                 $result2 = $conn->query($q);
-                                $laba_kotor = $result2->fetch_assoc()['laba_kotor'];
+                                $modal_awal = $result2->fetch_assoc()['laba_kotor'];
 
                                 $q = "
                                     SELECT 
@@ -102,7 +102,7 @@
                                         tahun = '{$tahun}' 
                                 ";
                                 $result3 = $conn->query($q);
-                                $laba_kotor += $result3->fetch_assoc()['laba_kotor'];
+                                $gaji_kasir = $result3->fetch_assoc()['laba_kotor'];
                                 ?>
                                 <tbody>
                                     <?php if ($result->num_rows) : ?>
@@ -130,10 +130,18 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <p><strong>Bahan Baku dan Gaji Kasir</strong></p>
+                                                <p><strong>Modal Awal</strong></p>
                                             </td>
                                             <td class="text-center">
-                                                <p><strong>Rp <?= number_format($laba_kotor, 0, ",", "."); ?></strong></p>
+                                                <p><strong>Rp <?= number_format($modal_awal, 0, ",", "."); ?></strong></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <p><strong>Gaji Kasir</strong></p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p><strong>Rp <?= number_format($gaji_kasir, 0, ",", "."); ?></strong></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -141,7 +149,7 @@
                                                 <p><strong>Laba Bersih</strong></p>
                                             </td>
                                             <td class="text-center">
-                                                <p><strong>Rp <?= number_format($pendapatan - $laba_kotor, 0, ",", "."); ?></strong></p>
+                                                <p><strong>Rp <?= number_format($pendapatan - $modal_awal - $gaji_kasir, 0, ",", "."); ?></strong></p>
                                             </td>
                                         </tr>
                                     <?php else : ?>
