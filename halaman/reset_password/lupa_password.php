@@ -4,17 +4,13 @@ require_once('../../database/connection.php');
 session_start();
 if (isset($_POST['submit'])) {
     $username = $conn->real_escape_string($_POST['username']);
-    $password = $conn->real_escape_string($_POST['password']);
+    $nama = $conn->real_escape_string($_POST['nama']);
+    $tempat_lahir = $conn->real_escape_string($_POST['tempat_lahir']);
+    $tanggal_lahir = $conn->real_escape_string($_POST['tanggal_lahir']);
 
     $q = "
         SELECT 
-            u.id id_user,
-            u.username,
-            u.password,
-            u.status,
-            k.id id_kasir,
-            k.nama,
-            k.foto 
+            u.id as id_user  
         FROM 
             user u 
         LEFT JOIN 
@@ -22,16 +18,20 @@ if (isset($_POST['submit'])) {
         ON 
             k.id_user=u.id 
         WHERE 
-            username='$username' 
+            UPPER(u.username)='" . strtoupper($username) . "' 
             AND 
-            password='$password'
+            UPPER(k.nama)='" . strtoupper($nama) . "'
+            AND 
+            UPPER(k.tempat_lahir)='" . strtoupper($tempat_lahir) . "' 
+            AND 
+            k.tanggal_lahir='" . $tanggal_lahir . "' 
     ";
     $validate = $conn->query($q);
     if ($validate->num_rows) {
-        $_SESSION['user'] = $validate->fetch_assoc();
-        echo "<script>location.href = '../../index.php';</script>";
+        $data = $validate->fetch_assoc();
+        echo "<script>location.href = 'ganti_password.php?id=" . $data['id_user'] . "';</script>";
     } else
-        echo "<script>alert('Username atau Password Salah!')</script>";
+        echo "<script>alert('Data tidak terdaftar!')</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="../../assets/images/logo/logo.png" type="image/x-icon" />
-    <title>Login</title>
+    <title>Lupa Password</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -57,14 +57,14 @@ if (isset($_POST['submit'])) {
 
 <body>
     <main class="main-wrapper" style="margin: 0; padding: 0;">
-        <div class="row g-0 auth-row" style="height: 100vh;">
+        <div class="row g-0 auth-row">
             <div class="col-lg-6">
                 <div class="auth-cover-wrapper bg-primary-100" style="position: relative;">
                     <img src="../../assets/images/auth/left.jpg" style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
                     <div style="position: absolute; z-index: 2; background-color: #000; width: 100%; height: 100%; opacity: .5;"></div>
                     <div class="w-100 h-100 d-flex flex-column" style="position: absolute; z-index: 3; padding-top: 10rem;">
                         <div class="text-center">
-                            <h1 class="text-white mb-30">HALAMAN LOGIN</h1>
+                            <h1 class="text-white mb-30">HALAMAN LUPA PASSWORD</h1>
                             <h1 class="text-white mb-10">APLIKASI PENJUALAN</h1>
                             <h1 class="text-white mb-10">MAJELIS KOPI BANJARBARU</h1>
                         </div>
@@ -74,9 +74,9 @@ if (isset($_POST['submit'])) {
             <div class="col-lg-6">
                 <div class="signin-wrapper">
                     <div class="form-wrapper">
-                        <h6 class="mb-15">Form Login</h6>
+                        <h6 class="mb-15">Form Lupa Password</h6>
                         <p class="text-sm mb-25">
-                            Login sebagai admin atau kasir.
+                            Masukkan identias diri.
                         </p>
                         <form action="" method="POST">
                             <div class="row">
@@ -88,16 +88,28 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
-                                        <label>Password</label>
-                                        <input type="password" name="password" required />
+                                        <label>Nama</label>
+                                        <input type="text" name="nama" required autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Tempat Lahir</label>
+                                        <input type="text" name="tempat_lahir" required autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Tanggal Lahir</label>
+                                        <input type="date" name="tanggal_lahir" required autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="button-group d-flex justify-content-center flex-wrap">
                                         <button type="submit" name="submit" class="main-btn primary-btn btn-hover w-100 text-center mb-3">
-                                            Login
+                                            Reset Password
                                         </button>
-                                        <a href="../reset_password/lupa_password.php">Lupa Password?</a>
+                                        <a href="../login/index.php">Login</a>
                                     </div>
                                 </div>
                             </div>
