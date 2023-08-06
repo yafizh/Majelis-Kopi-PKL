@@ -50,8 +50,10 @@
                     a.nama nama_aset
                 FROM 
                     aset_berkurang ab 
-                INNER JOIN 
+                INNER JOIN  
                     aset a 
+                ON 
+                    a.id=ab.id_aset 
                 WHERE 
                     1=1 
             ";

@@ -52,6 +52,8 @@
                     aset_bertambah ab 
                 INNER JOIN 
                     aset a 
+                ON 
+                    a.id=ab.id_aset 
                 WHERE 
                     1=1 
             ";
