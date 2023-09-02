@@ -87,6 +87,11 @@ if (isset($_GET['id'])) {
     $daftar_pesanan['pelanggan_tetap'] = is_null($penjualan['id_pelanggan']) ? false : true;
 }
 ?>
+<style>
+    .select2 .selection {
+        width: 100%;
+    }
+</style>
 <section class="table-components">
     <div class="container-fluid">
         <div class="tables-wrapper pt-30">
@@ -388,7 +393,7 @@ if (isset($_GET['id'])) {
                     <tr>
                         <th>Nama Pelanggan</th>
                         <td colspan="2" class="ps-3"> 
-                            <select class="form-control text-end" onchange="pilihNamaPelanggan(this)" name="id_pelanggan" required>
+                            <select id="id_pelanggan" class="form-select text-end w-100" onchange="pilihNamaPelanggan(this)" name="id_pelanggan" required>
                                 <option selected disabled value="">Pilih Pelanggan Tetap</option>
                     `;
 
@@ -402,6 +407,14 @@ if (isset($_GET['id'])) {
                 a += `</select>
                         </td>
                     </tr>`;
+
+                $(document).ready(function() {
+                    $("#id_pelanggan").select2({
+                        theme: "bootstrap-5",
+                        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                        placeholder: $(this).data('placeholder'),
+                    });
+                });
             } else {
                 a += `
                     <tr>
@@ -519,8 +532,11 @@ if (isset($_GET['id'])) {
                 },
                 body: JSON.stringify(data)
             }).then(response => response.json());
+            console.log(response)
             if (response.isSuccess) {
                 alert('Penjualan Berhasil');
+                const url = `${document.URL.split("index.php")[0]}/halaman/laporan/cetak/struk.php?id=${response.id_penjualan}`;
+                window.open(url, '_blank', 'location=yes,height=470,width=520,scrollbars=yes,status=yes');
                 location.reload();
             }
         }

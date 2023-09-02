@@ -79,7 +79,8 @@ try {
 
     $conn->commit();
     echo json_encode([
-        'isSuccess' => 1
+        'isSuccess' => 1,
+        'id_penjualan' => $id_penjualan
     ]);
 } catch (\Throwable $e) {
     $conn->rollback();
