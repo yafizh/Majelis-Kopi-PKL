@@ -31,6 +31,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="?h=uang_kas" style="background-color: <?= (($_GET['h'] ?? '') == 'uang_kas') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'uang_kas') ? 'white' : '' ?>;">
+                                    <i class="lni lni-coin"></i> Uang Kas
+                                </a>
+                            </li>
+                            <li>
                                 <a href="?h=pelanggan" style="background-color: <?= (($_GET['h'] ?? '') == 'pelanggan') ? '#4a6cf7' : 'none' ?>; color: <?= (($_GET['h'] ?? '') == 'pelanggan') ? 'white' : '' ?>;">
                                     <i class="lni lni-user"></i> Pelanggan Tetap
                                 </a>

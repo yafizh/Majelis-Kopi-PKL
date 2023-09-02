@@ -25,10 +25,10 @@ if (!isset($_SESSION['user']))
     <link rel="stylesheet" href="assets/css/datatable.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
-    
+
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+
     <!-- Select2.org -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -222,6 +222,8 @@ if (!isset($_SESSION['user']))
                 if ($_GET['h1'] == 'laporan') {
                     if ($_GET['h2'] == 'favorit_menu')
                         include_once('halaman/laporan/favorit_menu.php');
+                    elseif ($_GET['h2'] == 'grafik_favorit_menu')
+                        include_once('halaman/laporan/grafik_favorit_menu.php');
                     elseif ($_GET['h2'] == 'penjualan')
                         include_once('halaman/laporan/penjualan.php');
                     elseif ($_GET['h2'] == 'suplai_bahan_baku')
@@ -268,6 +270,11 @@ if (!isset($_SESSION['user']))
                     include_once('halaman/pelanggan/ubah.php');
                 elseif ($_GET['h'] == 'hapus_pelanggan')
                     include_once('halaman/pelanggan/hapus.php');
+                // Uang Kas
+                elseif ($_GET['h'] == 'uang_kas')
+                    include_once('halaman/uang_kas/index.php');
+                elseif ($_GET['h'] == 'ubah_uang_kas')
+                    include_once('halaman/uang_kas/ubah.php');
             } else include_once('halaman/kasir/index.php');
             ?>
         <?php endif; ?>

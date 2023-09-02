@@ -106,6 +106,16 @@ CREATE TABLE `db_majelis_kopi`.`penggajian_kasir`(
     FOREIGN KEY (`id_kasir`) REFERENCES kasir (`id`) ON DELETE CASCADE 
 );
 
+CREATE TABLE `db_majelis_kopi`.`uang_kas_kasir`(
+    `id` BIGINT UNSIGNED AUTO_INCREMENT,
+    `id_kasir` BIGINT UNSIGNED,
+    `mulai` BIGINT UNSIGNED,
+    `selesai` BIGINT UNSIGNED,
+    `tanggal` DATE,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_kasir`) REFERENCES kasir (`id`) ON DELETE CASCADE 
+);
+
 CREATE TABLE `db_majelis_kopi`.`pelanggan`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `nama` VARCHAR(255),

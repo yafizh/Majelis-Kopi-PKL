@@ -142,6 +142,7 @@
                     <li><a href="?h1=laporan&h2=kasir" class="<?= ($_GET['h2'] ?? '') == 'kasir' ? 'active' : ''; ?>">Kasir</a></li>
                     <li><a href="?h1=laporan&h2=menu" class="<?= ($_GET['h2'] ?? '') == 'menu' ? 'active' : ''; ?>">Menu</a></li>
                     <li><a href="?h1=laporan&h2=favorit_menu" class="<?= ($_GET['h2'] ?? '') == 'favorit_menu' ? 'active' : ''; ?>">Favorit Menu</a></li>
+                    <li><a href="?h1=laporan&h2=grafik_favorit_menu" class="<?= ($_GET['h2'] ?? '') == 'grafik_favorit_menu' ? 'active' : ''; ?>">Grafik Favorit Menu</a></li>
                     <li><a href="?h1=laporan&h2=penjualan" class="<?= ($_GET['h2'] ?? '') == 'penjualan' ? 'active' : ''; ?>">Penjualan</a></li>
                     <li><a href="?h1=laporan&h2=pemasok" class="<?= ($_GET['h2'] ?? '') == 'pemasok' ? 'active' : ''; ?>">Pemasok</a></li>
                     <li><a href="?h1=laporan&h2=suplai_bahan_baku" class="<?= ($_GET['h2'] ?? '') == 'suplai_bahan_baku' ? 'active' : ''; ?>">Suplai Bahan Baku</a></li>
