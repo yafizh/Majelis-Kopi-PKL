@@ -95,7 +95,7 @@
                                                 <td class="text-center fit">
                                                     <p><?= $no++; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
                                                 <td class="text-center">

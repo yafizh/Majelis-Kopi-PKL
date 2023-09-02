@@ -39,8 +39,8 @@
                     <th class="text-center align-middle td-fit">No</th>
                     <th class="text-center align-middle">Tanggal</th>
                     <th class="text-center align-middle">Nama Aset</th>
-                    <th class="text-center align-middle">Jumlah</th>
                     <th class="text-center align-middle">Keterangan</th>
+                    <th class="text-center align-middle">Jumlah</th>
                 </tr>
             </thead>
             <?php
@@ -65,6 +65,7 @@
 
             $result = $conn->query($q);
             $no = 1;
+            $total = 0;
             ?>
             <tbody>
                 <?php if ($result->num_rows) : ?>
@@ -76,21 +77,26 @@
                             <td class="text-center">
                                 <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['nama_aset']; ?></p>
+                            </td>
+                            <td>
+                                <p class="m-0"><?= $row['keterangan']; ?></p>
                             </td>
                             <td class="text-center">
                                 <p class="m-0"><?= $row['jumlah']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p class="m-0"><?= $row['keterangan']; ?></p>
-                            </td>
-                    <?php endwhile; ?>
-                <?php else : ?>
-                    <tr>
-                        <td class="text-center" colspan="5">Data Kosong</td>
-                    </tr>
-                <?php endif; ?>
+                            <?php $total += $row['jumlah']; ?>
+                        <?php endwhile; ?>
+                        <tr>
+                            <td colspan="4"><strong>Total</strong></td>
+                            <td class="text-center"><?= $total; ?></td>
+                        </tr>
+                    <?php else : ?>
+                        <tr>
+                            <td class="text-center" colspan="5">Data Kosong</td>
+                        </tr>
+                    <?php endif; ?>
             </tbody>
         </table>
     </main>

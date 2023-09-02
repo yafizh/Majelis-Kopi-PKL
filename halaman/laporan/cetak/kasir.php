@@ -56,10 +56,10 @@
                             <td class="text-center fit">
                                 <p class="m-0"><?= $no++; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['nama']; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['tempat_lahir']; ?></p>
                             </td>
                             <td class="text-center">
@@ -68,8 +68,8 @@
                             <td class="text-center">
                                 <p class="m-0"><?= $row['jenis_kelamin']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p class="m-0"><?= $row['nominal_gaji']; ?></p>
+                            <td class="text-end">
+                                <p class="m-0">Rp <?= number_format($row['nominal_gaji'], 0, ",", "."); ?></p>
                             </td>
                         </tr>
                     <?php endwhile; ?>

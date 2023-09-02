@@ -107,13 +107,13 @@
                             <td class="text-center">
                                 <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['pemasok']; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['bahan_baku']; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['jumlah']; ?> <?= $row['satuan']; ?></p>
                             </td>
                         </tr>

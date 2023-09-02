@@ -125,13 +125,13 @@
                                                 <td class="text-center">
                                                     <p><?= indonesiaDate($row['tanggal']); ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['pemasok']; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['bahan_baku']; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['jumlah']; ?> <?= $row['satuan']; ?></p>
                                                 </td>
                                             </tr>

@@ -56,10 +56,10 @@
                                             <h6>Nama Aset</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Jumlah</h6>
+                                            <h6>Keterangan </h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Keterangan </h6>
+                                            <h6>Jumlah</h6>
                                         </th>
                                     </tr>
                                 </thead>
@@ -100,10 +100,10 @@
                                                     <p><?= $row['nama_aset']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['jumlah']; ?></p>
+                                                    <p><?= $row['keterangan']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['keterangan']; ?></p>
+                                                    <p><?= $row['jumlah']; ?></p>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>

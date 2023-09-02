@@ -73,10 +73,10 @@
                             <td class="text-center fit">
                                 <p class="m-0"><?= $no++; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['nama']; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['bahan_baku']; ?></p>
                             </td>
                         </tr>

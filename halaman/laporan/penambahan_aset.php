@@ -56,10 +56,10 @@
                                             <h6>Nama Aset</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Jumlah</h6>
+                                            <h6>Keterangan </h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Keterangan </h6>
+                                            <h6>Jumlah</h6>
                                         </th>
                                     </tr>
                                 </thead>
@@ -96,14 +96,14 @@
                                                 <td class="text-center">
                                                     <p><?= indonesiaDate($row['tanggal']); ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['nama_aset']; ?></p>
+                                                </td>
+                                                <td>
+                                                    <p><?= $row['keterangan']; ?></p>
                                                 </td>
                                                 <td class="text-center">
                                                     <p><?= $row['jumlah']; ?></p>
-                                                </td>
-                                                <td class="text-center">
-                                                    <p><?= $row['keterangan']; ?></p>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>

@@ -58,10 +58,10 @@
                                                 <td class="text-center fit">
                                                     <p><?= $no++; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['tempat_lahir']; ?></p>
                                                 </td>
                                                 <td class="text-center">
@@ -70,14 +70,14 @@
                                                 <td class="text-center">
                                                     <p><?= $row['jenis_kelamin']; ?></p>
                                                 </td>
-                                                <td class="text-center">
-                                                    <p><?= $row['nominal_gaji']; ?></p>
+                                                <td class="text-end">
+                                                    <p>Rp <?= number_format($row['nominal_gaji'], 0, ",", "."); ?></p>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>
                                     <?php else : ?>
                                         <tr>
-                                            <td class="text-center" colspan="3">Data Kosong</td>
+                                            <td class="text-center" colspan="6">Data Kosong</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

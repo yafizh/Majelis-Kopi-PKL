@@ -85,10 +85,10 @@
                                                 <td class="text-center fit">
                                                     <p><?= $no++; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['kategori_menu']; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['nama_menu']; ?></p>
                                                 </td>
                                             </tr>

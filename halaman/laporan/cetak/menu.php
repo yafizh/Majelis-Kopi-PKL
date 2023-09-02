@@ -70,17 +70,17 @@
                             <td class="text-center fit">
                                 <p class="m-0"><?= $no++; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['kategori_menu']; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <p class="m-0"><?= $row['nama_menu']; ?></p>
                             </td>
                         </tr>
                     <?php endwhile; ?>
                 <?php else : ?>
                     <tr>
-                        <td class="text-center" colspan="3  ">Data Kosong</td>
+                        <td class="text-center" colspan="3">Data Kosong</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

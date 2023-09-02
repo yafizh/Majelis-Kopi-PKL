@@ -86,20 +86,20 @@
                             <td class="text-center">
                                 <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['nama']; ?></p>
+                            <td>
+                                <p class="m-0"><?= $row['nama']; ?></p>
                             </td>
                             <td class="text-center">
-                                <p><?= $row['id_pelanggan'] ? 'Pelanggan Tetap' : 'Pelanggan Baru'; ?></p>
+                                <p class="m-0"><?= $row['id_pelanggan'] ? 'Pelanggan Tetap' : 'Pelanggan Baru'; ?></p>
                             </td>
-                            <td class="text-center">
+                            <td class="text-end">
                                 <p class="m-0">Rp <?= number_format($row['total'], 0, ",", "."); ?></p>
                             </td>
                         </tr>
                         <?php $total += $row['total']; ?>
                     <?php endwhile; ?>
                     <tr>
-                        <td colspan="4" class="text-end"><strong>Total</strong></td>
+                        <td colspan="4"><strong>Total</strong></td>
                         <td class="text-center"><strong>Rp <?= number_format($total, 0, ",", "."); ?></strong></td>
                     </tr>
                 <?php else : ?>

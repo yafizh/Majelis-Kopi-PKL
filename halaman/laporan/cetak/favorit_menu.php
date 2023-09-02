@@ -69,6 +69,7 @@
 
             $result = $conn->query($q);
             $no = 1;
+            $total = 0;
             ?>
             <tbody>
                 <?php if ($result->num_rows) : ?>
@@ -84,7 +85,12 @@
                                 <p class="m-0"><?= $row['jumlah_penjualan']; ?></p>
                             </td>
                         </tr>
+                        <?php $total += $row['jumlah_penjualan']; ?>
                     <?php endwhile; ?>
+                    <tr>
+                        <td colspan="2"><strong>Total</strong></td>
+                        <td class="text-center"><strong><?= $total; ?></strong></td>
+                    </tr>
                 <?php else : ?>
                     <tr>
                         <td class="text-center" colspan="3">Data Kosong</td>

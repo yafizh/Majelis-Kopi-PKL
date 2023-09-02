@@ -115,13 +115,13 @@
                                                 <td class="text-center">
                                                     <p><?= indonesiaDate($row['tanggal']); ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
                                                 <td class="text-center">
                                                     <p><?= $row['id_pelanggan'] ? 'Pelanggan Tetap' : 'Pelanggan Baru'; ?></p>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-end">
                                                     <p>Rp <?= number_format($row['total'], 0, ",", "."); ?></p>
                                                 </td>
                                             </tr>
